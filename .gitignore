@@ -1,0 +1,12 @@
+.deps
+.tts
+
+home-assistant_v2.db
+home-assistant.log
+options.xml
+OZW_Log.txt
+pyozw.sqlite
+secrets.yaml
+zigbee.db
+zwcfg_0xfb6bbf61.xml
+zwscene.xml

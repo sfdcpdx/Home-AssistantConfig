@@ -1,0 +1,86 @@
+sonos_say:
+#Sonos speaks message to designated media player
+  alias: Sonos TTS script
+  sequence:
+  - service: sonos.snapshot
+    data_template:
+      entity_id: '{{ sonos_entity|default(''media_player.living_room'') }}'
+  - service: sonos.unjoin
+    data_template:
+      entity_id: '{{ sonos_entity|default(''media_player.living_room'') }}'
+  - service: media_player.volume_set
+    data_template:
+      entity_id: '{{ sonos_entity|default(''media_player.living_room'') }}'
+      volume_level: '{{ volume|default(0.5) }}'
+  - service: tts.google_translate_say
+    data_template:
+      entity_id: '{{ sonos_entity|default(''media_player.living_room'') }}'
+      message: '{{ message }}'
+#  - delay: '{{ delay|default(''00:00:00'') }}'
+  - wait_template: "{{ is_state('sonos_entity|default(''media_player.living_room'')','paused') }}"
+    timeout: 00:00:05
+  - service: sonos.restore
+    data_template:
+      entity_id: '{{ sonos_entity|default(''media_player.living_room'') }}'
+sonos_say_to_all:
+#Groups all Sonos players and says message, then returns to prior status
+  alias: Sonos All Players TTS script
+  sequence:
+  - service: sonos.snapshot
+  - service: sonos.unjoin
+  - service: sonos.join
+    data:
+      master: media_player.living_room
+      entity_id: 
+        - media_player.office
+        - media_player.bedroom
+        - media_player.bathroom
+  - service: media_player.volume_set
+    data:
+      entity_id:
+        - media_player.living_room
+    data_template:
+      volume_level: '{{ volume|default(0.5) }}'
+  - service: tts.google_translate_say
+    data:
+      entity_id:
+        - media_player.living_room
+    data_template:
+      message: '{{ message }}'
+  #- delay: '{{ delay|default(''00:00:00'') }}'
+  - wait_template: "{{ is_state('media_player.living_room', 'paused') }}"
+  # timeout: 00:00:05
+  - service: sonos.restore
+alarm_sound:
+#not working
+  alias: Speaker Alarm Voice
+  sequence:
+  - service: script.sonos_say
+    data:
+      sonos_entity: group.sonos_all
+      volume: 0.5
+      delay: 00:00:03
+      message: test
+phone_notification:
+#this works now, call this script to send a notification to both of our phones
+  alias: Phone Notification
+  sequence:
+  - service: notify.notify_all_phones
+    data_template:
+      message: "{{ message }}"
+      title: "{{ title }}"    
+phone_critical_alert:
+#send critical alert notification to both phones
+  alias: Phone Critical Alert  
+  sequence:
+  - service: notify.notify_all_phones
+    data_template:
+      message: "{{ message }}"
+      title: "{{ title }}"
+    data:      
+      data:
+        push:
+          sound:
+            critical: 1
+            name: default
+            volume: 1

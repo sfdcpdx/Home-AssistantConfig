@@ -1,0 +1,341 @@
+- id: '1578413069469'
+  alias: Living Room Lamp On at Sunset
+  description: ''
+  trigger:
+  - event: sunset
+    offset: -00:30:00
+    platform: sun
+  condition: []
+  action:
+  - device_id: 2b9c02aa7d1a4783ba04922320229f78
+    domain: light
+    entity_id: light.philips_lwb014_dba18b02_level_on_off
+    type: turn_on
+- id: '1578882453000'
+  alias: Door Open Alarm Utility
+  description: Utility Room Door Open Notification
+  trigger:
+  - device_id: 5ee4607e02714b9094869941750d1947
+    domain: binary_sensor
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off
+    platform: device
+    type: opened
+  condition:
+  - condition: state
+    entity_id: input_boolean.arm_alarm
+    state: 'on'
+  action:
+  - data:
+      variables:
+        message: Utility Room Door Open
+        title: Door Open!
+    entity_id: script.phone_critical_alert
+    service: script.turn_on
+  - scene: scene.alarm_alert_scene
+  - data:
+      variables:
+        message: Utility Room Door Open!
+        volume: 0.4
+    entity_id: script.sonos_say_to_all
+    service: script.turn_on
+- id: '1578979288341'
+  alias: Door Open Alarm Front
+  description: ''
+  trigger:
+  - device_id: 57fe4a3180454edb83f2a8f50519eb96
+    domain: binary_sensor
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off
+    platform: device
+    type: opened
+  condition:
+  - condition: state
+    entity_id: input_boolean.arm_alarm
+    state: 'on'
+  action:
+  - data:
+      variables:
+        message: Front Door Open
+        title: Door Open!
+    entity_id: script.phone_critical_alert
+    service: script.turn_on
+  - scene: scene.alarm_alert_scene
+  - data:
+      variables:
+        message: Front Door Open!
+        volume: 0.4
+    entity_id: script.sonos_say_to_all
+    service: script.turn_on
+- id: '1578980257284'
+  alias: Door Open Alarm Back
+  description: ''
+  trigger:
+  - device_id: a5cf4e7e5d8e4884a87e709eb78a0e68
+    domain: binary_sensor
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
+    platform: device
+    type: opened
+  condition:
+  - condition: state
+    entity_id: input_boolean.arm_alarm
+    state: 'on'
+  action:
+  - data:
+      variables:
+        message: Back Door Opened
+        title: Door Open!
+    entity_id: script.phone_critical_alert
+    service: script.turn_on
+  - scene: scene.alarm_alert_scene
+  - data:
+      variables:
+        message: Back Door Open!
+        volume: 0.4
+    entity_id: script.sonos_say_to_all
+    service: script.turn_on
+- id: '1578980257277'
+  alias: Door Open Alarm Side
+  description: ''
+  trigger:
+  - device_id: b1c0b99c4f6b43b48f0ef6f498d4c301
+    domain: binary_sensor
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off
+    platform: device
+    type: opened
+  condition:
+  - condition: state
+    entity_id: input_boolean.arm_alarm
+    state: 'on'
+  action:
+  - data:
+      variables:
+        message: Garage Side Door Opened
+        title: Door Open!
+    entity_id: script.phone_critical_alert
+    service: script.turn_on
+  - scene: scene.alarm_alert_scene
+  - data:
+      variables:
+        message: Garage Side Door Open!
+        volume: 0.4
+    entity_id: script.sonos_say_to_all
+    service: script.turn_on
+- id: '1579545495880'
+  alias: Living Room Lamp Off at Bedtime
+  description: ''
+  trigger:
+  - at: '21:15:00'
+    platform: time
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.philips_lwb014_dba18b02_level_on_off
+    service: light.turn_off
+- id: '1580082798874'
+  alias: Arm Alarm at Night
+  description: Only if Living Room Lamp is off, indicating we've gone to bed or not
+    home
+  trigger:
+  - at: '21:30:00'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: input_boolean.arm_alarm
+    state: 'off'
+  - condition: state
+    entity_id: light.philips_lwb014_dba18b02_level_on_off
+    state: 'off'
+  action:
+  - alias: ''
+    data: {}
+    entity_id: input_boolean.arm_alarm
+    service: input_boolean.turn_on
+- id: '1580082797777'
+  alias: Disarm Alarm in Morning
+  description: ''
+  trigger:
+  - at: 06:50:00
+    platform: time
+  condition: []
+  action:
+  - alias: ''
+    data: {}
+    entity_id: input_boolean.arm_alarm
+    service: input_boolean.turn_off
+- id: '1580096511522'
+  alias: Noisemaker Turn Off
+  description: ''
+  trigger:
+  - at: 06:50:00
+    platform: time
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - entity_id: switch.ledvance_plug_e2161100_on_off
+    service: switch.turn_off
+- id: '1580871736032'
+  alias: Porch Lights On at Sunset
+  description: ''
+  trigger:
+  - event: sunset
+    offset: -00:15:00
+    platform: sun
+  condition: []
+  action:
+  - entity_id: switch.jasco_products_unknown_type_4952_id_3135_switch
+    service: switch.turn_on
+- id: '1580871816468'
+  alias: Porch Lights Off at Sunrise
+  description: ''
+  trigger:
+  - event: sunrise
+    platform: sun
+  condition: []
+  action:
+  - entity_id: switch.jasco_products_unknown_type_4952_id_3135_switch
+    service: switch.turn_off
+- id: '1582332046518'
+  alias: Arm Alarm and Set TStat When Gone
+  description: ''
+  trigger:
+  - entity_id: group.peopleanyonehome
+    from: home
+    platform: state
+    to: not_home
+  condition: []
+  action:
+  - data: {}
+    entity_id: input_boolean.arm_alarm
+    service: input_boolean.turn_on
+  - data:
+      preset_mode: away
+    entity_id: climate.thermostat
+    service: climate.set_preset_mode
+- id: '1582332856461'
+  alias: Disarm Alarm Set TStat When Anyone Returns
+  description: Disarms when both return at same time, or one at a time
+  trigger:
+  - entity_id: group.peopleanyonehome
+    from: not_home
+    platform: state
+    to: home
+  condition:
+  - condition: state
+    entity_id: input_boolean.arm_alarm
+    state: 'on'
+  action:
+  - entity_id: input_boolean.arm_alarm
+    service: input_boolean.turn_off
+  - data:
+      preset_mode: none
+    entity_id: climate.thermostat
+    service: climate.set_preset_mode
+- id: '1582333659516'
+  alias: Arm Alarm with Noisemaker
+  description: When noisemaker plug is switched on, arm alarm
+  trigger:
+  - device_id: a3a16e384ec24ec29fce4f9c9cf363a9
+    domain: switch
+    entity_id: switch.ledvance_plug_e2161100_on_off
+    platform: device
+    type: turned_on
+  condition:
+  - condition: state
+    entity_id: input_boolean.arm_alarm
+    state: 'off'
+  action:
+  - entity_id: input_boolean.arm_alarm
+    service: input_boolean.turn_on
+- id: '1582998859470'
+  alias: Disarm Alarm When Front Door Unlocked
+  description: ''
+  trigger:
+  - entity_id: lock.kwikset_spectrum_brands_unknown_type_0003_id_0238_locked
+    from: locked
+    platform: state
+    to: unlocked
+  condition:
+  - condition: state
+    entity_id: input_boolean.arm_alarm
+    state: 'on'
+  action:
+  - entity_id: input_boolean.arm_alarm
+    service: input_boolean.turn_off
+  - data:
+      variables:
+        message: Alarm is disarmed. Have a great day!
+        sonos_entity: media_player.office
+        volume: 0.3
+    entity_id: script.sonos_say
+    service: script.turn_on
+  - data:
+      variables:
+        message: Front Door Unlocked
+        title: Alarm Disarmed
+    entity_id: script.phone_notification
+    service: script.turn_on
+- id: '1582999915398'
+  alias: Arm Alarm When Front Door Locked
+  description: Arms when noisemaker is on, or all humans are away
+  trigger:
+  - entity_id: lock.kwikset_spectrum_brands_unknown_type_0003_id_0238_locked
+    from: unlocked
+    platform: state
+    to: locked
+  condition:
+  - condition: state
+    entity_id: input_boolean.arm_alarm
+    state: 'off'
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.arm_alarm
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: switch.ledvance_plug_e2161100_on_off
+        state: 'on'
+      - condition: state
+        entity_id: group.peopleanyonehome
+        state: not_home
+  action:
+  - entity_id: input_boolean.arm_alarm
+    service: input_boolean.turn_on
+- id: '1583116281113'
+  alias: Patio Lights Turn On When Back Door Opens
+  description: At night only
+  trigger:
+  - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: light.jasco_products_unknown_type_4944_id_3235_level_2
+    state: 'off'
+  - after: sunset
+    condition: sun
+  action:
+  - entity_id: light.jasco_products_unknown_type_4944_id_3235_level_2
+    service: light.turn_on
+- id: '1583381991156'
+  alias: Disarm Alarm When Second Person Returns Late
+  description: Disarms when one of us comes home after already armed
+  trigger:
+  - entity_id: group.peopleanyoneaway
+    from: not_home
+    platform: state
+    to: home
+  condition:
+  - condition: state
+    entity_id: input_boolean.arm_alarm
+    state: 'on'
+  action:
+  - entity_id: input_boolean.arm_alarm
+    service: input_boolean.turn_off

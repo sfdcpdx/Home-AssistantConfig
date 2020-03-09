@@ -1,0 +1,25 @@
+doors:
+  name: Doors All 
+  entities: 
+  - binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
+  - binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off
+  - binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off
+  - binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off
+sonos_all:
+  name: Sonos All
+  entities:
+  - media_player.bathroom
+  - media_player.bedroom
+  - media_player.living_room
+  - media_player.office
+peopleanyonehome:
+  name: People Anyone Home
+  entities:
+  - person.chris_moreno
+  - person.cari
+peopleanyoneaway:
+  name: People Anyone Away
+  entities:
+  - person.chris_moreno
+  - person.cari
+  all: 'true'

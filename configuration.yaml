@@ -1,0 +1,43 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+#http:
+#  TESTbase_url: morenohomeassistant.duckdns.org
+#  ssl_certificate: /ssl/fullchain.pem
+#  ssl_key: /ssl/privkey.pem
+
+# Text to speech
+tts:
+  - platform: google_translate
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+cover:
+  - platform: aladdin_connect
+    username: !secret aladdin_user
+    password: !secret aladdin_pass
+input_boolean:
+  arm_alarm:
+    name: Alarm Arm Switch
+    initial: off
+    icon: mdi:alarm
+climate:
+  - platform: honeywell
+    username: !secret honeywell_user
+    password: !secret honeywell_pass
+    region: us 
+    scan_interval: 600
+    away_heat_temperature: 65
+    away_cool_temperature: 74
+zwave:
+  usb_path: /dev/ttyUSB0
+  device_config: !include zwave_device_config.yaml
+notify:
+  - platform: group
+    name: notify_all_phones
+    services:
+    - service: mobile_app_phone
+    - service: mobile_app_caris_iphone

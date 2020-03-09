@@ -1,0 +1,95 @@
+- id: '1581880844278'
+  name: Alarm Alert Scene
+  entities:
+    light.jasco_products_unknown_type_4944_id_3235_level:
+      brightness: 196
+      friendly_name: Living Room Cans
+      node_id: 4
+      state: 'on'
+      supported_features: 1
+      value_id: '72057594109853697'
+      value_index: 0
+      value_instance: 1
+    light.jasco_products_unknown_type_4944_id_3235_level_2:
+      brightness: 196
+      friendly_name: Patio Lights
+      node_id: 6
+      state: 'on'
+      supported_features: 1
+      value_id: '72057594143408129'
+      value_index: 0
+      value_instance: 1
+    switch.ledvance_plug_e2161100_on_off:
+      friendly_name: Noisemaker Plug
+      state: 'off'
+    zwave.jasco_products_unknown_type_4944_id_3235:
+      application_version: '5.54'
+      averageRequestRTT: 45
+      averageResponseRTT: 60
+      capabilities:
+      - zwave_plus
+      - beaming
+      - listening
+      - routing
+      friendly_name: Living Room Cans
+      is_awake: true
+      is_failed: false
+      is_info_received: true
+      is_ready: true
+      is_zwave_plus: true
+      lastRequestRTT: 71
+      lastResponseRTT: 85
+      manufacturer_name: Jasco Products
+      max_baud_rate: 40000
+      neighbors:
+      - 1
+      - 3
+      - 5
+      - 6
+      node_id: 4
+      node_name: 'Jasco Products Unknown: type=4944, id=3235'
+      product_name: 'Unknown: type=4944, id=3235'
+      query_stage: Complete
+      receivedCnt: 13
+      receivedDups: 0
+      receivedTS: '2020-03-04 20:45:45:665 '
+      receivedUnsolicited: 2
+      retries: 0
+      sentCnt: 18
+      sentFailed: 0
+      sentTS: '2020-03-04 20:45:45:579 '
+      state: ready
+    zwave.jasco_products_unknown_type_4944_id_3235_2:
+      application_version: '5.54'
+      averageRequestRTT: 494
+      averageResponseRTT: 559
+      capabilities:
+      - zwave_plus
+      - beaming
+      - listening
+      - routing
+      friendly_name: Patio Lights
+      is_awake: true
+      is_failed: false
+      is_info_received: true
+      is_ready: true
+      is_zwave_plus: true
+      lastRequestRTT: 685
+      lastResponseRTT: 763
+      manufacturer_name: Jasco Products
+      max_baud_rate: 40000
+      neighbors:
+      - 4
+      node_id: 6
+      node_name: 'Jasco Products Unknown: type=4944, id=3235'
+      product_name: 'Unknown: type=4944, id=3235'
+      query_stage: Complete
+      receivedCnt: 19
+      receivedDups: 3
+      receivedTS: '2020-03-04 20:45:54:368 '
+      receivedUnsolicited: 6
+      retries: 0
+      sentCnt: 16
+      sentFailed: 0
+      sentTS: '2020-03-04 20:45:53:266 '
+      state: ready
