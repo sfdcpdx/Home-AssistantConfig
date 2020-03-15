@@ -1,6 +1,6 @@
 - id: '1578413069469'
   alias: Living Room Lamp On at Sunset
-  description: ''
+  #description: ''
   trigger:
   - event: sunset
     offset: -00:30:00
@@ -13,7 +13,7 @@
     type: turn_on
 - id: '1578882453000'
   alias: Door Open Alarm Utility
-  description: Utility Room Door Open Notification
+  #description: Utility Room Door Open Notification
   trigger:
   - device_id: 5ee4607e02714b9094869941750d1947
     domain: binary_sensor
@@ -40,7 +40,7 @@
     service: script.turn_on
 - id: '1578979288341'
   alias: Door Open Alarm Front
-  description: ''
+  #description: ''
   trigger:
   - device_id: 57fe4a3180454edb83f2a8f50519eb96
     domain: binary_sensor
@@ -67,7 +67,7 @@
     service: script.turn_on
 - id: '1578980257284'
   alias: Door Open Alarm Back
-  description: ''
+  #description: ''
   trigger:
   - device_id: a5cf4e7e5d8e4884a87e709eb78a0e68
     domain: binary_sensor
@@ -94,7 +94,7 @@
     service: script.turn_on
 - id: '1578980257277'
   alias: Door Open Alarm Side
-  description: ''
+  #description: ''
   trigger:
   - device_id: b1c0b99c4f6b43b48f0ef6f498d4c301
     domain: binary_sensor
@@ -121,7 +121,7 @@
     service: script.turn_on
 - id: '1579545495880'
   alias: Living Room Lamp Off at Bedtime
-  description: ''
+  #description: ''
   trigger:
   - at: '21:15:00'
     platform: time
@@ -132,7 +132,7 @@
     service: light.turn_off
 - id: '1580082798874'
   alias: Arm Alarm at Night
-  description: Only if Living Room Lamp is off, indicating we've gone to bed or not
+  #description: Only if Living Room Lamp is off, indicating we've gone to bed or not
     home
   trigger:
   - at: '21:30:00'
@@ -151,7 +151,7 @@
     service: input_boolean.turn_on
 - id: '1580082797777'
   alias: Disarm Alarm in Morning
-  description: ''
+  #description: ''
   trigger:
   - at: 06:50:00
     platform: time
@@ -163,7 +163,7 @@
     service: input_boolean.turn_off
 - id: '1580096511522'
   alias: Noisemaker Turn Off
-  description: ''
+  #description: ''
   trigger:
   - at: 06:50:00
     platform: time
@@ -180,7 +180,7 @@
     service: switch.turn_off
 - id: '1580871736032'
   alias: Porch Lights On at Sunset
-  description: ''
+  #description: ''
   trigger:
   - event: sunset
     offset: -00:15:00
@@ -191,7 +191,7 @@
     service: switch.turn_on
 - id: '1580871816468'
   alias: Porch Lights Off at Sunrise
-  description: ''
+  #description: ''
   trigger:
   - event: sunrise
     platform: sun
@@ -201,7 +201,7 @@
     service: switch.turn_off
 - id: '1582332046518'
   alias: Arm Alarm and Set TStat When Gone
-  description: ''
+  #description: ''
   trigger:
   - entity_id: group.peopleanyonehome
     from: home
@@ -218,7 +218,7 @@
     service: climate.set_preset_mode
 - id: '1582332856461'
   alias: Disarm Alarm Set TStat When Anyone Returns
-  description: Disarms when both return at same time, or one at a time
+  #description: Disarms when both return at same time, or one at a time
   trigger:
   - entity_id: group.peopleanyonehome
     from: not_home
@@ -237,7 +237,7 @@
     service: climate.set_preset_mode
 - id: '1582333659516'
   alias: Arm Alarm with Noisemaker
-  description: When noisemaker plug is switched on, arm alarm
+  #description: When noisemaker plug is switched on, arm alarm
   trigger:
   - device_id: a3a16e384ec24ec29fce4f9c9cf363a9
     domain: switch
@@ -253,7 +253,7 @@
     service: input_boolean.turn_on
 - id: '1582998859470'
   alias: Disarm Alarm When Front Door Unlocked
-  description: ''
+  #description: ''
   trigger:
   - entity_id: lock.kwikset_spectrum_brands_unknown_type_0003_id_0238_locked
     from: locked
@@ -281,7 +281,7 @@
     service: script.turn_on
 - id: '1582999915398'
   alias: Arm Alarm When Front Door Locked
-  description: Arms when noisemaker is on, or all humans are away
+  #description: Arms when noisemaker is on, or all humans are away
   trigger:
   - entity_id: lock.kwikset_spectrum_brands_unknown_type_0003_id_0238_locked
     from: unlocked
@@ -309,7 +309,7 @@
     service: input_boolean.turn_on
 - id: '1583116281113'
   alias: Patio Lights Turn On When Back Door Opens
-  description: At night only
+  #description: At night only
   trigger:
   - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
     from: 'off'
@@ -326,7 +326,7 @@
     service: light.turn_on
 - id: '1583381991156'
   alias: Disarm Alarm When Second Person Returns Late
-  description: Disarms when one of us comes home after already armed
+  #description: Disarms when one of us comes home after already armed
   trigger:
   - entity_id: group.peopleanyoneaway
     from: not_home
