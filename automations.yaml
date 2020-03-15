@@ -7,19 +7,17 @@
     platform: sun
   condition: []
   action:
-  - device_id: 2b9c02aa7d1a4783ba04922320229f78
-    domain: light
+  - data: {}
     entity_id: light.philips_lwb014_dba18b02_level_on_off
-    type: turn_on
+    service: light.turn_on
 - id: '1578882453000'
   alias: Door Open Alarm Utility
   #description: Utility Room Door Open Notification
   trigger:
-  - device_id: 5ee4607e02714b9094869941750d1947
-    domain: binary_sensor
-    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off
-    platform: device
-    type: opened
+  - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off
+    from: 'off'
+    platform: state
+    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.arm_alarm
@@ -42,11 +40,10 @@
   alias: Door Open Alarm Front
   #description: ''
   trigger:
-  - device_id: 57fe4a3180454edb83f2a8f50519eb96
-    domain: binary_sensor
-    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off
-    platform: device
-    type: opened
+  - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off
+    from: 'off'
+    platform: state
+    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.arm_alarm
@@ -69,11 +66,10 @@
   alias: Door Open Alarm Back
   #description: ''
   trigger:
-  - device_id: a5cf4e7e5d8e4884a87e709eb78a0e68
-    domain: binary_sensor
-    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
-    platform: device
-    type: opened
+  - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
+    from: 'off'
+    platform: state
+    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.arm_alarm
@@ -96,11 +92,10 @@
   alias: Door Open Alarm Side
   #description: ''
   trigger:
-  - device_id: b1c0b99c4f6b43b48f0ef6f498d4c301
-    domain: binary_sensor
-    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off
-    platform: device
-    type: opened
+  - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off
+    from: 'off'
+    platform: state
+    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.arm_alarm
@@ -238,11 +233,10 @@
   alias: Arm Alarm with Noisemaker
   #description: When noisemaker plug is switched on, arm alarm
   trigger:
-  - device_id: a3a16e384ec24ec29fce4f9c9cf363a9
-    domain: switch
-    entity_id: switch.ledvance_plug_e2161100_on_off
-    platform: device
-    type: turned_on
+  - entity_id: switch.ledvance_plug_e2161100_on_off
+    from: 'off'
+    platform: state
+    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.arm_alarm
