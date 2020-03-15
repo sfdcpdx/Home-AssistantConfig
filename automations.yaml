@@ -29,7 +29,8 @@
         title: Door Open!
     entity_id: script.phone_critical_alert
     service: script.turn_on
-  - scene: scene.alarm_alert_scene
+  - service: scene.turn_on
+    entity_id: scene.alarm_alert_scene
   - data:
       variables:
         message: Utility Room Door Open!
@@ -55,7 +56,8 @@
         title: Door Open!
     entity_id: script.phone_critical_alert
     service: script.turn_on
-  - scene: scene.alarm_alert_scene
+  - service: scene.turn_on
+    entity_id: scene.alarm_alert_scene
   - data:
       variables:
         message: Front Door Open!
@@ -81,7 +83,8 @@
         title: Door Open!
     entity_id: script.phone_critical_alert
     service: script.turn_on
-  - scene: scene.alarm_alert_scene
+  - service: scene.turn_on
+    entity_id: scene.alarm_alert_scene
   - data:
       variables:
         message: Back Door Open!
@@ -107,7 +110,8 @@
         title: Door Open!
     entity_id: script.phone_critical_alert
     service: script.turn_on
-  - scene: scene.alarm_alert_scene
+  - service: scene.turn_on
+    entity_id: scene.alarm_alert_scene
   - data:
       variables:
         message: Garage Side Door Open!
