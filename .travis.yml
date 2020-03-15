@@ -5,6 +5,7 @@ python:
   - "3.5"
 install:
   - "sudo apt-get install libudev-dev"
+  - "pip install getmac==0.8.1"
   - "pip3 install homeassistant"
 script:
   - "mv secrets.yaml.sample secrets.yaml"
