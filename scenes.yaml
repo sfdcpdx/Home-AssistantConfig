@@ -1,5 +1,5 @@
 - id: '1581880844278'
-  name: Alarm Alert Scene
+  name: alarm_alert_scene
   entities:
     light.jasco_products_unknown_type_4944_id_3235_level:
       brightness: 196
