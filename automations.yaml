@@ -132,8 +132,7 @@
     service: light.turn_off
 - id: '1580082798874'
   alias: Arm Alarm at Night
-  #description: Only if Living Room Lamp is off, indicating we've gone to bed or not
-    home
+  #description: Only if Living Room Lamp is off, indicating gone to bed or not home
   trigger:
   - at: '21:30:00'
     platform: time
