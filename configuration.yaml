@@ -3,7 +3,7 @@ default_config:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 #http:
-#  TestBranchChangecase_url: morenohomeassistant.duckdns.org
+#  FinalTestBranchChangecase_url: morenohomeassistant.duckdns.org
 #  ssl_certificate: /ssl/fullchain.pem
 #  ssl_key: /ssl/privkey.pem
 
