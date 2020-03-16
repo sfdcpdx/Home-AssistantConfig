@@ -41,3 +41,6 @@ notify:
     services:
     - service: mobile_app_phone
     - service: mobile_app_caris_iphone
+sensor:
+  - platform: travisci
+    api_key: !secret github_token
