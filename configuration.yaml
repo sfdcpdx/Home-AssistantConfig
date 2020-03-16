@@ -19,7 +19,7 @@ cover:
   - platform: aladdin_connect
     username: !secret aladdin_user
     password: !secret aladdin_pass
-#input_boolean:
+input_boolean:
   arm_alarm:
     name: Alarm Arm Switch
     initial: off
