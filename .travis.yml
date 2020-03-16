@@ -1,18 +1,17 @@
-  
 language: python
-cache: pip
-python:
-  - "3.5"
+
+env:
+  - HASS='latest'
+  - HASS='beta'
+
+services:
+  - docker
+
 before_install:
-  - "sudo apt-get update"
-  - "sudo apt-get install -y libudev-dev"
-  - "pip install getmac==0.8.1"
-install:
-  - "pip3 install homeassistant"
+  - mv secrets.yaml.sample secrets.yaml; touch /tmp/test.txt
+  - docker pull homeassistant/home-assistant:$HASS
+  - docker run --init -d --name="home-assistant" -e "TZ=America/New_York" -v /tmp:/tmp -v /tmp:/images -v $TRAVIS_BUILD_DIR:/config homeassistant/home-assistant:$HASS
+  - docker ps -a
+
 script:
-  - "mv secrets.yaml.sample secrets.yaml"
-  - "touch fullchain.pem"
-  - "touch privkey.pem"
-  - "hass --version"
-  - "hass -c . --script check_config | tee check.output"
-  - '! less check.output | grep -q "Failed config"'
+  - docker exec home-assistant python -m homeassistant --script check_config --config /config
