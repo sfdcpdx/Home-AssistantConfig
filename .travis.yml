@@ -3,9 +3,11 @@ language: python
 cache: pip
 python:
   - "3.5"
-install:
-  - "sudo apt-get install libudev-dev"
+before_install:
+  - "sudo apt-get update"
+  - "sudo apt-get install -y libudev-dev"
   - "pip install getmac==0.8.1"
+install:
   - "pip3 install homeassistant"
 script:
   - "mv secrets.yaml.sample secrets.yaml"
