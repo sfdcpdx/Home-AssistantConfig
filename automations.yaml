@@ -339,10 +339,12 @@
 - id: '1579545667777'
   alias: Camera Nightly Reboot
   trigger:
-  - at: '19:53:00'
+  - at: '10:00:00'
     platform: time
   condition: []
   action:
   - entity_id: switch.ledvance_plug_e0611100_on_off
     service: switch.turn_off
+  - entity_id: switch.ledvance_plug_e0611100_on_off
+    service: switch.turn_on
   
