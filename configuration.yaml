@@ -41,3 +41,12 @@ notify:
     services:
     - service: mobile_app_phone
     - service: mobile_app_caris_iphone
+input_datetime:
+  camera reset time:
+    name: time camera reset
+    has_date: false
+    has_time: true 
+  lvng rm lamp off time:
+    name: time lvng lamp off
+    has_date: false 
+    has_time: true 
