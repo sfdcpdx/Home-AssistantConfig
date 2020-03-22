@@ -336,3 +336,17 @@
   action:
   - entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_off
+- id: '1579545667777'
+  alias: Camera Nightly Reboot
+  #description: ''
+  trigger:
+  - at: '19:00:00'
+    platform: time
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.ledvance_plug_e0611100_on_off
+    service: switch.turn_off
+  - data: {}
+    entity_id: switch.ledvance_plug_e0611100_on_off
+    service: switch.turn_on
