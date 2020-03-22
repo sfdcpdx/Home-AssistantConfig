@@ -42,6 +42,7 @@ notify:
     - service: mobile_app_phone
     - service: mobile_app_caris_iphone
 input_datetime:
+#Used to allow for UI-based time/date inputs that automation runs on
   camera_reset_time:
     name: time camera reset
     has_date: false
@@ -50,3 +51,15 @@ input_datetime:
     name: time lvng lamp off
     has_date: false 
     has_time: true 
+sensor:
+#generates a sensor in HA that reflects current time and can be compared against in automation
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'date_time_utc'
+      - 'date_time_iso'
+      - 'time_date'
+      - 'time_utc'
+      - 'beat'
