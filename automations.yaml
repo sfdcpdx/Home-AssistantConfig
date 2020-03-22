@@ -123,7 +123,7 @@
   #description: ''
   trigger:
   - platform: template
-    value_template: "{{ states('sensor.time') == (state_attr('input_datetime.lvng_rm_lamp_off_time', 'timestamp') | int | timestamp_custom('%H:%M', True)) }}"
+    value_template: "{{ states.sensor.time.state == states.input_datetime.lvng_rm_lamp_off_time.state [0:5] }}"
   condition: []
   action:
   - data: {}
