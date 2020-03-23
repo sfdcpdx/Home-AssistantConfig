@@ -44,11 +44,23 @@ notify:
 input_datetime:
 #Used to allow for UI-based time/date inputs that automation runs on
   camera_reset_time:
-    name: time camera reset
+    name: Time Camera Reboot
     has_date: false
     has_time: true 
   lvng_rm_lamp_off_time:
-    name: time lvng lamp off
+    name: Time Living Room Lamp Off
+    has_date: false 
+    has_time: true 
+  noisemaker_off_time:
+    name: Time Noisemaker Off
+    has_date: false 
+    has_time: true 
+  alarm_auto_arm_time:
+    name: Time Alarm Auto Arm
+    has_date: false 
+    has_time: true 
+  alarm_auto_disarm_time:
+    name: Time Alarm Auto Disarm
     has_date: false 
     has_time: true 
 sensor:
