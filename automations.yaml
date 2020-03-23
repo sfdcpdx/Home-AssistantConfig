@@ -345,6 +345,8 @@
   action:
   - entity_id: switch.ledvance_plug_e0611100_on_off
     service: switch.turn_off
+  - delay:
+      seconds: 30
   - entity_id: switch.ledvance_plug_e0611100_on_off
     service: switch.turn_on
   
