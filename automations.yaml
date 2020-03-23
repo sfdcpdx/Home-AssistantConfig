@@ -133,8 +133,8 @@
   alias: Arm Alarm at Night
   #description: Only if Living Room Lamp is off, indicating gone to bed or not home
   trigger:
-  - at: '21:30:00'
-    platform: time
+  - platform: template
+    value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_auto_arm_time.state[0:5] }}"
   condition:
   - condition: state
     entity_id: input_boolean.arm_alarm
@@ -151,8 +151,8 @@
   alias: Disarm Alarm in Morning
   #description: ''
   trigger:
-  - at: 06:50:00
-    platform: time
+  - platform: template
+    value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_auto_disarm_time.state[0:5] }}"
   condition: []
   action:
   - alias: ''
@@ -163,8 +163,8 @@
   alias: Noisemaker Turn Off
   #description: ''
   trigger:
-  - at: 06:50:00
-    platform: time
+  - platform: template
+    value_template: "{{ states.sensor.time.state == states.input_datetime.noisemaker_off_time.state[0:5] }}"
   condition:
   - condition: time
     weekday:
@@ -339,8 +339,8 @@
 - id: '1579545667777'
   alias: Camera Nightly Reboot
   trigger:
-  - at: '10:00:00'
-    platform: time
+  - platform: template
+    value_template: "{{ states.sensor.time.state == states.input_datetime.camera_reset_time.state[0:5] }}"
   condition: []
   action:
   - entity_id: switch.ledvance_plug_e0611100_on_off
