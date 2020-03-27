@@ -75,6 +75,7 @@ sensor:
       - 'time_date'
       - 'time_utc'
       - 'beat'
+sensor:
 #Travis-CI sensor for monitoring build status
   - platform: travisci
     api_key: !secret github_token
