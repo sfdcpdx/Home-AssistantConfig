@@ -78,7 +78,3 @@ sensor:
 #Travis-CI sensor for monitoring build status
   - platform: travisci
     api_key: !secret github_token
-webostv:
-#Living room TV devide integration
-  host: 10.0.0.211
-  name: Living Room TV
