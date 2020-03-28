@@ -120,11 +120,14 @@
     service: script.turn_on
 - id: '1579545495880'
   alias: Living Room Lamp Off at Bedtime
-  #description: ''
+  #description: light turns off at night, but makes sure we're not listening to music or tv first
   trigger:
   - platform: template
     value_template: "{{ states.sensor.time.state == states.input_datetime.lvng_rm_lamp_off_time.state[0:5] }}"
-  condition: []
+  condition: 
+  - condition: state
+    entity_id: media_player.living_room
+    state: 'paused'
   action:
   - data: {}
     entity_id: light.philips_lwb014_dba18b02_level_on_off
@@ -153,7 +156,7 @@
   trigger:
   - platform: template
     value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_auto_disarm_time.state[0:5] }}"
-  condition: []
+  condition: 
   action:
   - alias: ''
     data: {}
