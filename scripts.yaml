@@ -84,3 +84,10 @@ phone_critical_alert:
             critical: 1
             name: default
             volume: 1
+pull_github_config:
+# Executes shell command that does a Git Pull Origin Master
+  alias: Pull Latest Config
+  sequence:
+    - service: shell_command.pull_config_from_github
+    - service: homeassistant.restart
+        
