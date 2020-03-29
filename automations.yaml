@@ -6,7 +6,6 @@
   - event: sunset
     offset: -00:30:00
     platform: sun
-  condition: []
   action:
   - service: light.turn_on
     entity_id: light.philips_lwb014_dba18b02_level_on_off
@@ -42,19 +41,17 @@
   - event: sunset
     offset: -00:15:00
     platform: sun
-  condition: []
   action:
-  - entity_id: switch.jasco_products_unknown_type_4952_id_3135_switch
-    service: switch.turn_on
+  - service: switch.turn_on
+    entity_id: switch.jasco_products_unknown_type_4952_id_3135_switch    
 - alias: Porch Lights Off at Sunrise
   # Porch lights turn off at sunrise
   trigger:
   - event: sunrise
     platform: sun
-  condition: []
   action:
-  - entity_id: switch.jasco_products_unknown_type_4952_id_3135_switch
-    service: switch.turn_off
+  - service: switch.turn_off
+    entity_id: switch.jasco_products_unknown_type_4952_id_3135_switch    
 - alias: Patio Lights Turn On When Back Door Opens
   # Turns on patio lights when back door opens at night
   trigger:
@@ -69,8 +66,8 @@
   - after: sunset
     condition: sun
   action:
-  - entity_id: light.jasco_products_unknown_type_4944_id_3235_level_2
-    service: light.turn_on
+  - service: light.turn_on
+    entity_id: light.jasco_products_unknown_type_4944_id_3235_level_2    
 #----------------------------------------------------------------------------------------------------
 # Alarm Notifications
 - alias: Door Open Alarm Utility
