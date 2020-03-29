@@ -8,9 +8,8 @@
     platform: sun
   condition: []
   action:
-  - data: {}
+  - service: light.turn_on
     entity_id: light.philips_lwb014_dba18b02_level_on_off
-    service: light.turn_on
 - alias: Living Room Lamp Off at Bedtime
   # Lamp turns off at night, but makes sure we're not listening to music or tv first
   trigger:
@@ -21,9 +20,22 @@
     entity_id: media_player.living_room
     state: 'paused'
   action:
-  - data: {}
-    entity_id: light.philips_lwb014_dba18b02_level_on_off
-    service: light.turn_off
+  - service: light.turn_off
+    entity_id: light.philips_lwb014_dba18b02_level_on_off    
+- alias: Living Room Lamp Off Night After Media Off
+  # Lamp turns off a bit after turning off sonos/tv if it's after sunset 
+  trigger:
+  - platform: state
+    entity_id: media_player.living_room
+    from: 'playing'
+    to: 'paused'
+    for: "00:15:00"
+  condition: 
+  - condition: sun
+    after: sunset
+  action:
+  - service: light.turn_off
+    entity_id: light.philips_lwb014_dba18b02_level_on_off    
 - alias: Porch Lights On at Sunset
   # Porch lights come on shortly before sunset
   trigger:
