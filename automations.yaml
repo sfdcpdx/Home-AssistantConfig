@@ -32,6 +32,9 @@
   condition: 
   - condition: sun
     after: sunset
+  - condition: state
+    entity_id: light.philips_lwb014_dba18b02_level_on_off 
+    state: 'on'
   action:
   - service: light.turn_off
     entity_id: light.philips_lwb014_dba18b02_level_on_off    
