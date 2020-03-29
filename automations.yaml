@@ -1,6 +1,7 @@
-- id: '1578413069469'
-  alias: Living Room Lamp On at Sunset
-  #description: ''
+#----------------------------------------------------------------------------------------------------
+# Light Controls
+- alias: Living Room Lamp On at Sunset
+  # Turns on the living room lamp shortly before sunset
   trigger:
   - event: sunset
     offset: -00:30:00
@@ -10,9 +11,58 @@
   - data: {}
     entity_id: light.philips_lwb014_dba18b02_level_on_off
     service: light.turn_on
-- id: '1578882453000'
-  alias: Door Open Alarm Utility
-  #description: Utility Room Door Open Notification
+- alias: Living Room Lamp Off at Bedtime
+  # Light turns off at night, but makes sure we're not listening to music or tv first
+  trigger:
+  - platform: template
+    value_template: "{{ states.sensor.time.state == states.input_datetime.lvng_rm_lamp_off_time.state[0:5] }}"
+  condition: 
+  - condition: state
+    entity_id: media_player.living_room
+    state: 'paused'
+  action:
+  - data: {}
+    entity_id: light.philips_lwb014_dba18b02_level_on_off
+    service: light.turn_off
+- alias: Porch Lights On at Sunset
+  # Porch lights come on shortly before sunset
+  trigger:
+  - event: sunset
+    offset: -00:15:00
+    platform: sun
+  condition: []
+  action:
+  - entity_id: switch.jasco_products_unknown_type_4952_id_3135_switch
+    service: switch.turn_on
+- alias: Porch Lights Off at Sunrise
+  # Porch lights turn off at sunrise
+  trigger:
+  - event: sunrise
+    platform: sun
+  condition: []
+  action:
+  - entity_id: switch.jasco_products_unknown_type_4952_id_3135_switch
+    service: switch.turn_off
+- alias: Patio Lights Turn On When Back Door Opens
+  # Turns on patio lights when back door opens at night
+  trigger:
+  - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: light.jasco_products_unknown_type_4944_id_3235_level_2
+    state: 'off'
+  - after: sunset
+    condition: sun
+  action:
+  - entity_id: light.jasco_products_unknown_type_4944_id_3235_level_2
+    service: light.turn_on
+#----------------------------------------------------------------------------------------------------
+# Alarm Notifications
+- alias: Door Open Alarm Utility
+  # Utility Room Door Open Alert Alarm/Critical Notification
   trigger:
   - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off
     from: 'off'
@@ -37,9 +87,8 @@
         volume: 0.4
     entity_id: script.sonos_say_to_all
     service: script.turn_on
-- id: '1578979288341'
-  alias: Door Open Alarm Front
-  #description: ''
+- alias: Door Open Alarm Front
+  # Front Door Open Alert Alarm/Critical Notification
   trigger:
   - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off
     from: 'off'
@@ -64,9 +113,8 @@
         volume: 0.4
     entity_id: script.sonos_say_to_all
     service: script.turn_on
-- id: '1578980257284'
-  alias: Door Open Alarm Back
-  #description: ''
+- alias: Door Open Alarm Back
+  # Back Door Open Alert Alarm/Critical Notification
   trigger:
   - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
     from: 'off'
@@ -91,9 +139,8 @@
         volume: 0.4
     entity_id: script.sonos_say_to_all
     service: script.turn_on
-- id: '1578980257277'
-  alias: Door Open Alarm Side
-  #description: ''
+- alias: Door Open Alarm Side
+  # Side Door Open Alert Alarm/Critical Notification
   trigger:
   - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off
     from: 'off'
@@ -118,23 +165,10 @@
         volume: 0.4
     entity_id: script.sonos_say_to_all
     service: script.turn_on
-- id: '1579545495880'
-  alias: Living Room Lamp Off at Bedtime
-  #description: light turns off at night, but makes sure we're not listening to music or tv first
-  trigger:
-  - platform: template
-    value_template: "{{ states.sensor.time.state == states.input_datetime.lvng_rm_lamp_off_time.state[0:5] }}"
-  condition: 
-  - condition: state
-    entity_id: media_player.living_room
-    state: 'paused'
-  action:
-  - data: {}
-    entity_id: light.philips_lwb014_dba18b02_level_on_off
-    service: light.turn_off
-- id: '1580082798874'
-  alias: Arm Alarm at Night
-  #description: Only if Living Room Lamp is off, indicating gone to bed or not home
+#----------------------------------------------------------------------------------------------------
+# Alarm Arm/Disarm Controls
+- alias: Arm Alarm at Night
+  # Arm alarm at time set in UI, only fires if Living Room Lamp is off
   trigger:
   - platform: template
     value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_auto_arm_time.state[0:5] }}"
@@ -146,63 +180,21 @@
     entity_id: light.philips_lwb014_dba18b02_level_on_off
     state: 'off'
   action:
-  - alias: ''
-    data: {}
+  - data: {}
     entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
-- id: '1580082797777'
-  alias: Disarm Alarm in Morning
-  #description: ''
+- alias: Disarm Alarm in Morning
+  # Disarms alarm in the morning at time set in UI
   trigger:
   - platform: template
     value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_auto_disarm_time.state[0:5] }}"
   condition: 
   action:
-  - alias: ''
-    data: {}
+  - data: {}
     entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_off
-- id: '1580096511522'
-  alias: Noisemaker Turn Off
-  #description: ''
-  trigger:
-  - platform: template
-    value_template: "{{ states.sensor.time.state == states.input_datetime.noisemaker_off_time.state[0:5] }}"
-  condition:
-  - condition: time
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
-    - fri
-  action:
-  - entity_id: switch.ledvance_plug_e2161100_on_off
-    service: switch.turn_off
-- id: '1580871736032'
-  alias: Porch Lights On at Sunset
-  #description: ''
-  trigger:
-  - event: sunset
-    offset: -00:15:00
-    platform: sun
-  condition: []
-  action:
-  - entity_id: switch.jasco_products_unknown_type_4952_id_3135_switch
-    service: switch.turn_on
-- id: '1580871816468'
-  alias: Porch Lights Off at Sunrise
-  #description: ''
-  trigger:
-  - event: sunrise
-    platform: sun
-  condition: []
-  action:
-  - entity_id: switch.jasco_products_unknown_type_4952_id_3135_switch
-    service: switch.turn_off
-- id: '1582332046518'
-  alias: Arm Alarm and Set TStat When Gone
-  #description: ''
+- alias: Arm Alarm and Set TStat When Gone
+  # Arm alarm and set TStat to away when we're both away from home
   trigger:
   - entity_id: group.peopleanyonehome
     from: home
@@ -217,14 +209,14 @@
       preset_mode: away
     entity_id: climate.thermostat
     service: climate.set_preset_mode
-- id: '1582332856461'
-  alias: Disarm Alarm Set TStat When Anyone Returns
-  #description: Disarms when both return at same time, or one at a time
+- alias: Disarm Alarm Set TStat When Anyone Returns
+  # Disarms alarm, runs TStat schedule when someone/anyone/all come home
   trigger:
   - entity_id: group.peopleanyonehome
     from: not_home
     platform: state
     to: home
+    # Note the above group changes to home when either or both are home
   condition:
   - condition: state
     entity_id: input_boolean.arm_alarm
@@ -236,9 +228,8 @@
       preset_mode: none
     entity_id: climate.thermostat
     service: climate.set_preset_mode
-- id: '1582333659516'
-  alias: Arm Alarm with Noisemaker
-  #description: When noisemaker plug is switched on, arm alarm
+- alias: Arm Alarm with Noisemaker
+  # Arm alarm when noisemaker plug is switched on (backup in case it didn't auto arm)
   trigger:
   - entity_id: switch.ledvance_plug_e2161100_on_off
     from: 'off'
@@ -251,9 +242,8 @@
   action:
   - entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
-- id: '1582998859470'
-  alias: Disarm Alarm When Front Door Unlocked
-  #description: ''
+- alias: Disarm Alarm When Front Door Unlocked
+  # Disarm alarm if front door is unlocked 
   trigger:
   - entity_id: lock.kwikset_spectrum_brands_unknown_type_0003_id_0238_locked
     from: locked
@@ -279,9 +269,8 @@
         title: Alarm Disarmed
     entity_id: script.phone_notification
     service: script.turn_on
-- id: '1582999915398'
-  alias: Arm Alarm When Front Door Locked
-  #description: Arms when noisemaker is on, or all humans are away
+- alias: Arm Alarm When Front Door Locked
+  # Arms alarm hen noisemaker is on, or all humans are away
   trigger:
   - entity_id: lock.kwikset_spectrum_brands_unknown_type_0003_id_0238_locked
     from: unlocked
@@ -307,26 +296,8 @@
   action:
   - entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
-- id: '1583116281113'
-  alias: Patio Lights Turn On When Back Door Opens
-  #description: At night only
-  trigger:
-  - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
-    from: 'off'
-    platform: state
-    to: 'on'
-  condition:
-  - condition: state
-    entity_id: light.jasco_products_unknown_type_4944_id_3235_level_2
-    state: 'off'
-  - after: sunset
-    condition: sun
-  action:
-  - entity_id: light.jasco_products_unknown_type_4944_id_3235_level_2
-    service: light.turn_on
-- id: '1583381991156'
-  alias: Disarm Alarm When Second Person Returns Late
-  #description: Disarms when one of us comes home after already armed
+- alias: Disarm Alarm When Second Person Returns Late
+  # Disarms alarm when one of us comes home after already armed
   trigger:
   - entity_id: group.peopleanyoneaway
     from: not_home
@@ -339,8 +310,26 @@
   action:
   - entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_off
-- id: '1579545667777'
-  alias: Camera Nightly Reboot
+#----------------------------------------------------------------------------------------------------
+# Various Comfort and Maintenance Controls
+- alias: Noisemaker Turn Off
+  # Noisemaker turns off at time set in UI
+  trigger:
+  - platform: template
+    value_template: "{{ states.sensor.time.state == states.input_datetime.noisemaker_off_time.state[0:5] }}"
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - entity_id: switch.ledvance_plug_e2161100_on_off
+    service: switch.turn_off
+- alias: Camera Nightly Reboot
+  # Reboots living room cameras nightly in order to prevent camera failure
   trigger:
   - platform: template
     value_template: "{{ states.sensor.time.state == states.input_datetime.camera_reset_time.state[0:5] }}"
