@@ -1,24 +1,28 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
-# Text to speech
-tts:
-  - platform: google_translate
+# Included files/folders
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 shell_command: !include_dir_named shell_command/
 
+# Text to speech
+tts:
+  - platform: google_translate
+# Garage Doors
 cover:
   - platform: aladdin_connect
     username: !secret aladdin_user
     password: !secret aladdin_pass
+# Custom switch to arm alarm
 input_boolean:
   arm_alarm:
     name: Alarm Arm Switch
     initial: off
     icon: mdi:alarm
+# Thermostat connection
 climate:
   - platform: honeywell
     username: !secret honeywell_user
@@ -27,9 +31,11 @@ climate:
     scan_interval: 600
     away_heat_temperature: 65
     away_cool_temperature: 74
+# Sets usb location of Z Wave dongle
 zwave:
   usb_path: /dev/ttyUSB0
   device_config: !include zwave_device_config.yaml
+# General notification for phones at once
 notify:
   - platform: group
     name: notify_all_phones
