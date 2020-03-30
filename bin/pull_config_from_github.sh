@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd "cd /usr/share/hassio/homeassistant"
+cd "/usr/share/hassio/homeassistant"
 git pull origin master
