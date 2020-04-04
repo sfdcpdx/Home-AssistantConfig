@@ -29,4 +29,4 @@ script:
 after_success:
   - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/ContraCurrent/Home-AssistantConfig/staging/bin/travis_automerge.sh"
   - "chmod a+x /tmp/travis-automerge"
-  - "BRANCH_TO_MERGE_INTO=master BRANCH_TO_MERGE_FROM=staging GITHUB_REPO=ContraCurrent/Home-AssistantConfig /tmp/travis-automerge"
+  - "BRANCH_TO_MERGE_INTO=master BRANCH_TO_MERGE_FROM=origin/staging GITHUB_REPO=ContraCurrent/Home-AssistantConfig /tmp/travis-automerge"
