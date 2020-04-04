@@ -1,4 +1,4 @@
-# UnTestChangeConfigure a default setup of Home Assistant (frontend, api, etc)
+# TestChangeConfigure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
 # Included files/folders
