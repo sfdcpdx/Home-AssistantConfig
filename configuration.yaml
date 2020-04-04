@@ -13,7 +13,7 @@ tts:
   - platform: google_translate
 # Garage Doors
 cover:
-platform: aladdin_connect
+  - platform: aladdin_connect
     username: !secret aladdin_user
     password: !secret aladdin_pass
 # Custom switch to arm alarm
