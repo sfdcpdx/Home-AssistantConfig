@@ -27,6 +27,6 @@ script:
   - docker exec home-assistant python -m homeassistant --script check_config --config /config
 
 after_success:
-  - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/cdown/travis-automerge/master/travis-automerge"
+  - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/ContraCurrent/Home-AssistantConfig/master/bin/travis_automerge.sh"
   - "chmod a+x /tmp/travis-automerge"
-  - "BRANCHES_TO_MERGE_REGEX=staging BRANCH_TO_MERGE_INTO=master GITHUB_REPO=ContraCurrent/Home-AssistantConfig /tmp/travis-automerge"
+  - "BRANCH_TO_MERGE_INTO=master BRANCH_TO_MERGE_FROM=staging GITHUB_REPO=ContraCurrent/Home-AssistantConfig /tmp/travis-automerge"
