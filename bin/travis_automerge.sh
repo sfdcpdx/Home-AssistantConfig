@@ -17,7 +17,7 @@ printf 'Checking out %s\n' "$BRANCH_TO_MERGE_INTO" >&2
 git checkout "$BRANCH_TO_MERGE_INTO"
 
 printf 'Merging %s\n' "$BRANCH_TO_MERGE_FROM" >&2
-git merge --ff-only "$BRANCH_TO_MERGE_FROM"
+git merge "$BRANCH_TO_MERGE_FROM"
 
 printf 'Pushing to %s\n' "$GITHUB_REPO" >&2
 
