@@ -1,8 +1,18 @@
 language: python
 
+branches:
+  # whitelisted branches 
+  only:
+    - staging
+
 env:
-  - HASS='latest'
-  - HASS='beta'
+  # Contains Github_Secret_Token used for auto merge 
+  global:
+    secure: "PLvS7FypeklpFmaeYnhwPUXMm3sR9gh4s9DOEAFOawHYv0e+YC4y6re8u6Br4QsR4s2OCg7fSClN9szM0AYA1F5Fwhg6ZDCrw8oZKd6/ZB8OOsPjRH9DyQnu4ORMHCErmh2x5LzKjg4THQ2XWVD5O8CzhbUpMxOXfcBi1upkI3P8nYi/24TZvRIlK7uLpzAF6q0oFGvuS+t3oeiqhfxhgpiv3Vh1HreoXf06GsZfbfOIrqi5GupnEHUmPPBRtRukPXzfM7eKfbgA3SKhSbO1bLcMHXQ1TnOFV7ytXiV07oHj8eycwkb25z/AprpQ20TPmRAgUif0I6ZBe9IMY/Pn8urxJslIFt7IVlmhEkn5XY9K25LP8H3YBFn3iwFcPZs7jkG+izQcUwC2mDafks6V6xzbfmWJyBvSPCwBHkxhEo7EXjOQb37I6L+fKz1+DOFfr6XZol7xAW4wkVSrLv76HsbX8TzLVadcWBCljLMC7URzNNtVzClrMINz24sE5I8Xs1mJt3q7nOTNAv1QpxtfHCFb88KFToD/Qh8euadIsOCfMseJXzUEmB1H+eQs9awc7YPiC1A97bzmjI2yUxvLHKoL7jAKtAFRNFkXxeGKdvORueI55sdD47WogOCZpQVYwF3PvALBlwRMGawpjbQiFI9AAjR8W2TUvXYpGDPDCRc="
+  # Types of Hass builds for test
+  jobs:
+    - HASS='latest'
+    - HASS='beta'
 
 services:
   - docker
@@ -15,3 +25,8 @@ before_install:
 
 script:
   - docker exec home-assistant python -m homeassistant --script check_config --config /config
+
+after_success:
+  - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/cdown/travis-automerge/master/travis-automerge"
+  - "chmod a+x /tmp/travis-automerge"
+  - "BRANCHES_TO_MERGE_REGEX=staging BRANCH_TO_MERGE_INTO=master GITHUB_REPO=-b staging ContraCurrent/Home-AssistantConfig /tmp/travis-automerge"
