@@ -3,7 +3,7 @@ language: python
 branches:
   # whitelisted branches 
   only:
-    - master
+    - staging
 
 env:
   # Contains Github_Secret_Token used for auto merge 
