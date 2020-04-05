@@ -1,6 +1,3 @@
-# Configure a default setup of Home Assistant (frontend, api, etc)
-default_config:
-
 # Included files/folders
 group: !include groups.yaml
 automation: !include automations.yaml
@@ -8,20 +5,23 @@ script: !include scripts.yaml
 scene: !include scenes.yaml
 shell_command: !include_dir_named shell_command/
 
-# Text to speech
+# Text to speech, used with Sonos
 tts:
   - platform: google_translate
+
 # Garage Doors
 cover:
   - platform: aladdin_connect
     username: !secret aladdin_user
     password: !secret aladdin_pass
+
 # Custom switch to arm alarm
 input_boolean:
   arm_alarm:
     name: Alarm Arm Switch
     initial: off
     icon: mdi:alarm
+
 # Thermostat connection
 climate:
   - platform: honeywell
@@ -31,19 +31,22 @@ climate:
     scan_interval: 600
     away_heat_temperature: 65
     away_cool_temperature: 74
+
 # Sets usb location of Z Wave dongle
 zwave:
   usb_path: /dev/ttyUSB0
   device_config: !include zwave_device_config.yaml
-# General notification for phones at once
+
+# General notification to send to all phones at once
 notify:
   - platform: group
     name: notify_all_phones
     services:
     - service: mobile_app_phone
     - service: mobile_app_caris_iphone
+
+# Used to allow for UI-based time/date inputs that automation runs on
 input_datetime:
-#Used to allow for UI-based time/date inputs that automation runs on
   camera_reset_time:
     name: Time Camera Reboot
     has_date: false
@@ -64,8 +67,9 @@ input_datetime:
     name: Time Alarm Auto Disarm
     has_date: false 
     has_time: true 
-sensor:
+
 #generates a sensor in HA that reflects current time and can be compared against in automation
+sensor:
   - platform: time_date
     display_options:
       - 'time'

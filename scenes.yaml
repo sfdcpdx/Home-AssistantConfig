@@ -1,3 +1,4 @@
+# Setup initially in UI, hence the mess
 - id: '1581880844278'
   name: alarm_alert_scene
   entities:

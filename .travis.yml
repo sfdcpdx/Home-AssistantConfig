@@ -1,7 +1,7 @@
 language: python
 
 branches:
-  # whitelisted branches 
+  # whitelisted branches, only these branches will run Travis CI build
   only:
     - staging
 
@@ -27,11 +27,13 @@ script:
   - docker exec home-assistant python -m homeassistant --script check_config --config /config
 
 after_success:
+# automerge component, choose branch to merge into and branch to merge from, calls travis_automerge.sh
   - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/ContraCurrent/Home-AssistantConfig/master/bin/travis_automerge.sh"
   - "chmod a+x /tmp/travis-automerge"
   - "BRANCH_TO_MERGE_INTO=master BRANCH_TO_MERGE_FROM=origin/staging GITHUB_REPO=ContraCurrent/Home-AssistantConfig /tmp/travis-automerge"
 
 notifications:
+# sends email from Github to report results of build
   email:
     recipients:
       - sludge1300@gmail.com
