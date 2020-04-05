@@ -30,3 +30,10 @@ after_success:
   - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/ContraCurrent/Home-AssistantConfig/master/bin/travis_automerge.sh"
   - "chmod a+x /tmp/travis-automerge"
   - "BRANCH_TO_MERGE_INTO=master BRANCH_TO_MERGE_FROM=origin/staging GITHUB_REPO=ContraCurrent/Home-AssistantConfig /tmp/travis-automerge"
+
+notifications:
+  email:
+    recipients:
+      - sludge1300@gmail.com
+    on_success: always # default: change
+    on_failure: always # default: always
