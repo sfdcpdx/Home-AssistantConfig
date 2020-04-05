@@ -1,3 +1,6 @@
+# Used to set default from the start, including frontend, important to keep
+default_config:
+
 # Included files/folders
 group: !include groups.yaml
 automation: !include automations.yaml
