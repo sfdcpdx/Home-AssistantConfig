@@ -54,4 +54,3 @@ Current workflow looks like this:
 5) If both builds pass (still working on using staged builds correctly with Travis), merge changes with remote Master repo. Current state: merge occurs if any builds pass.
 6) Email fires off to report build results, if they passed, I know the merge is complete. If not, I don’t need to worry about Master being affected by my recent push.
 7) At any point I’m ready to update HA server config, I open the App on my phone or laptop and click my ‘Get Latest Config’ button.
-    a) I thought about using pull requests, and various other git permutations, like rebasing, but overall have discovered with one contributor from one machine, it just kinda works.  Please excuse my horrendously messy commit history though, I finally figured out that I should test my CI build stuff in temporary branches only….
