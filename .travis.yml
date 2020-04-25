@@ -10,28 +10,34 @@ env:
   global:
     secure: "PLvS7FypeklpFmaeYnhwPUXMm3sR9gh4s9DOEAFOawHYv0e+YC4y6re8u6Br4QsR4s2OCg7fSClN9szM0AYA1F5Fwhg6ZDCrw8oZKd6/ZB8OOsPjRH9DyQnu4ORMHCErmh2x5LzKjg4THQ2XWVD5O8CzhbUpMxOXfcBi1upkI3P8nYi/24TZvRIlK7uLpzAF6q0oFGvuS+t3oeiqhfxhgpiv3Vh1HreoXf06GsZfbfOIrqi5GupnEHUmPPBRtRukPXzfM7eKfbgA3SKhSbO1bLcMHXQ1TnOFV7ytXiV07oHj8eycwkb25z/AprpQ20TPmRAgUif0I6ZBe9IMY/Pn8urxJslIFt7IVlmhEkn5XY9K25LP8H3YBFn3iwFcPZs7jkG+izQcUwC2mDafks6V6xzbfmWJyBvSPCwBHkxhEo7EXjOQb37I6L+fKz1+DOFfr6XZol7xAW4wkVSrLv76HsbX8TzLVadcWBCljLMC7URzNNtVzClrMINz24sE5I8Xs1mJt3q7nOTNAv1QpxtfHCFb88KFToD/Qh8euadIsOCfMseJXzUEmB1H+eQs9awc7YPiC1A97bzmjI2yUxvLHKoL7jAKtAFRNFkXxeGKdvORueI55sdD47WogOCZpQVYwF3PvALBlwRMGawpjbQiFI9AAjR8W2TUvXYpGDPDCRc="
   # Types of Hass builds for test
-  jobs:
-    - HASS='latest'
-    - HASS='beta'
 
 services:
   - docker
 
-before_install:
-  - mv secrets.yaml.sample secrets.yaml; touch /tmp/test.txt
-  - docker pull homeassistant/home-assistant:$HASS
-  - docker run --init -d --name="home-assistant" -e "TZ=America/New_York" -v /tmp:/tmp -v /tmp:/images -v $TRAVIS_BUILD_DIR:/config homeassistant/home-assistant:$HASS
-  - docker ps -a
-
-script:
-  - docker exec home-assistant python -m homeassistant --script check_config --config /config
-
-after_success:
-# automerge component, choose branch to merge into and branch to merge from, calls travis_automerge.sh
-  - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/ContraCurrent/Home-AssistantConfig/master/bin/travis_automerge.sh"
-  - "chmod a+x /tmp/travis-automerge"
-  - "BRANCH_TO_MERGE_INTO=master BRANCH_TO_MERGE_FROM=origin/staging GITHUB_REPO=ContraCurrent/Home-AssistantConfig /tmp/travis-automerge"
-
+jobs:
+  include:
+    - stage: build Hassio latest and beta
+      #fist script builds latest version
+      script: 
+      - mv secrets.yaml.sample secrets.yaml 
+      - docker pull homeassistant/home-assistant:latest
+      - docker run --init -d --name="home-assistant" -e "TZ=America/New_York" -v /tmp:/tmp -v /tmp:/images -v $TRAVIS_BUILD_DIR:/config homeassistant/home-assistant:latest
+      - docker ps -a
+      - docker exec home-assistant python -m homeassistant --script check_config --config /config
+    -  
+      #second script builds beta version
+      script: 
+      - mv secrets.yaml.sample secrets.yaml 
+      - docker pull homeassistant/home-assistant:beta
+      - docker run --init -d --name="home-assistant" -e "TZ=America/New_York" -v /tmp:/tmp -v /tmp:/images -v $TRAVIS_BUILD_DIR:/config homeassistant/home-assistant:beta
+      - docker ps -a
+      - docker exec home-assistant python -m homeassistant --script check_config --config /config
+    - stage: automerge config
+      #this calls travis_automerge script and runs it if builds pass
+      script: 
+      - curl -o /tmp/travis-automerge https://raw.githubusercontent.com/ContraCurrent/Home-AssistantConfig/staging/bin/travis_automerge.sh
+      - chmod a+x /tmp/travis-automerge
+      - /tmp/travis-automerge || true
 notifications:
 # sends email from Github to report results of build
   email:
