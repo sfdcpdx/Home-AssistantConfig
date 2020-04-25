@@ -340,17 +340,37 @@
   action:
   - entity_id: switch.ledvance_plug_e2161100_on_off
     service: switch.turn_off
-- alias: Camera Nightly Reboot
-  # Reboots living room cameras nightly in order to prevent camera failure
+- alias: Camera Toggle With Alarm
+#Toggles indoor cameras on-off in sync with Alarm Arm Switch
   trigger:
-  - platform: template
-    value_template: "{{ states.sensor.time.state == states.input_datetime.camera_reset_time.state[0:5] }}"
-  condition: []
+  - platform: state
+    entity_id: input_boolean.arm_alarm
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id: input_boolean.arm_alarm
+    from: 'on'
+    to: 'off'
   action:
-  - entity_id: switch.ledvance_plug_e0611100_on_off
-    service: switch.turn_off
-  - delay:
-      seconds: 30
-  - entity_id: switch.ledvance_plug_e0611100_on_off
-    service: switch.turn_on
+    service_template: >
+      {% if trigger.to_state.state == "on" %}
+      switch.turn_on
+      {% elif trigger.to_state.state == "off" %}
+      switch.turn_off
+      {% endif %}
+    data_template: 
+      entity_id: switch.ledvance_plug_e0611100_on_off     
+#- alias: Camera Nightly Reboot
+  # CURRENTLY DISABLED Reboots living room cameras nightly in order to prevent camera failure
+  #trigger:
+  #- platform: template
+  #  value_template: "{{ states.sensor.time.state == states.input_datetime.camera_reset_time.state[0:5] }}"
+  #condition: []
+  #action:
+  #- entity_id: switch.ledvance_plug_e0611100_on_off
+  #  service: switch.turn_off
+  #- delay:
+  #    seconds: 30
+  #- entity_id: switch.ledvance_plug_e0611100_on_off
+  #  service: switch.turn_on
   
