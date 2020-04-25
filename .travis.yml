@@ -16,7 +16,7 @@ services:
 
 jobs:
   include:
-    - stage: build Hassio latest and beta
+    - stage: Build Home Assistant latest and beta
       #fist script builds latest version
       script: 
       - mv secrets.yaml.sample secrets.yaml 
@@ -35,7 +35,7 @@ jobs:
     - stage: automerge config
       #this calls travis_automerge script and runs it if builds pass
       script: 
-      - curl -o /tmp/travis-automerge https://raw.githubusercontent.com/ContraCurrent/Home-AssistantConfig/staging/bin/travis_automerge.sh
+      - curl -o /tmp/travis-automerge https://raw.githubusercontent.com/ContraCurrent/Home-AssistantConfig/master/bin/travis_automerge.sh
       - chmod a+x /tmp/travis-automerge
       - /tmp/travis-automerge || true
 notifications:
