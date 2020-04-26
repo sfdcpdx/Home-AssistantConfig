@@ -53,4 +53,4 @@ Current workflow looks like this:
 4) Once new commits are received in Staging branch, the two Travis CI builds begin simultaneously.
 5) If both builds pass, merge changes with remote Master repo. 
 6) Email fires off to report build results, if they passed, I know the merge is complete. If not, I don’t need to worry about Master being affected by my recent push.
-7) At any point I’m ready to update HA server config, I open the App on my phone or laptop and click my ‘Get Latest Config’ button.
+7) At any point I’m ready to update HA server config, I open HA on my phone or laptop and click my ‘Get Latest Config’ button.
