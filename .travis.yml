@@ -34,7 +34,7 @@ jobs:
     - stage: automerge config
       #this calls travis_automerge script and runs it if builds pass
       script: 
-      - curl -o /tmp/travis-automerge https://raw.githubusercontent.com/ContraCurrent/Home-AssistantConfig/master/bin/travis_automerge.sh
+      - curl -o /tmp/travis-automerge https://raw.githubusercontent.com/sfdcpdx/Home-AssistantConfig/master/bin/travis_automerge.sh
       - chmod a+x /tmp/travis-automerge
       - /tmp/travis-automerge || true
 

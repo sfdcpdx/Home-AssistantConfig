@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 : ${BRANCH_TO_MERGE_INTO='master'} ${BRANCH_TO_MERGE_FROM='origin/staging'}
-: "${GITHUB_SECRET_TOKEN?}" ${GITHUB_REPO='ContraCurrent/Home-AssistantConfig'}
+: "${GITHUB_SECRET_TOKEN?}" ${GITHUB_REPO='sfdcpdx/Home-AssistantConfig'}
 
 export GIT_COMMITTER_EMAIL='travis@travis'
 export GIT_COMMITTER_NAME='Travis CI'
