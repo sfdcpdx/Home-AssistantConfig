@@ -24,6 +24,10 @@ input_boolean:
     name: Alarm Arm Switch
     initial: off
     icon: mdi:alarm
+  test_notification:
+    name: Test Actionable Notification
+    initial: off
+    icon: mdi:alarm
 
 # Thermostat connection
 climate:
@@ -47,6 +51,20 @@ notify:
     services:
     - service: mobile_app_phone
     - service: mobile_app_caris_iphone
+
+# Setup categories for Actionable Notifications
+ios:
+  push:
+    categories:
+      - name: Alarm
+        identifier: 'alarm'
+        actions:
+          - identifier: 'ARM_ALARM'
+            title: 'Arm Alarm'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: false
+            behavior: 'default'
 
 # Used to allow for UI-based time/date inputs that automation runs on
 input_datetime:
