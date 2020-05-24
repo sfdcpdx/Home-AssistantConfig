@@ -65,6 +65,12 @@ ios:
             authenticationRequired: false
             destructive: false
             behavior: 'default'
+          - identifier: 'DISMISS'
+            title: 'Dismiss'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: false
+            behavior: 'default'
 
 # Used to allow for UI-based time/date inputs that automation runs on
 input_datetime:
