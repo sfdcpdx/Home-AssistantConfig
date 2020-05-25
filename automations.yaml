@@ -108,7 +108,10 @@
   action:
   - data:
       variables:
-        message: Utility Room Door Open
+        message: >
+          {% if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off', 'on' %}
+            Utility Room Door Open
+          {% endif %}
         title: Door Open!
     entity_id: script.phone_critical_alert
     service: script.turn_on
@@ -116,7 +119,10 @@
     entity_id: scene.alarm_alert_scene
   - data:
       variables:
-        message: Utility Room Door Open!
+        message: >
+          {% if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off', 'on' %}
+            Utility Room Door Open!
+          {% endif %}
         volume: 0.4
     entity_id: script.sonos_say_to_all
     service: script.turn_on
