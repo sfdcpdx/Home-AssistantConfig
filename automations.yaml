@@ -83,7 +83,7 @@
     from: 'off'
     to: 'on'
   action:
-    service: notify.notify_all_phones
+    service: notify.mobile_app_phone
     data:
       title: "Arm Alarm?"
       message: "Click to Arm"
