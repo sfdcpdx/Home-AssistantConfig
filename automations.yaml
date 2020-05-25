@@ -83,10 +83,10 @@
     from: 'off'
     to: 'on'
   action:
-    service: notify.mobile_app_phone
+    service: notify.notify_all_phones
     data:
       title: "Arm Alarm?"
-      message: "Click to Arm"
+      message: "Swipe to Arm"
       data:
         push:
           category: "alarm" # Needs to match the top level identifier you used in the ios configuration
