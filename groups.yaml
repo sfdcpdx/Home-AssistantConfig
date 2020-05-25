@@ -14,6 +14,7 @@ windows:
 
 doorsandwindows:
   name: All Doors and Windows
+  entities:
   - binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
   - binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off
   - binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off
