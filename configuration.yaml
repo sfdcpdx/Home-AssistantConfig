@@ -24,10 +24,6 @@ input_boolean:
     name: Alarm Arm Switch
     initial: off
     icon: mdi:alarm
-  test_notification:
-    name: Test Actionable Notification
-    initial: off
-    icon: mdi:alarm
 
 # Thermostat connection
 climate:

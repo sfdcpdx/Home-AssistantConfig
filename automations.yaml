@@ -74,37 +74,26 @@
 #----------------------------------------------------------------------------------------------------
 # Alarm Notifications
 - alias: Actionable Notification Alarm Arm 
+  # After media off and alarm didn't auto-arm, because staying up late, send actionable notification
   trigger:
-  #- platform: template
-  #  value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_auto_arm_time.state[0:5] }}"
-  #  action:
   - platform: state
-    entity_id: input_boolean.test_notification
-    from: 'off'
-    to: 'on'
+    entity_id: media_player.living_room
+    from: 'playing'
+    to: 'paused'
+  condition: 
+  - condition: template
+    value_template: "{{ states.sensor.time.state > states.input_datetime.alarm_auto_arm_time.state[0:5] }}" 
+  - condition: state
+    entity_id: input_boolean.arm_alarm
+    state: 'off'
   action:
     service: notify.notify_all_phones
     data:
-      title: "Arm Alarm?"
-      message: "Swipe to Arm"
+      title: "Arm Alarm Now?"
+      message: "Swipe Left->View (lockscreen) or Down (popup)"
       data:
         push:
-          category: "alarm" # Needs to match the top level identifier you used in the ios configuration
-        #action_data: # Anything passed in action_data will get echoed back to Home Assistant.
-          #entity_id: input_boolean.arm_alarm
-          #my_custom_data: true
-
-- alias: Arm Alarm from Notification
-  trigger:
-    platform: event
-    event_type: ios.notification_action_fired
-    event_data:
-      actionName: ARM_ALARM
-  action:
-  - data: {}
-    entity_id: input_boolean.arm_alarm
-    service: input_boolean.turn_on
-
+          category: "alarm" # Needs to match the top level identifier used in the ios configuration
 - alias: Door Open Alarm Utility
   # Utility Room Door Open Alert Alarm/Critical Notification
   trigger:
@@ -211,6 +200,17 @@
     service: script.turn_on
 #----------------------------------------------------------------------------------------------------
 # Alarm Arm/Disarm Controls
+- alias: Arm Alarm from Notification
+  # Actionable Notification Alarm Arm sends event that triggers this automation
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: ARM_ALARM
+  action:
+  - data: {}
+    entity_id: input_boolean.arm_alarm
+    service: input_boolean.turn_on
 - alias: Arm Alarm at Night
   # Arm alarm at time set in UI, only fires if Living Room Lamp is off
   trigger:
