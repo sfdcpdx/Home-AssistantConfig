@@ -106,28 +106,28 @@
     entity_id: input_boolean.arm_alarm
     state: 'on'
   action:
-  - data:
+  - service: script.turn_on
+    entity_id: script.phone_critical_alert
+    data:
       variables:
         message: >
           {% if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off', 'on') %}
             Utility Room Door Open
           {% endif %}
-        title: Door Open!
-    entity_id: script.phone_critical_alert
-    service: script.turn_on
+        title: Door Open! 
   - service: scene.turn_on
     entity_id: scene.alarm_alert_scene
   - service: script.turn_on
     entity_id: script.sonos_say_to_all
     data:
+      variables: 
+        volume: 0.4
+    data_template:
       variables:
         message: >
           {% if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off', 'on') %}
             Utility Room Door Open!
-          {% endif %}
-        volume: 0.4
-    
-    
+          {% endif %} 
 - alias: Door Open Alarm Front
   # Front Door Open Alert Alarm/Critical Notification
   trigger:
