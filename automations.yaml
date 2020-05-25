@@ -109,7 +109,7 @@
   - data:
       variables:
         message: >
-          {% if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off', 'on' %}
+          {% if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off', 'on') %}
             Utility Room Door Open
           {% endif %}
         title: Door Open!
@@ -120,7 +120,7 @@
   - data:
       variables:
         message: >
-          {% if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off', 'on' %}
+          {% if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off', 'on') %}
             Utility Room Door Open!
           {% endif %}
         volume: 0.4
