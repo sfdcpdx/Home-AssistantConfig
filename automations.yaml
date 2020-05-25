@@ -147,6 +147,7 @@
     entity_id: group.windows
     from: 'off'
     to: 'on'
+  condition:
   - condition: state
     entity_id: input_boolean.bypass_workout_room
     state: 'off'
