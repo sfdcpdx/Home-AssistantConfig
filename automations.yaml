@@ -147,6 +147,9 @@
     entity_id: group.windows
     from: 'off'
     to: 'on'
+  - condition: state
+    entity_id: input_boolean.bypass_workout_room
+    state: 'off'
   action:
   - service: script.turn_on
     entity_id: script.phone_notification

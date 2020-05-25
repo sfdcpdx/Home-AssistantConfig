@@ -24,6 +24,14 @@ input_boolean:
     name: Alarm Arm Switch
     initial: off
     icon: mdi:alarm
+  bypass_guest_room:
+    name: Bypass Guest Room Window
+    initial: off
+    icon: mdi:alarm
+  bypass_workout_room:
+    name: Bypass Guest Room Window
+    initial: off
+    icon: mdi:alarm
 
 # Thermostat connection
 climate:
