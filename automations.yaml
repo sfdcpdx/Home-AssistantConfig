@@ -95,11 +95,11 @@
         push:
           category: "alarm" # Needs to match the top level identifier used in the ios configuration
 - alias: Door Open Alarm Utility
-  # Utility Room Door Open Alert Alarm/Critical Notification
+  # Door Open Alert Alarm/Critical Notification
   trigger:
-  - entity_id: group.doors
+  - platform: state
+    entity_id: group.doors
     from: 'off'
-    platform: state
     to: 'on'
   condition:
   - condition: state
@@ -140,84 +140,25 @@
           {% elif is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off', 'on') %}
             Garage Side Door Open
           {% endif %} 
-- alias: Door Open Alarm Front
-  # Front Door Open Alert Alarm/Critical Notification
+- alias: Window Open basic Notification
+  # Send phone notification anytime window sensor is tripped (for testing now)
   trigger:
-  - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off
-    from: 'off'
     platform: state
-    to: 'on'
-  condition:
-  - condition: state
-    entity_id: input_boolean.arm_alarm
-    state: 'on'
-  action:
-  - data:
-      variables:
-        message: Front Door Open
-        title: Door Open!
-    entity_id: script.phone_critical_alert
-    service: script.turn_on
-  - service: scene.turn_on
-    entity_id: scene.alarm_alert_scene
-  - data:
-      variables:
-        message: Front Door Open!
-        volume: 0.4
-    entity_id: script.sonos_say_to_all
-    service: script.turn_on
-- alias: Door Open Alarm Back
-  # Back Door Open Alert Alarm/Critical Notification
-  trigger:
-  - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
+    entity_id: group.windows
     from: 'off'
-    platform: state
     to: 'on'
-  condition:
-  - condition: state
-    entity_id: input_boolean.arm_alarm
-    state: 'on'
   action:
-  - data:
+  - service: script.turn_on
+    entity_id: script.phone_notification
+    data:
       variables:
-        message: Back Door Opened
-        title: Door Open!
-    entity_id: script.phone_critical_alert
-    service: script.turn_on
-  - service: scene.turn_on
-    entity_id: scene.alarm_alert_scene
-  - data:
-      variables:
-        message: Back Door Open!
-        volume: 0.4
-    entity_id: script.sonos_say_to_all
-    service: script.turn_on
-- alias: Door Open Alarm Side
-  # Side Door Open Alert Alarm/Critical Notification
-  trigger:
-  - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off
-    from: 'off'
-    platform: state
-    to: 'on'
-  condition:
-  - condition: state
-    entity_id: input_boolean.arm_alarm
-    state: 'on'
-  action:
-  - data:
-      variables:
-        message: Garage Side Door Opened
-        title: Door Open!
-    entity_id: script.phone_critical_alert
-    service: script.turn_on
-  - service: scene.turn_on
-    entity_id: scene.alarm_alert_scene
-  - data:
-      variables:
-        message: Garage Side Door Open!
-        volume: 0.4
-    entity_id: script.sonos_say_to_all
-    service: script.turn_on
+        message: >
+          {% if is_state('binary_sensor.lumi_lumi_vibration_aq1_33a49d03_ias_zone', 'on') %}
+            Workout Room Window Sensor 
+          {% elif is_state('binary_sensor.lumi_lumi_vibration_aq1_8e959d03_ias_zone', 'on') %}
+            Guest Room Window Sensor
+          {% endif %}
+        title: Window Sensor Tripped 
 #----------------------------------------------------------------------------------------------------
 # Alarm Arm/Disarm Controls
 - alias: Arm Alarm from Notification
