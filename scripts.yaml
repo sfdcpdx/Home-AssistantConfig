@@ -27,7 +27,9 @@ sonos_say_to_all:
   alias: Sonos All Players TTS script
   sequence:
   - service: sonos.snapshot
+      entity_id: all
   - service: sonos.unjoin
+      entity_id: all
   - service: sonos.join
     data:
       master: media_player.living_room
@@ -51,6 +53,7 @@ sonos_say_to_all:
   - wait_template: "{{ is_state('media_player.living_room', 'paused') }}"
   # timeout: 00:00:05
   - service: sonos.restore
+      entity_id: all
 alarm_sound:
 #not working
   alias: Speaker Alarm Voice

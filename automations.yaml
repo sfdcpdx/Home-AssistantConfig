@@ -117,15 +117,17 @@
     service: script.turn_on
   - service: scene.turn_on
     entity_id: scene.alarm_alert_scene
-  - data:
+  - service: script.turn_on
+    entity_id: script.sonos_say_to_all
+    data:
       variables:
         message: >
           {% if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off', 'on') %}
             Utility Room Door Open!
           {% endif %}
         volume: 0.4
-    entity_id: script.sonos_say_to_all
-    service: script.turn_on
+    
+    
 - alias: Door Open Alarm Front
   # Front Door Open Alert Alarm/Critical Notification
   trigger:
