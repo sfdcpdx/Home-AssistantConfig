@@ -143,7 +143,7 @@
 - alias: Window Open basic Notification
   # Send phone notification anytime window sensor is tripped (for testing now)
   trigger:
-    platform: state
+  - platform: state
     entity_id: group.windows
     from: 'off'
     to: 'on'
