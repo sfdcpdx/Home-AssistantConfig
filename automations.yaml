@@ -97,7 +97,7 @@
 - alias: Door Open Alarm Utility
   # Utility Room Door Open Alert Alarm/Critical Notification
   trigger:
-  - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off
+  - entity_id: group.doors
     from: 'off'
     platform: state
     to: 'on'
@@ -113,6 +113,12 @@
         message: >
           {% if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off', 'on') %}
             Utility Room Door Open
+          {% elif is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off', 'on') %}
+            Front Door Open
+          {% elif is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off', 'on') %}
+            Back Door Open
+          {% elif is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off', 'on') %}
+            Garage Side Door Open
           {% endif %}
         title: Door Open! 
   - service: scene.turn_on
@@ -126,7 +132,13 @@
       variables:
         message: >
           {% if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off', 'on') %}
-            Utility Room Door Open!
+            Utility Room Door Open
+          {% elif is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off', 'on') %}
+            Front Door Open
+          {% elif is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off', 'on') %}
+            Back Door Open
+          {% elif is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off', 'on') %}
+            Garage Side Door Open
           {% endif %} 
 - alias: Door Open Alarm Front
   # Front Door Open Alert Alarm/Critical Notification
