@@ -15,9 +15,13 @@
   - platform: template
     value_template: "{{ states.sensor.time.state == states.input_datetime.lvng_rm_lamp_off_time.state[0:5] }}"
   condition: 
-  - condition: state
-    entity_id: media_player.living_room
-    state: 'paused'
+    condition: or
+    - condition: state
+      entity_id: media_player.living_room
+      state: 'paused'
+    - condition: state
+      entity_id: media_player.living_room
+      state: 'idle'
   action:
   - service: light.turn_off
     entity_id: light.philips_lwb014_dba18b02_level_on_off    
@@ -28,6 +32,11 @@
     entity_id: media_player.living_room
     from: 'playing'
     to: 'paused'
+    for: "00:15:00"
+  - platform: state
+    entity_id: media_player.living_room
+    from: 'playing'
+    to: 'idle'
     for: "00:15:00"
   condition: 
   - condition: sun
@@ -80,6 +89,10 @@
     entity_id: media_player.living_room
     from: 'playing'
     to: 'paused'
+  - platform: state
+    entity_id: media_player.living_room
+    from: 'playing'
+    to: 'idle'
   condition: 
   - condition: template
     value_template: "{{ states.sensor.time.state > states.input_datetime.alarm_auto_arm_time.state[0:5] }}" 
@@ -279,7 +292,7 @@
     entity_id: script.phone_notification
     service: script.turn_on
 - alias: Arm Alarm When Front Door Locked
-  # Arms alarm hen noisemaker is on, or all humans are away
+  # Arms alarm when front door locked and noisemaker is on, or all humans are away
   trigger:
   - entity_id: lock.kwikset_spectrum_brands_unknown_type_0003_id_0238_locked
     from: unlocked
@@ -357,17 +370,4 @@
       {% endif %}
     data_template: 
       entity_id: switch.ledvance_plug_e0611100_on_off     
-#- alias: Camera Nightly Reboot
-  # CURRENTLY DISABLED Reboots living room cameras nightly in order to prevent camera failure
-  #trigger:
-  #- platform: template
-  #  value_template: "{{ states.sensor.time.state == states.input_datetime.camera_reset_time.state[0:5] }}"
-  #condition: []
-  #action:
-  #- entity_id: switch.ledvance_plug_e0611100_on_off
-  #  service: switch.turn_off
-  #- delay:
-  #    seconds: 30
-  #- entity_id: switch.ledvance_plug_e0611100_on_off
-  #  service: switch.turn_on
   
