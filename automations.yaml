@@ -16,6 +16,7 @@
     value_template: "{{ states.sensor.time.state == states.input_datetime.lvng_rm_lamp_off_time.state[0:5] }}"
   condition: 
     condition: or
+    conditions:
     - condition: state
       entity_id: media_player.living_room
       state: 'paused'
