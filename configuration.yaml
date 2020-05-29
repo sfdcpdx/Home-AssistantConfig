@@ -111,3 +111,9 @@ sensor:
       - 'time_date'
       - 'time_utc'
       - 'beat'
+
+# Open Weather Map integration
+weather:
+  - platform: openweathermap
+    api_key: !secret openweather_key
+    mode: freedaily
