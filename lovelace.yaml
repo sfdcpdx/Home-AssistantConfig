@@ -1,11 +1,115 @@
-title: Media
+# Main view
+title: Home
 views:
-  - title: Test
-    path: test
-    panel: true
-    theme: black
-    badges: []
+  - badges: []
     cards:
-      - type: media-control
-        entity: media_player.living_room
+      - entities:
+          - entity: input_boolean.arm_alarm
+        show_header_toggle: false
+        type: entities
+      - entities:
+          - entity: switch.ledvance_plug_e2161100_on_off
+        show_header_toggle: false
+        type: entities
+      - entities:
+          - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off
+          - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
+          - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off
+          - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off
+        type: glance
+      - entities:
+          - cover.single_bay
+          - cover.double_bay
+        show_header_toggle: false
+        type: entities
+      - entities:
+          - entity: binary_sensor.lumi_lumi_vibration_aq1_33a49d03_ias_zone
+          - entity: binary_sensor.lumi_lumi_vibration_aq1_8e959d03_ias_zone_2
+        type: entities
+      - entities:
+          - entity: lock.kwikset_spectrum_brands_unknown_type_0003_id_0238_locked
+        type: entities
+      - entity: climate.thermostat
+        type: thermostat
+      - entity: weather.openweathermap
+        type: weather-forecast
+      - entities:
+          - entity: device_tracker.phone
+          - entity: device_tracker.caris_iphone
+        type: glance
+    path: default_view
+    theme: ''
+    title: Home
+  - badges: []
+    cards:
+      - entity: light.philips_lwb014_dba18b02_level_on_off
+        type: light
+      - entity: light.jasco_products_unknown_type_4944_id_3235_level
+        type: light
+      - entity: light.jasco_products_unknown_type_4944_id_3235_level_2
+        type: light
+      - entities:
+          - entity: switch.jasco_products_unknown_type_4952_id_3135_switch
+        type: entities
+    path: lights
+    title: Lights
+  - badges: []
+    cards:
+      - aspect_ratio: 54%
+        type: iframe
+        url: 'http://10.0.0.26:8765/picture/1/frame/'
+      - aspect_ratio: 54%
+        type: iframe
+        url: 'http://10.0.0.26:8765/picture/2/frame/'
+      - aspect_ratio: 54%
+        type: iframe
+        url: 'http://10.0.0.26:8765/picture/3/frame/'
+      - aspect_ratio: 54%
+        type: iframe
+        url: 'http://10.0.0.26:8765/picture/4/frame/'
+      - entities:
+          - entity: switch.ledvance_plug_e0611100_on_off
+        type: entities
+    path: cameras
+    title: Cameras
+  - badges: []
+    cards:
+      - entities:
+          - entity: input_datetime.camera_reset_time
+          - entity: input_datetime.lvng_rm_lamp_off_time
+          - entity: input_datetime.noisemaker_off_time
+        type: entities
+      - entities:
+          - entity: input_datetime.alarm_auto_arm_time
+          - entity: input_datetime.alarm_auto_disarm_time
+        type: entities
+      - entities:
+          - entity: input_boolean.bypass_guest_room
+          - entity: input_boolean.bypass_workout_room
+        show_header_toggle: false
+        type: entities
+      - entities:
+          - entity: script.pull_github_config
+        theme: default
+        type: entities
+    panel: false
+    path: time-date-settings
+    title: Admin Settings
+  - badges: []
+    cards:
+      - entities:
+          - entity: sensor.lumi_lumi_sensor_magnet_aq2_4c572104_power
+          - entity: sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_power
+          - entity: sensor.lumi_lumi_sensor_magnet_aq2_84562104_power
+          - entity: sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_power
+        type: glance
+      - entities:
+          - entity: >-
+              sensor.kwikset_spectrum_brands_unknown_type_0003_id_0238_battery_level
+        type: glance
+    panel: false
+    path: batteries
+    title: Batteries
+
+      
       

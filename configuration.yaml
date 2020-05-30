@@ -120,17 +120,22 @@ weather:
 
 # Manual dashboard for kiosk setup
 lovelace:
-  mode: storage
+  mode: yaml
   resources:
     - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js
       type: module
   # Add yaml dashboards in addition to UI based default
   dashboards:
-    lovelace-yaml:
+    lovelace-home:
+      mode: yaml
+      title: Home
+      show_in_sidebar: true
+      filename: lovelace.yaml
+    lovelace-media:
       mode: yaml
       title: Media
       show_in_sidebar: true
-      filename: lovelace.yaml
+      filename: lovelacemedia.yaml
 
 # Set up themes including background
 frontend:

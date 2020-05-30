@@ -1,0 +1,11 @@
+# Kiosk View
+title: Media
+views:
+  - title: Test
+    path: test
+    panel: true
+    theme: black
+    badges: []
+    cards:
+      - type: media-control
+        entity: media_player.living_room
