@@ -1,5 +1,5 @@
 resources:
-  - url: /local/community_plugin/compact-custom-header/compact-custom-header.js
+  - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js
     type: module
 
 title: Media
