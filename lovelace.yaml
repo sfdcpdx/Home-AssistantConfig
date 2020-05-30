@@ -1,9 +1,13 @@
+resources:
+  - url: /community_plugin/compact-custom-header/compact-custom-header.js
+    type: module
+
 title: Media
 views:
-- title: Media
-  panel: true
-  theme: black
-    cards:
-      - type: media-control
-        entity: media_player.living_room
+  - title: Media
+    panel: true
+    theme: black
+      cards:
+        - type: media-control
+          entity: media_player.living_room
       
