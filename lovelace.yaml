@@ -1,8 +1,6 @@
 resources:
-  - url: /community_plugin/compact-custom-header/compact-custom-header.js
+  - url: /local/community_plugin/compact-custom-header/compact-custom-header.js
     type: module
-cch:
-  kiosk_mode: true
 
 title: Media
 views:
