@@ -123,3 +123,4 @@ frontend:
   themes:
     black:
       lovelace-background: black
+      primary-color: black
