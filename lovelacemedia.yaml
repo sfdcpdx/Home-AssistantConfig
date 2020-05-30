@@ -1,5 +1,7 @@
 # Kiosk View
 title: Media
+cch: 
+  kiosk_mode: true
 views:
   - title: Test
     path: test
