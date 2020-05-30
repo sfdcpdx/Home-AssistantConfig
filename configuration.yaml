@@ -117,3 +117,23 @@ weather:
   - platform: openweathermap
     api_key: !secret openweather_key
     mode: freedaily
+
+# Manual dashboard for kiosk setup
+lovelace:
+  mode: storage
+  resources:
+  - url: /community_plugin/compact-custom-header/compact-custom-header.js
+    type: module
+  # Add yaml dashboards, in addition to UI based default
+  dashboards:
+    lovelace-yaml:
+      mode: yaml
+      title: Media
+      show_in_sidebar: true
+      filename: lovelace.yaml
+
+# Set up themes including background
+frontend:
+  themes:
+    black:
+      lovelace-background: black

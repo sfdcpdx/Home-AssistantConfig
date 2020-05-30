@@ -1,0 +1,7 @@
+title: Media
+panel: true
+theme: black
+  cards:
+    - type: media-control
+      entity: media_player.living_room
+      
