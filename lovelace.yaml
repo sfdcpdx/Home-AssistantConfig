@@ -4,10 +4,12 @@ resources:
 
 title: Media
 views:
-  - title: Media
+  - title: Test
+    path: test
     panel: true
     theme: black
-      cards:
-        - type: media-control
-          entity: media_player.living_room
+    badges: []
+    cards:
+      - type: media-control
+        entity: media_player.living_room
       
