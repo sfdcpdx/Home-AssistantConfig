@@ -122,9 +122,9 @@ weather:
 lovelace:
   mode: storage
   resources:
-  - url: /community_plugin/compact-custom-header/compact-custom-header.js
-    type: module
-  # Add yaml dashboards, in addition to UI based default
+    - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js
+      type: module
+  # Add yaml dashboards in addition to UI based default
   dashboards:
     lovelace-yaml:
       mode: yaml

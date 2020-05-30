@@ -1,7 +1,3 @@
-resources:
-  - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js
-    type: module
-
 title: Media
 views:
   - title: Test
