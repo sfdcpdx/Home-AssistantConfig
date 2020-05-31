@@ -389,5 +389,19 @@
       switch.turn_off
       {% endif %}
     data_template: 
-      entity_id: switch.ledvance_plug_e0611100_on_off     
+      entity_id: switch.ledvance_plug_e0611100_on_off    
+#----------------------------------------------------------------------------------------------------
+# UI automation
+- alias: Conditional Card Time-Based Toggle
+  # Every minute, toggles input boolean to filtering cards in Lovelace while media playing (visualization)
+  trigger:
+  - platform: time_pattern
+    seconds: 30
+  condition:
+  - condition: state
+      entity_id: media_player.living_room
+      state: 'playing'
+  action:
+  - service: input_boolean.toggle
+    entity_id: input_boolean.conditional_card_toggle  
   

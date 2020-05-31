@@ -32,6 +32,10 @@ input_boolean:
     name: Bypass Workout Room Window
     initial: off
     icon: mdi:alarm
+  conditional_card_toggle:
+    name: Conditional Card Toggle
+    initial: on
+    icon: mdi:filter-outline
 
 # Thermostat connection
 climate:
