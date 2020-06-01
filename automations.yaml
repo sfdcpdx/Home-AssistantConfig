@@ -397,10 +397,6 @@
   trigger:
   - platform: time_pattern
     seconds: 30
-  condition:
-  - condition: state
-    entity_id: media_player.living_room
-    state: 'playing'
   action:
   - service: input_boolean.toggle
     entity_id: input_boolean.conditional_card_toggle  
