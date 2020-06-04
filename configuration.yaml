@@ -46,6 +46,8 @@ climate:
     scan_interval: 180
     away_heat_temperature: 65
     away_cool_temperature: 74
+    auto_away_heat_temperature: 65
+    auto_away_cool_temperature: 74
 
 # Sets usb location of Z Wave dongle
 zwave:
