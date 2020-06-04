@@ -129,3 +129,17 @@ frontend:
       lovelace-background: black
       primary-color: black
   themes: !include_dir_merge_named themes
+
+# Bypassing entities that run often in logbook
+logbook:
+  exclude:
+    entities:
+      - input_boolean.conditional_card_toggle
+      - automation.conditional_card_time_based_toggle
+      - sensor.date_time
+      - sensor.date_time_iso
+      - sensor.date_time_utc
+      - sensor.internet_time
+      - sensor.time
+      - sensor.time_date
+      - sensor.time_utc
