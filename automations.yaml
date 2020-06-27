@@ -351,25 +351,25 @@
   action:
   - entity_id: switch.ledvance_plug_e2161100_on_off
     service: switch.turn_off
-- alias: Noisemaker Turn On
-  # Noisemaker turns on once TV is off in bedroom
-  trigger:
-  - platform: state
-    entity_id: media_player.bedroom
-    from: 'playing'
-    to: 'paused'
-    for: "00:02:00"
-  - platform: state
-    entity_id: media_player.bedroom
-    from: 'playing'
-    to: 'idle'
-    for: "00:02:00"
-  condition: 
-  - condition: time
-    after: '21:00:00'
-  action:
-  - entity_id: switch.ledvance_plug_e2161100_on_off
-    service: switch.turn_on
+#- alias: Noisemaker Turn On
+#  Needs work, doesn't activate soon enough. Noisemaker turns on once TV is off in bedroom
+#  trigger:
+#  - platform: state
+#    entity_id: media_player.bedroom
+#    from: 'playing'
+#    to: 'paused'
+#    for: "00:02:00"
+#  - platform: state
+#    entity_id: media_player.bedroom
+#    from: 'playing'
+#    to: 'idle'
+#    for: "00:02:00"
+#  condition: 
+#  - condition: time
+#    after: '21:00:00'
+#  action:
+#  - entity_id: switch.ledvance_plug_e2161100_on_off
+#    service: switch.turn_on
 - alias: Camera Toggle With Alarm
 #Toggles indoor cameras on-off in sync with Alarm Arm Switch
   trigger:

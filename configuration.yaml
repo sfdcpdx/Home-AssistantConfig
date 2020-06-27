@@ -18,12 +18,14 @@ cover:
     username: !secret aladdin_user
     password: !secret aladdin_pass
 
-# Custom switch to arm alarm
+# Custom switches
 input_boolean:
+  # Master alarm switch
   arm_alarm:
     name: Alarm Arm Switch
     initial: off
     icon: mdi:alarm
+  # Bypass for window sensors
   bypass_guest_room:
     name: Bypass Guest Room Window
     initial: off
@@ -32,6 +34,7 @@ input_boolean:
     name: Bypass Workout Room Window
     initial: off
     icon: mdi:alarm
+  # Used for Kiosk dashboard to make cards appear to move
   conditional_card_toggle:
     name: Conditional Card Toggle
     initial: on
