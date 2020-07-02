@@ -396,7 +396,7 @@
   # Every minute, toggles input boolean to filtering cards in Lovelace while media playing (visualization)
   trigger:
   - platform: time_pattern
-    seconds: 30
+    minutes: "/5"
   action:
   - service: input_boolean.toggle
     entity_id: input_boolean.conditional_card_toggle  
