@@ -96,7 +96,7 @@
     to: 'idle'
   condition: 
   - condition: template
-    value_template: "{{ states.sensor.time.state > states.input_datetime.alarm_auto_arm_time.state[0:5] }}" 
+    value_template: "{{ states.sensor.time.state > states.input_datetime.lvng_rm_lamp_off_time.state[0:5] }}" 
   - condition: state
     entity_id: input_boolean.arm_alarm
     state: 'off'
