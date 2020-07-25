@@ -119,6 +119,11 @@ sensor:
       - 'time_utc'
       - 'beat'
 
+# Spotify Integration
+spotify:
+  client_id: !secret spotify_client_id
+  client_secret: !secret spotify_client_secret
+
 # Open Weather Map integration
 weather:
   - platform: openweathermap
