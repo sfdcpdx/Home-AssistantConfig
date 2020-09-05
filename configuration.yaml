@@ -106,8 +106,8 @@ input_datetime:
     has_date: false 
     has_time: true 
 
-#generates a sensor in HA that reflects current time and can be compared against in automation
 sensor:
+  #generates a sensor in HA that reflects current time and can be compared against in automation
   - platform: time_date
     display_options:
       - 'time'
@@ -118,6 +118,15 @@ sensor:
       - 'time_date'
       - 'time_utc'
       - 'beat'
+  #sun2 integration from: https://github.com/pnbruckner/ha-sun2 Left many options off for now
+  - platform: sun2
+    monitored_conditions:
+      - sunrise
+      - solar_noon
+      - sunset
+      - max_elevation
+#HA standard moon phase sensor
+  - platform: moon
 
 # Spotify Integration
 spotify:
