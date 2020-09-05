@@ -15,14 +15,16 @@
   - platform: template
     value_template: "{{ states.sensor.time.state == states.input_datetime.lvng_rm_lamp_off_time.state[0:5] }}"
   condition: 
-    condition: or
+    condition: not
     conditions:
-    - condition: state
-      entity_id: media_player.living_room
-      state: 'paused'
-    - condition: state
-      entity_id: media_player.living_room
-      state: 'idle'
+      condition: or
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room
+        state: 'playing'
+      - condition: state
+        entity_id: media_player.spotify_chris_moreno
+        state: 'playing'
   action:
   - service: light.turn_off
     entity_id: light.philips_lwb014_dba18b02_level_on_off    
@@ -92,6 +94,14 @@
     to: 'paused'
   - platform: state
     entity_id: media_player.living_room
+    from: 'playing'
+    to: 'idle'
+  - platform: state
+    entity_id: media_player.spotify_chris_moreno
+    from: 'playing'
+    to: 'paused'
+  - platform: state
+    entity_id: media_player.spotify_chris_moreno
     from: 'playing'
     to: 'idle'
   condition: 
