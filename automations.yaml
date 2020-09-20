@@ -201,7 +201,7 @@
     entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
 - alias: Arm Alarm at Night
-  # Arm alarm at time set in UI, only fires if Living Room Lamp is off
+  # Arm alarm at time set in UI, only fires if Living Room Lamp is off and Chris Spotify is not Playing at home
   trigger:
   - platform: template
     value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_auto_arm_time.state[0:5] }}"
@@ -212,6 +212,18 @@
   - condition: state
     entity_id: light.philips_lwb014_dba18b02_level_on_off
     state: 'off'
+  condition: not
+    conditions:
+      condition: and
+      conditions:
+        condition: not
+        conditions:
+          - condition: state
+            entity_id:  device_tracker.phone
+            state: 'away'
+      - condition: state
+        entity_id: media_player.spotify_chris_moreno
+        state: 'playing'
   action:
   - data: {}
     entity_id: input_boolean.arm_alarm
