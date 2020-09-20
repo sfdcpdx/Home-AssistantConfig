@@ -212,18 +212,15 @@
   - condition: state
     entity_id: light.philips_lwb014_dba18b02_level_on_off
     state: 'off'
-  - condition:
-      condition: and
-      conditions:
-      - condition: 
-          condition: not
-          conditions:
+  - condition: and
+    conditions:
+      - condition: not
+        conditions:
           - condition: state
             entity_id:  device_tracker.phone
             state: 'away'
-      - condition: 
-          condition: not
-          conditions:
+      - condition: not
+        conditions:
           - condition: state
             entity_id: media_player.spotify_chris_moreno
             state: 'playing'
