@@ -25,15 +25,6 @@ input_boolean:
     name: Alarm Arm Switch
     initial: off
     icon: mdi:alarm
-  # Bypass for window sensors
-  bypass_guest_room:
-    name: Bypass Guest Room Window
-    initial: off
-    icon: mdi:alarm
-  bypass_workout_room:
-    name: Bypass Workout Room Window
-    initial: off
-    icon: mdi:alarm
   # Used for Kiosk dashboard to make cards appear to move
   conditional_card_toggle:
     name: Conditional Card Toggle

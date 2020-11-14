@@ -5,23 +5,6 @@ doors:
   - binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off
   - binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off
   - binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off
-
-windows:
-  name: Windows All
-  entities:
-  - binary_sensor.lumi_lumi_vibration_aq1_33a49d03_ias_zone
-  - binary_sensor.lumi_lumi_vibration_aq1_8e959d03_ias_zone
-
-doorsandwindows:
-  name: All Doors and Windows
-  entities:
-  - binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
-  - binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off
-  - binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off
-  - binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off
-  - binary_sensor.lumi_lumi_vibration_aq1_33a49d03_ias_zone
-  - binary_sensor.lumi_lumi_vibration_aq1_8e959d03_ias_zone
-
 sonos_all:
   name: Sonos All
   entities:
