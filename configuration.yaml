@@ -31,15 +31,6 @@ input_boolean:
     initial: on
     icon: mdi:filter-outline
 
-# Thermostat connection
-climate:
-  - platform: honeywell
-    username: !secret honeywell_user
-    password: !secret honeywell_pass
-    scan_interval: 180
-    away_heat_temperature: 65
-    away_cool_temperature: 74
-
 # Sets usb location of Z Wave dongle
 zwave:
   usb_path: /dev/ttyUSB0
