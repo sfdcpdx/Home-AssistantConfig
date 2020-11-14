@@ -124,27 +124,13 @@ sensor:
       - solar_noon
       - sunset
       - max_elevation
-#HA standard moon phase sensor
+  #HA standard moon phase sensor
   - platform: moon
 
 # Spotify Integration
 spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
-
-# Open Weather Map integration
-weather:
-  - platform: openweathermap
-    api_key: !secret openweather_key
-    mode: freedaily
-
-# Set up themes including background
-frontend:
-  themes:
-    black:
-      lovelace-background: black
-      primary-color: black
-  themes: !include_dir_merge_named themes
 
 # Bypassing entities that run often in logbook
 logbook:
