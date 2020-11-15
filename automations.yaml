@@ -405,7 +405,7 @@
   - service: scene.turn_on
     entity_id: scene.cooking_scene
  
- - alias: Hue Remote Dim Up Button Double click
+- alias: Hue Remote Dim Up Button Double click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
@@ -415,8 +415,8 @@
   action:
   - service: scene.turn_on
     entity_id: scene.tv_viewing_scene
-  
-  - alias: Hue Remote Dim Up Button Triple click
+
+- alias: Hue Remote Dim Up Button Triple click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
@@ -426,8 +426,8 @@
   action:
   - service: scene.turn_on
     entity_id: scene.dinner_scene
-  
-  - alias: Hue Remote Dim Up Button Quadruple click
+
+- alias: Hue Remote Dim Up Button Quadruple click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
