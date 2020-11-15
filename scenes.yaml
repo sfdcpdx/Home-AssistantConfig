@@ -1,5 +1,5 @@
 # Various scenes
-- id: alarmalert
+- id: alarm_alert_scene
   name: alarm_alert_scene
   entities:
     light.living_room_cans:
@@ -12,7 +12,7 @@
       state: 'on'
     switch.noisemaker_plug:
       state: 'off'
-- id: tvviewing
+- id: tv_viewing_scene
   name: tv_viewing_scene
   entities:
     light.living_room_lamp:
@@ -24,7 +24,7 @@
         state: 'off'
     light.living_room_cans:
       state: 'off'   
-- id: indoorlights
+- id: all_indoor_lights_off
   name: all_indoor_lights_off
   entities:
     light.living_room_cans:
@@ -37,7 +37,7 @@
       state: 'off'
     light.living_room_lamp:
       state: 'off'
-- id: cookingscene
+- id: cooking_scene
   name: cooking_scene
   entities:
     switch.kitchen_lights:
@@ -47,7 +47,7 @@
       state: 'on'
     light.living_room_cans:
       state: 'off'
-- id: dinnerscene
+- id: dinner_scene
   name: dinner_scene
   entities:
     switch.kitchen_lights:
@@ -57,7 +57,7 @@
       state: 'on'
     light.living_room_cans:
       state: 'off'
-- id: cleaningscene
+- id: cleaning_scene
   name: cleaning_scene
   entities:
     light.living_room_cans:
