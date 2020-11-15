@@ -8,7 +8,7 @@
     light.patio_lights:
       brightness: 196
       state: 'on'
-    light.kitchen_lights:
+    switch.kitchen_lights:
       state: 'on'
     switch.noisemaker_plug:
       state: 'off'
@@ -18,7 +18,7 @@
     light.living_room_lamp:
       brightness: 150
       state: 'on'
-    light.kitchen_lights:
+    switch.kitchen_lights:
         state: 'off'
     light.island_lights:
         state: 'off'
@@ -29,7 +29,7 @@
   entities:
     light.living_room_cans:
       state: 'off'
-    light.kitchen_lights:
+    switch.kitchen_lights:
       state: 'off'
     light.patio_lights:
       state: 'off'
@@ -38,7 +38,7 @@
 - id: cookingscene
   name: cooking_scene
   entities:
-    light.kitchen_lights:
+    switch.kitchen_lights:
       state: 'on'
     light.island_lights:
       brightness: 70
@@ -48,7 +48,7 @@
 - id: dinnerscene
   name: dinner_scene
   entities:
-    light.kitchen_lights:
+    switch.kitchen_lights:
       state: 'off'
     light.island_lights:
       brightness: 70
@@ -61,5 +61,5 @@
     light.living_room_cans:
       brightness: 150
       state: 'on'
-    light.kitchen_lights:
+    switch.kitchen_lights:
       state: 'on'
