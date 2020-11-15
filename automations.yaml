@@ -357,8 +357,7 @@
     service: input_boolean.turn_off
 #----------------------------------------------------------------------------------------------------
 # Various Comfort and Maintenance Controls
-
-# Hue Remote Automation ---------------------
+# Hue Remote Automation 
 - alias: Hue Remote On Button Single Click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
@@ -425,7 +424,6 @@
   action:
   - service: scene.turn_on
     entity_id: scene.alarm_alert_scene
-# End Hue automation -----------------
 
 - alias: Noisemaker Turn Off
   # Noisemaker turns off at time set in UI
