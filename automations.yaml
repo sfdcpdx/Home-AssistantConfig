@@ -82,7 +82,7 @@
     condition: sun
   action:
   - service: light.turn_on
-    entity_id: light.jasco_products_unknown_type_4944_id_3235_level_2    
+    entity_id: light.jasco_products_unknown_type_4944_id_3235_level_2  
 #----------------------------------------------------------------------------------------------------
 # Alarm Notifications
 - alias: Actionable Notification Alarm Arm 
@@ -357,6 +357,70 @@
     service: input_boolean.turn_off
 #----------------------------------------------------------------------------------------------------
 # Various Comfort and Maintenance Controls
+
+# Hue Remote Automation ---------------------
+- alias: Hue Remote On Button Single Click
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: turn_on
+  action:
+    - scene: scene.tv_viewing_scene
+  mode: single
+- alias: Hue Remote Off Button Single Click
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: turn_off
+  action:
+    - scene: scene.all_indoor_lights_off
+  mode: single
+- alias: Hue Remote Dim Up Button Single Click
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: dim_up
+  action:
+    - scene: scene.cooking_scene
+  mode: single
+- alias: Hue Remote Dim Down Button Single Click
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: dim_down
+  action:
+    - scene: scene.dinner_scene
+  mode: single
+- alias: Hue Remote Dim Up Button Double click
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: dim_up
+  action:
+    - scene: scene.cleaning_scene
+  mode: single
+- alias: Hue Remote Dim Up Button Double click
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: dim_down
+  action:
+    - scene: scene.alarm_alert_scene
+  mode: single
+# End Hue automation -----------------
+
 - alias: Noisemaker Turn Off
   # Noisemaker turns off at time set in UI
   trigger:
