@@ -58,7 +58,7 @@
     platform: sun
   action:
   - service: switch.turn_on
-    entity_id: switch.jasco_products_unknown_type_4952_id_3135_switch    
+    entity_id: switch.porch_lights   
 - alias: Porch Lights Off at Sunrise
   # Porch lights turn off at sunrise
   trigger:
@@ -66,23 +66,23 @@
     platform: sun
   action:
   - service: switch.turn_off
-    entity_id: switch.jasco_products_unknown_type_4952_id_3135_switch    
+    entity_id: switch.porch_lights   
 - alias: Patio Lights Turn On When Back Door Opens
   # Turns on patio lights when back door opens at night
   trigger:
-  - entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
+  - entity_id: binary_sensor.back_door
     from: 'off'
     platform: state
     to: 'on'
   condition:
   - condition: state
-    entity_id: light.jasco_products_unknown_type_4944_id_3235_level_2
+    entity_id: light.patio_lights
     state: 'off'
   - after: sunset
     condition: sun
   action:
   - service: light.turn_on
-    entity_id: light.jasco_products_unknown_type_4944_id_3235_level_2  
+    entity_id: light.patio_lights  
 #----------------------------------------------------------------------------------------------------
 # Alarm Notifications
 - alias: Actionable Notification Alarm Arm 
@@ -135,13 +135,13 @@
     data:
       variables:
         message: >
-          {% if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off', 'on') %}
+          {% if is_state('binary_sensor.utility_room_door', 'on') %}
             Utility Room Door Open
-          {% elif is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off', 'on') %}
+          {% elif is_state('binary_sensor.front_door', 'on') %}
             Front Door Open
-          {% elif is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off', 'on') %}
+          {% elif is_state('binary_sensor.back_door', 'on') %}
             Back Door Open
-          {% elif is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off', 'on') %}
+          {% elif is_state('binary_sensor.garage_side_door', 'on') %}
             Garage Side Door Open
           {% endif %}
         title: Door Open! 
@@ -155,13 +155,13 @@
     data_template:
       variables:
         message: >
-          {% if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off', 'on') %}
+          {% if is_state('binary_sensor.utility_room_door', 'on') %}
             Utility Room Door Open
-          {% elif is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off', 'on') %}
+          {% elif is_state('binary_sensor.front_door', 'on') %}
             Front Door Open
-          {% elif is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off', 'on') %}
+          {% elif is_state('binary_sensor.back_door', 'on') %}
             Back Door Open
-          {% elif is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off', 'on') %}
+          {% elif is_state('binary_sensor.garage_side_door', 'on') %}
             Garage Side Door Open
           {% endif %} 
 #- alias: Window Open basic Notification
@@ -276,7 +276,7 @@
 - alias: Arm Alarm with Noisemaker
   # Arm alarm when noisemaker plug is switched on (backup in case it didn't auto arm)
   trigger:
-  - entity_id: switch.ledvance_plug_e2161100_on_off
+  - entity_id: switch.noisemaker_plug
     from: 'off'
     platform: state
     to: 'on'
@@ -290,7 +290,7 @@
 - alias: Disarm Alarm When Front Door Unlocked
   # Disarm alarm if front door is unlocked 
   trigger:
-  - entity_id: lock.kwikset_spectrum_brands_unknown_type_0003_id_0238_locked
+  - entity_id: lock.front_door_lock
     from: locked
     platform: state
     to: unlocked
@@ -317,7 +317,7 @@
 - alias: Arm Alarm When Front Door Locked
   # Arms alarm when front door locked and noisemaker is on, or all humans are away
   trigger:
-  - entity_id: lock.kwikset_spectrum_brands_unknown_type_0003_id_0238_locked
+  - entity_id: lock.front_door_lock
     from: unlocked
     platform: state
     to: locked
@@ -333,7 +333,7 @@
     - condition: or
       conditions:
       - condition: state
-        entity_id: switch.ledvance_plug_e2161100_on_off
+        entity_id: switch.noisemaker_plug
         state: 'on'
       - condition: state
         entity_id: group.peopleanyonehome
@@ -435,7 +435,7 @@
     - thu
     - fri
   action:
-  - entity_id: switch.ledvance_plug_e2161100_on_off
+  - entity_id: switch.noisemaker_plug
     service: switch.turn_off
 #- alias: Noisemaker Turn On
 #  Needs work, doesn't activate soon enough. Noisemaker turns on once TV is off in bedroom
@@ -454,7 +454,7 @@
 #  - condition: time
 #    after: '21:00:00'
 #  action:
-#  - entity_id: switch.ledvance_plug_e2161100_on_off
+#  - entity_id: switch.noisemaker_plug
 #    service: switch.turn_on
 - alias: Camera Toggle With Alarm
 #Toggles indoor cameras on-off in sync with Alarm Arm Switch
@@ -475,7 +475,7 @@
       switch.turn_off
       {% endif %}
     data_template: 
-      entity_id: switch.ledvance_plug_e0611100_on_off    
+      entity_id: switch.camera_plug   
 #----------------------------------------------------------------------------------------------------
 # UI automation
 - alias: Conditional Card Time-Based Toggle

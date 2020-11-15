@@ -1,10 +1,10 @@
 doors:
   name: Doors All 
   entities: 
-  - binary_sensor.lumi_lumi_sensor_magnet_aq2_0f4f2104_on_off
-  - binary_sensor.lumi_lumi_sensor_magnet_aq2_4c572104_on_off
-  - binary_sensor.lumi_lumi_sensor_magnet_aq2_8edf0b04_on_off
-  - binary_sensor.lumi_lumi_sensor_magnet_aq2_84562104_on_off
+  - binary_sensor.front_door
+  - binary_sensor.back_door
+  - binary_sensor.utility_room_door
+  - binary_sensor.garage_side_door
 sonos_all:
   name: Sonos All
   entities:
