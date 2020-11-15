@@ -367,8 +367,8 @@
     type: remote_button_short_press
     subtype: turn_on
   action:
-    - scene: scene.tv_viewing_scene
-  mode: single
+  - service: scene.turn_on
+    entity_id: scene.tv_viewing_scene
 - alias: Hue Remote Off Button Single Click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
@@ -377,8 +377,8 @@
     type: remote_button_short_press
     subtype: turn_off
   action:
-    - scene: scene.all_indoor_lights_off
-  mode: single
+  - service: scene.turn_on
+    entity_id: scene.all_indoor_lights_off
 - alias: Hue Remote Dim Up Button Single Click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
@@ -387,8 +387,8 @@
     type: remote_button_short_press
     subtype: dim_up
   action:
-    - scene: scene.cooking_scene
-  mode: single
+  - service: scene.turn_on
+    entity_id: scene.cooking_scene
 - alias: Hue Remote Dim Down Button Single Click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
@@ -397,8 +397,8 @@
     type: remote_button_short_press
     subtype: dim_down
   action:
-    - scene: scene.dinner_scene
-  mode: single
+  - service: scene.turn_on
+    entity_id: scene.dinner_scene
 - alias: Hue Remote Dim Up Button Double click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
@@ -407,8 +407,8 @@
     type: remote_button_double_press
     subtype: dim_up
   action:
-    - scene: scene.cleaning_scene
-  mode: single
+  - service: scene.turn_on
+    entity_id: scene.cleaning_scene
 - alias: Hue Remote Dim Up Button Double click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
@@ -417,8 +417,8 @@
     type: remote_button_double_press
     subtype: dim_down
   action:
-    - scene: scene.alarm_alert_scene
-  mode: single
+  - service: scene.turn_on
+    entity_id: scene.alarm_alert_scene
 # End Hue automation -----------------
 
 - alias: Noisemaker Turn Off
