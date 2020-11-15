@@ -405,8 +405,7 @@
     type: remote_button_short_press
     subtype: turn_off
   action:
-  - service: 
-  .turn_on
+  - service: scene.turn_on
     entity_id: scene.all_indoor_lights_off
 
 - alias: Hue Remote Dim Up Button Single Click
