@@ -366,6 +366,7 @@
     platform: device
     type: remote_button_short_press
     subtype: turn_on
+  condition:
   action:
   - service: scene.turn_on
     entity_id: scene.tv_viewing_scene
@@ -376,6 +377,7 @@
     platform: device
     type: remote_button_short_press
     subtype: turn_off
+  condition:
   action:
   - service: scene.turn_on
     entity_id: scene.all_indoor_lights_off
@@ -386,6 +388,7 @@
     platform: device
     type: remote_button_short_press
     subtype: dim_up
+  condition:
   action:
   - service: scene.turn_on
     entity_id: scene.cooking_scene
@@ -396,6 +399,7 @@
     platform: device
     type: remote_button_short_press
     subtype: dim_down
+  condition:
   action:
   - service: scene.turn_on
     entity_id: scene.dinner_scene
@@ -406,6 +410,7 @@
     platform: device
     type: remote_button_double_press
     subtype: dim_up
+  condition:
   action:
   - service: scene.turn_on
     entity_id: scene.cleaning_scene
@@ -416,6 +421,7 @@
     platform: device
     type: remote_button_double_press
     subtype: dim_down
+  condition: 
   action:
   - service: scene.turn_on
     entity_id: scene.alarm_alert_scene
