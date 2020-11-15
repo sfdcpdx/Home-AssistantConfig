@@ -1,5 +1,6 @@
 # Various scenes
-- name: alarm_alert_scene
+- id: alarmalert
+  name: alarm_alert_scene
   entities:
     light.living_room_cans:
       brightness: 196
@@ -11,7 +12,8 @@
       state: 'on'
     switch.noisemaker_plug:
       state: 'off'
-- name: tv_viewing_scene
+- id: tvviewing
+  name: tv_viewing_scene
   entities:
     light.living_room_lamp:
       brightness: 150
@@ -22,7 +24,8 @@
         state: 'off'
     light.living_room_cans:
       state: 'off'   
-- name: all_indoor_lights_off
+- id: indoorlights
+  name: all_indoor_lights_off
   entities:
     light.living_room_cans:
       state: 'off'
@@ -32,7 +35,8 @@
       state: 'off'
     light.island_lights:
       state: 'off'
-- name: cooking_scene
+- id: cookingscene
+  name: cooking_scene
   entities:
     light.kitchen_lights:
       state: 'on'
@@ -41,7 +45,8 @@
       state: 'on'
     light.living_room_cans:
       state: 'off'
-- name: dinner_scene
+- id: dinnerscene
+  name: dinner_scene
   entities:
     light.kitchen_lights:
       state: 'off'
@@ -50,7 +55,8 @@
       state: 'on'
     light.living_room_cans:
       state: 'off'
-- name: cleaning_scene
+- id: cleaningscene
+  name: cleaning_scene
   entities:
     light.living_room_cans:
       brightness: 150
