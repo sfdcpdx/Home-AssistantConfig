@@ -7,6 +7,53 @@
     light.patio_lights:
       brightness: 196
       state: 'on'
+    light.kitchen_lights:
+      state: 'on'
     switch.noisemaker_plug:
       state: 'off'
-    
+- name: tv_viewing_scene
+  entities:
+    light.living_room_lamp:
+      brightness: 150
+      state: 'on'
+    light.kitchen_lights:
+        state: 'off'
+    light.island_lights:
+        state: 'off'
+    light.living_room_cans:
+      state: 'off'   
+- name: all_indoor_lights_off
+  entities:
+    light.living_room_cans:
+      state: 'off'
+    light.kitchen_lights:
+      state: 'off'
+    light.patio_lights:
+      state: 'off'
+    light.island_lights:
+      state: 'off'
+- name: cooking_scene
+  entities:
+    light.kitchen_lights:
+      state: 'on'
+    light.island_lights:
+      brightness: 70
+      state: 'on'
+    light.living_room_cans:
+      state: 'off'
+- name: dinner_scene
+  entities:
+    light.kitchen_lights:
+      state: 'off'
+    light.island_lights:
+      brightness: 70
+      state: 'on'
+    light.living_room_cans:
+      state: 'off'
+- name: cleaning_scene
+  entities:
+    light.living_room_cans:
+      brightness: 150
+      state: 'on'
+    light.kitchen_lights:
+      state: 'on'

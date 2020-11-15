@@ -367,8 +367,22 @@
     type: remote_button_short_press
     subtype: turn_on
   action:
-  - service: scene.turn_on
-    entity_id: scene.tv_viewing_scene
+  - data: {}
+    entity_id: input_boolean.arm_alarm
+    service: input_boolean.turn_on
+
+- alias: Hue Remote On Button Double Click
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: turn_on
+  action:
+  - data: {}
+    entity_id: input_boolean.arm_alarm
+    service: input_boolean.turn_off
+
 - alias: Hue Remote Off Button Single Click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
@@ -379,6 +393,7 @@
   action:
   - service: scene.turn_on
     entity_id: scene.all_indoor_lights_off
+
 - alias: Hue Remote Dim Up Button Single Click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
@@ -389,17 +404,8 @@
   action:
   - service: scene.turn_on
     entity_id: scene.cooking_scene
-- alias: Hue Remote Dim Down Button Single Click
-  trigger:
-  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
-    domain: zha
-    platform: device
-    type: remote_button_short_press
-    subtype: dim_down
-  action:
-  - service: scene.turn_on
-    entity_id: scene.dinner_scene
-- alias: Hue Remote Dim Up Button Double click
+ 
+ - alias: Hue Remote Dim Up Button Double click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
@@ -408,17 +414,46 @@
     subtype: dim_up
   action:
   - service: scene.turn_on
-    entity_id: scene.cleaning_scene
-- alias: Hue Remote Dim Up Button Double click
+    entity_id: scene.tv_viewing_scene
+  
+  - alias: Hue Remote Dim Up Button Triple click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
     platform: device
-    type: remote_button_double_press
-    subtype: dim_down
+    type: remote_button_triple_press
+    subtype: dim_up
   action:
   - service: scene.turn_on
-    entity_id: scene.alarm_alert_scene
+    entity_id: scene.dinner_scene
+  
+  - alias: Hue Remote Dim Up Button Quadruple click
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_quadruple_press
+    subtype: dim_up
+  action:
+  - service: scene.turn_on
+    entity_id: scene.cleaning_scene
+  
+- alias: Hue Remote Dim Down Button Single Click
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: dim_down
+  action:
+  - service: script.turn_on
+    entity_id: script.sonos_say_to_all
+    data:
+      variables: 
+        volume: 0.4
+    data_template:
+      variables:
+        message: "Hey Cari, I pooped my pants"
 # End Hue remote automation --------------
 
 - alias: Noisemaker Turn Off
