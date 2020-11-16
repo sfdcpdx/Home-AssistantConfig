@@ -16,7 +16,7 @@
   name: tv_viewing_scene
   entities:
     light.living_room_lamp:
-      brightness: 150
+      brightness: 174
       state: 'on'
     switch.kitchen_lights:
         state: 'off'
@@ -54,6 +54,9 @@
       state: 'off'
     light.island_lights:
       brightness: 70
+      state: 'on'
+    light.dining_room_chandelier:
+      bringtness: 35
       state: 'on'
     light.living_room_cans:
       state: 'off'
