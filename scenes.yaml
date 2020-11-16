@@ -24,6 +24,8 @@
         state: 'off'
     light.living_room_cans:
       state: 'off'   
+    light.dining_room_chandelier:
+      state: 'off'
 - id: all_indoor_lights_off
   name: all_indoor_lights_off
   entities:
@@ -37,6 +39,8 @@
       state: 'off'
     light.living_room_lamp:
       state: 'off'
+    light.dining_room_chandelier:
+      state: 'off'
 - id: cooking_scene
   name: cooking_scene
   entities:
@@ -46,6 +50,8 @@
       brightness: 70
       state: 'on'
     light.living_room_cans:
+      state: 'off'
+    light.dining_room_chandelier:
       state: 'off'
 - id: dinner_scene
   name: dinner_scene
