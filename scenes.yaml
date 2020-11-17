@@ -52,7 +52,8 @@
     light.living_room_cans:
       state: 'off'
     light.dining_room_chandelier:
-      state: 'off'
+      bringtness: 46
+      state: 'on'
 - id: dinner_scene
   name: dinner_scene
   entities:
@@ -62,7 +63,7 @@
       brightness: 70
       state: 'on'
     light.dining_room_chandelier:
-      bringtness: 35
+      bringtness: 46
       state: 'on'
     light.living_room_cans:
       state: 'off'
