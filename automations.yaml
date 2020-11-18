@@ -434,11 +434,11 @@
     - service: scene.turn_on
       entity_id: scene.cooking_scene
     - service: sonos.join
-        data:
-          master: media_player.living_room
-          entity_id: 
-          - media_player.living_room
-          - media_player.kitchen
+      data:
+        master: media_player.living_room
+        entity_id: 
+        - media_player.living_room
+        - media_player.kitchen
 
 - alias: Hue Remote Dim Up Button Double click
   trigger:
