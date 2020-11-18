@@ -567,6 +567,21 @@
       {% endif %}
     data_template: 
       entity_id: switch.camera_plug   
+- alias: Thermostat sleep mode when alarm armed and all are home
+  trigger:
+  - entity_id: input_boolean.arm_alarm
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: state
+  - entity_id: group.peopleanyoneaway
+    state: home
+  - after: sunset
+  action:
+  - data:
+      preset_mode: sleep
+    entity_id: climate.thermostat_2
+    service: climate.set_preset_mode
 #----------------------------------------------------------------------------------------------------
 # UI automation
 - alias: Conditional Card Time-Based Toggle
