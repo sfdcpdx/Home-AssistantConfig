@@ -229,7 +229,7 @@
     entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
 - alias: Disarm Alarm in Morning
-  # Disarms alarm in the morning at time set in UI
+  # Disarms alarm in the morning at time set in UI 
   trigger:
   - platform: template
     value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_auto_disarm_time.state[0:5] }}"
@@ -414,11 +414,32 @@
     domain: zha
     platform: device
     type: remote_button_short_press
-    subtype: dim_up
+    subtype: dim_up 
   action:
-  - service: scene.turn_on
-    entity_id: scene.cooking_scene
- 
+  - choose:
+    - conditions:
+      - condition: 
+        entity_id: media_player.office
+        state: playing
+      sequence:
+      - service: scene.turn_on
+        entity_id: scene.cooking_scene
+      - service: sonos.join
+        data:
+          master: media_player.kitchen
+          entity_id: 
+          - media_player.living_room
+          - media_player.kitchen
+    default:
+    - service: scene.turn_on
+      entity_id: scene.cooking_scene
+    - service: sonos.join
+        data:
+          master: media_player.living_room
+          entity_id: 
+          - media_player.living_room
+          - media_player.kitchen
+
 - alias: Hue Remote Dim Up Button Double click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
@@ -429,6 +450,13 @@
   action:
   - service: scene.turn_on
     entity_id: scene.tv_viewing_scene
+  - service: sonos.unjoin
+    data:
+      entity_id: 
+      - media_player.kitchen
+      - media_player.bathroom
+      - media_player.bedroom
+      - media_player.office
 
 - alias: Hue Remote Dim Up Button Triple click
   trigger:
@@ -451,6 +479,15 @@
   action:
   - service: scene.turn_on
     entity_id: scene.cleaning_scene
+  - service: sonos.join
+      data:
+        master: media_player.living_room
+        entity_id: 
+        - media_player.living_room
+        - media_player.kitchen
+        - media_player.bathroom
+        - media_player.bedroom
+        - media_player.office
   
 - alias: Hue Remote Dim Down Button Single Click
   trigger:
@@ -470,7 +507,7 @@
 # End Hue remote automation --------------
 
 - alias: Noisemaker Turn Off
-  # Noisemaker turns off at time set in UI
+  # Noisemaker turns off at time set in UI (Also setup Sonos for morning speaker setup)
   trigger:
   - platform: template
     value_template: "{{ states.sensor.time.state == states.input_datetime.noisemaker_off_time.state[0:5] }}"
@@ -485,6 +522,12 @@
   action:
   - entity_id: switch.noisemaker_plug
     service: switch.turn_off
+  - service: sonos.join
+      data:
+        master: media_player.office
+        entity_id: 
+        - media_player.office
+        - media_player.kitchen
 #- alias: Noisemaker Turn On
 #  Needs work, doesn't activate soon enough. Noisemaker turns on once TV is off in bedroom
 #  trigger:
