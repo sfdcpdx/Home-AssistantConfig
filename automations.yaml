@@ -418,7 +418,7 @@
   action:
   - choose:
     - conditions:
-      - condition: 
+      - condition: state
         entity_id: media_player.office
         state: playing
       sequence:
