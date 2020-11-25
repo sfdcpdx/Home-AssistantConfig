@@ -432,9 +432,13 @@
       sequence:
       - service: scene.turn_on
         entity_id: scene.cooking_scene
-      - service: sonos.snapshot
-        data:  
-          entity_id: media_player.office
+      - service: sonos.join
+        data:
+          master: media_player.office
+          entity_id: 
+          - media_player.living_room
+          - media_player.kitchen
+          - media_player.office
       - service: sonos.join
         data:
           master: media_player.kitchen
@@ -442,10 +446,6 @@
           - media_player.living_room
           - media_player.kitchen
           - media_player.office
-      - service: sonos.restore
-        data:
-          entity_id: media_player.office
-          with_group: false
       - service: sonos.unjoin
         data:
           entity_id: media_player.office
