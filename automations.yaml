@@ -229,7 +229,7 @@
     entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
 - alias: Disarm Alarm in Morning
-  # Disarms alarm in the morning at time set in UI 
+  # Disarms alarm in the morning at time set in UI and reset Media Player volumes
   trigger:
   - platform: template
     value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_auto_disarm_time.state[0:5] }}"
@@ -238,6 +238,14 @@
   - data: {}
     entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_off
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.living_room
+      volume_level: 0.27
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.kitchen
+      volume_level: 0.23
 - alias: Arm Alarm and Set TStat When Gone
   # Arm alarm and set TStat to away when we're both away from home
   trigger:
@@ -424,12 +432,18 @@
       sequence:
       - service: scene.turn_on
         entity_id: scene.cooking_scene
+      - service: sonos.snapshot
+        data:  
+          entity_id: media_player.office
       - service: sonos.join
         data:
           master: media_player.kitchen
           entity_id: 
           - media_player.living_room
           - media_player.kitchen
+      - service: sonos.restore
+        data:
+          entity_id: media_player.kitchen
     default:
     - service: scene.turn_on
       entity_id: scene.cooking_scene
