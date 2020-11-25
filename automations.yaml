@@ -444,6 +444,7 @@
       - service: sonos.restore
         data:
           entity_id: media_player.kitchen
+          with_group: false
     default:
     - service: scene.turn_on
       entity_id: scene.cooking_scene
