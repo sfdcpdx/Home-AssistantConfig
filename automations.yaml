@@ -366,6 +366,31 @@
 #----------------------------------------------------------------------------------------------------
 # Various Comfort and Maintenance Controls
 
+- alias: Turn TV On and Set Input
+  # Turn TV on and set input when music starts playing in living room
+  trigger:
+  - platform: state
+    entity_id: media_player.living_room
+    from: 'paused'
+    to: 'playing'
+  - platform: state
+    entity_id: media_player.living_room
+    from: 'idle'
+    to: 'playing'
+  condition: 
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: media_player.living_room_tv
+      state: 'off'
+    - "{{ state_attr('media_player.living_room_tv', 'source') != 'TV'}}"
+  action:
+  - service: media_player.turn_on
+    entity_id: media_player.living_room_tv
+  - service: media_player.select_source
+    entity_id: media_player.living_room_tv
+    source: 'HDMI 3'
+
 # Hue Remote Automation ----------------
 - alias: Hue Remote On Button Single Click
   trigger:
