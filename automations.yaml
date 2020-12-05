@@ -28,6 +28,8 @@
   action:
   - service: light.turn_off
     entity_id: light.living_room_lamp 
+  - service: media_player.turn_off
+    entity_id: media_player.living_room_tv
 - alias: Living Room Lamp Off Night After Media Off
   # Lamp turns off a bit after turning off sonos/tv if it's after sunset 
   trigger:
@@ -49,7 +51,9 @@
     state: 'on'
   action:
   - service: light.turn_off
-    entity_id: light.living_room_lamp   
+    entity_id: light.living_room_lamp  
+  - service: media_player.turn_off
+    entity_id: media_player.living_room_tv 
 - alias: Porch Lights On at Sunset
   # Porch lights come on shortly before sunset
   trigger:
