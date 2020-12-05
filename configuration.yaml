@@ -123,7 +123,7 @@ webostv:
   turn_on_action:
     service: wake_on_lan.send_magic_packet
     data:
-      mac: 20:17:42:36:58:52
+      mac: 20-17-42-36-58-52
       broadcast_address: 10.0.0.211
 
 # Bypassing entities that run often in logbook
