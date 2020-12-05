@@ -114,6 +114,11 @@ spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
 
+# LG TV Integration
+webostv:
+  host: 10.0.0.211
+  name: Living Room TV
+
 # Bypassing entities that run often in logbook
 logbook:
   exclude:
