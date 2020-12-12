@@ -12,6 +12,13 @@ shell_command: !include_dir_named shell_command/
 tts:
   - platform: google_translate
 
+# Virtual camera to livestream a radar webpage
+camera:
+  - platform: generic
+    still_image_url: https://s.w-x.co/staticmaps/wu/wu/wxtype1200_cur/ustiw/animate.png
+    content_type: image/gif
+    name: regional doppler radar
+
 # Garage Doors
 cover:
   - platform: aladdin_connect
