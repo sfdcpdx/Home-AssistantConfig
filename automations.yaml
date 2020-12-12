@@ -377,10 +377,12 @@
     entity_id: media_player.living_room
     from: 'paused'
     to: 'playing'
+    for: "00:00:10"
   - platform: state
     entity_id: media_player.living_room
     from: 'idle'
     to: 'playing'
+    for: "00:00:10"
   condition: 
   - condition: and
     conditions:
