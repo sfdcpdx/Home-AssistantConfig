@@ -264,7 +264,7 @@
     service: input_boolean.turn_on
   - data:
       preset_mode: away
-    entity_id: climate.thermostat_2
+    entity_id: climate.thermostat
     service: climate.set_preset_mode
 - alias: Disarm Alarm Set TStat When Anyone Returns
   # Disarms alarm, runs TStat schedule when someone/anyone/all come home
@@ -283,7 +283,7 @@
     service: input_boolean.turn_off
   - data:
       preset_mode: none
-    entity_id: climate.thermostat_2
+    entity_id: climate.thermostat
     service: climate.set_preset_mode
 - alias: Arm Alarm with Noisemaker
   # Arm alarm when noisemaker plug is switched on (backup in case it didn't auto arm)
@@ -636,7 +636,7 @@
   action:
   - data:
       preset_mode: sleep
-    entity_id: climate.thermostat_2
+    entity_id: climate.thermostat
     service: climate.set_preset_mode
 #----------------------------------------------------------------------------------------------------
 # UI automation
