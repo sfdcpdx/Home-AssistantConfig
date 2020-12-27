@@ -133,6 +133,14 @@ webostv:
       mac: 20-17-42-36-58-52
       broadcast_address: 10.0.0.211
 
+# Router Integration
+device_tracker:
+  - platform: tomato
+    host: 192.168.1.1
+    username: !secret tomato_user
+    password: !secret tomato_password
+    http_id: !secret tomato_http_id
+
 # Bypassing entities that run often in logbook
 logbook:
   exclude:
