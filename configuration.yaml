@@ -7,7 +7,6 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 shell_command: !include_dir_named shell_command/
-customize: !include customize.yaml
 
 # Text to speech, used with Sonos
 tts:
