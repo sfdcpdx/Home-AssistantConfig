@@ -136,7 +136,8 @@ webostv:
 # Router Integration
 device_tracker:
   - platform: tomato
-    host: 10.0.0.16:8080
+    host: 10.0.0.16
+    port: 8080
     username: !secret tomato_user
     password: !secret tomato_password
     http_id: !secret tomato_http_id
