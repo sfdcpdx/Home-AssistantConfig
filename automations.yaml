@@ -320,9 +320,9 @@
         state: not_home
       sequence:
       - data:
-        preset_mode: Home
-      entity_id: climate.thermostat
-      service: climate.set_preset_mode
+          preset_mode: Home
+        entity_id: climate.thermostat
+        service: climate.set_preset_mode
       - entity_id: input_boolean.arm_alarm
         service: input_boolean.turn_off
     default:
