@@ -141,6 +141,10 @@ device_tracker:
     password: !secret tomato_password
     http_id: !secret tomato_http_id
 
+# Set Logger level
+logger:
+  default: info
+
 # Bypassing entities that run often in logbook
 logbook:
   exclude:
