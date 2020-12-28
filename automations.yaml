@@ -222,18 +222,11 @@
   - condition: state
     entity_id: light.living_room_lamp
     state: 'off'
-  - condition: and
+  - condition: not
     conditions:
-      - condition: not
-        conditions:
-          - condition: state
-            entity_id:  device_tracker.phone
-            state: 'away'
-      - condition: not
-        conditions:
-          - condition: state
-            entity_id: media_player.spotify_chris_moreno
-            state: 'playing'
+    - condition: state
+      entity_id: media_player.spotify_chris_moreno
+      state: 'playing'
   action:
   - data: {}
     entity_id: input_boolean.arm_alarm
