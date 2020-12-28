@@ -154,3 +154,6 @@ logbook:
       - sensor.time
       - sensor.time_date
       - sensor.time_utc
+  include:
+    entities:
+      - sensor.front_door_lock_alarm_type
