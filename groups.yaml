@@ -15,11 +15,15 @@ sonos_all:
 peopleanyonehome:
   name: People Anyone Home
   entities:
-  - device_tracker.christoplewatch
-  - device_tracker.carisapplewatch
+  # Chris watch
+  - device_tracker.02_f8_11_25_9d_65
+  # Cari watch
+  - device_tracker.26_13_1c_7a_01_5a
 peopleanyoneaway:
   name: People Anyone Away
   entities:
-  - device_tracker.christoplewatch
-  - device_tracker.carisapplewatch
+  # Chris watch
+  - device_tracker.02_f8_11_25_9d_65
+  # Cari watch
+  - device_tracker.26_13_1c_7a_01_5a
   all: 'true'
