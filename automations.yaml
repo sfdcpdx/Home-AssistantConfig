@@ -31,7 +31,7 @@
   - service: media_player.turn_off
     entity_id: media_player.living_room_tv
 - alias: Living Room Lamp Off Night After Media Off
-  # Lamp turns off a bit after turning off sonos/tv if it's after sunset 
+  # Lamp turns off a bit after turning off sonos/tv if it's after normal off-time
   trigger:
   - platform: state
     entity_id: media_player.living_room
@@ -44,11 +44,17 @@
     to: 'idle'
     for: "00:15:00"
   condition: 
-  - condition: sun
-    after: sunset
+  - condition: time
+    after: input_datetime.lvng_rm_lamp_off_time
+    before: input_datetime.noisemaker_off_time
   - condition: state
     entity_id: light.living_room_lamp
     state: 'on'
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: media_player.spotify_chris_moreno
+      state: 'playing'
   action:
   - service: light.turn_off
     entity_id: light.living_room_lamp  
