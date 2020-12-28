@@ -367,7 +367,7 @@
       state: not_home  
     - condition: state
       entity_id: sensor.front_door_lock_alarm_type
-      state: 18  
+      state: '18'  
   action:
   - entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
@@ -676,21 +676,21 @@
       conditions:
       - condition: state
         entity_id: sensor.front_door_alarm_level
-        state: 1
+        state: '1'
     - condition: or
       conditions:
       - condition: state
         entity_id: sensor.front_door_alarm_type
-        state: 18
+        state: '18'
       - condition: state
         entity_id: sensor.front_door_alarm_type
-        state: 19
+        state: '19'
   action:
   - choose:
     - conditions:
       - condition: state
         entity_id: sensor.front_door_alarm_type
-        state: 18
+        state: '18'
       sequence:
       - service: input_boolean.turn_off
         entity_id: input_boolean.guest_in_house
