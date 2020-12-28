@@ -263,13 +263,16 @@
     from: home
     platform: state
     to: not_home
-  condition: []
+  condition: 
+  - condition: state
+    entity_id: input_boolean.guest_in_house
+    state: 'off'
   action:
   - data: {}
     entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
   - data:
-      preset_mode: away
+      preset_mode: Away
     entity_id: climate.thermostat
     service: climate.set_preset_mode
 - alias: Disarm Alarm Set TStat When Anyone Returns
@@ -288,7 +291,7 @@
   - entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_off
   - data:
-      preset_mode: none
+      preset_mode: Home
     entity_id: climate.thermostat
     service: climate.set_preset_mode
 - alias: Arm Alarm with Noisemaker
@@ -317,48 +320,67 @@
     entity_id: input_boolean.arm_alarm
     state: 'on'
   action:
-  - entity_id: input_boolean.arm_alarm
-    service: input_boolean.turn_off
-  - data:
-      variables:
-        message: Alarm is disarmed. Have a great day!
-        sonos_entity: media_player.office
-        volume: 0.3
-    entity_id: script.sonos_say
-    service: script.turn_on
-  - data:
-      variables:
-        message: Front Door Unlocked
-        title: Alarm Disarmed
-    entity_id: script.phone_notification
-    service: script.turn_on
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: group.peopleanyonehome
+        state: not_home
+      sequence:
+      - data:
+        preset_mode: Home
+      entity_id: climate.thermostat
+      service: climate.set_preset_mode
+    default:
+    - entity_id: input_boolean.arm_alarm
+      service: input_boolean.turn_off
+
 - alias: Arm Alarm When Front Door Locked
-  # Arms alarm when front door locked and noisemaker is on, or all humans are away
+  # Arms alarm when front door locked and noisemaker is on
   trigger:
   - entity_id: lock.front_door_lock
     from: unlocked
     platform: state
     to: locked
   condition:
-  - condition: state
-    entity_id: input_boolean.arm_alarm
-    state: 'off'
   - condition: and
     conditions:
     - condition: state
       entity_id: input_boolean.arm_alarm
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: switch.noisemaker_plug
-        state: 'on'
-      - condition: state
-        entity_id: group.peopleanyonehome
-        state: not_home
+    - condition: state
+      entity_id: switch.noisemaker_plug
+      state: 'on'     
   action:
   - entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
+
+- alias: Arm Alarm When Guest Leaves
+  # Arms alarm when front door locked by guest and residents are away
+  trigger:
+  - entity_id: lock.front_door_lock
+    from: unlocked
+    platform: state
+    to: locked
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.arm_alarm
+      state: 'off'
+    - condition: state
+      entity_id: group.peopleanyonehome
+      state: not_home  
+    - condition: state
+      entity_id: sensor.front_door_lock_alarm_type
+      state: 18  
+  action:
+  - entity_id: input_boolean.arm_alarm
+    service: input_boolean.turn_on
+  - data:
+      preset_mode: Away
+    entity_id: climate.thermostat
+    service: climate.set_preset_mode
+
 - alias: Disarm Alarm When Second Person Returns Late
   # Disarms alarm when one of us comes home after already armed
   trigger:
@@ -641,9 +663,46 @@
       after: sunset
   action:
   - data:
-      preset_mode: sleep
+      preset_mode: Sleep
     entity_id: climate.thermostat
     service: climate.set_preset_mode
+
+- alias: Set Guest in House Status
+  # Sets guest occupancy value based on front door lock activity type
+  trigger:
+  - entity_id: lock.front_door_lock
+    from: locked
+    platform: state
+    to: unlocked
+  condition:
+  - condition: and
+    conditions:
+    - condition: not 
+      conditions:
+      - condition: state
+        entity_id: sensor.front_door_alarm_level
+        state: 1
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: sensor.front_door_alarm_type
+        state: 18
+      - condition: state
+        entity_id: sensor.front_door_alarm_type
+          state: 19
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: sensor.front_door_alarm_type
+        state: 18
+      sequence:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.guest_in_house
+    default:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.guest_in_house    
+
 #----------------------------------------------------------------------------------------------------
 # UI automation
 - alias: Conditional Card Time-Based Toggle

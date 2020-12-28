@@ -37,6 +37,11 @@ input_boolean:
     name: Conditional Card Toggle
     initial: on
     icon: mdi:filter-outline
+  # Track whether guest is in house based on front door lock
+  guest_in_house:
+    name: Guest in House
+    initial: off
+    icon: mdi:account-key
 
 # Sets usb location of Z Wave dongle
 zwave:
