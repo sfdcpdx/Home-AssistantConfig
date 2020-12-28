@@ -689,7 +689,7 @@
         state: 18
       - condition: state
         entity_id: sensor.front_door_alarm_type
-          state: 19
+        state: 19
   action:
   - choose:
     - conditions:
