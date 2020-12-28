@@ -144,6 +144,8 @@ device_tracker:
 # Set Logger level
 logger:
   default: info
+  logs:
+    homeassistant.components.zwave: info
 
 # Bypassing entities that run often in logbook
 logbook:
