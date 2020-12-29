@@ -675,21 +675,21 @@
     - condition: not 
       conditions:
       - condition: state
-        entity_id: sensor.front_door_alarm_level
+        entity_id: sensor.front_door_lock_alarm_level
         state: '1'
     - condition: or
       conditions:
       - condition: state
-        entity_id: sensor.front_door_alarm_type
+        entity_id: sensor.front_door_lock_alarm_type
         state: '18'
       - condition: state
-        entity_id: sensor.front_door_alarm_type
+        entity_id: sensor.front_door_lock_alarm_type
         state: '19'
   action:
   - choose:
     - conditions:
       - condition: state
-        entity_id: sensor.front_door_alarm_type
+        entity_id: sensor.front_door_lock_alarm_type
         state: '18'
       sequence:
       - service: input_boolean.turn_off
