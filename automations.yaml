@@ -301,13 +301,17 @@
   action:
   - entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
-- alias: Disarm Alarm When Front Door Unlocked
-  # Disarm alarm if front door is unlocked 
+- alias: Disarm Alarm When Any Door Unlocked
+  # Disarm alarm if any door is unlocked 
   trigger:
-  - entity_id: lock.front_door_lock
-    from: locked
+  - entity_id: group.locksanyunlocked
+    from: 'off'
     platform: state
-    to: unlocked
+    to: 'on'
+  - entity_id: group.locksallunlocked
+    from: 'off'
+    platform: state
+    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.arm_alarm
@@ -329,13 +333,13 @@
     - entity_id: input_boolean.arm_alarm
       service: input_boolean.turn_off
 
-- alias: Arm Alarm When Front Door Locked
-  # Arms alarm when front door locked and noisemaker is on
+- alias: Arm Alarm When Doors Locked
+  # Arms alarm when doors locked and noisemaker is on
   trigger:
-  - entity_id: lock.front_door_lock
-    from: unlocked
+  - entity_id: group.locksanyunlocked
+    from: 'on'
     platform: state
-    to: locked
+    to: 'off'
   condition:
   - condition: and
     conditions:
@@ -349,7 +353,7 @@
   - entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
 
-- alias: Arm Alarm When Guest Leaves
+- alias: Arm Alarm When Guest Leaves Out Front
   # Arms alarm when front door locked by guest and residents are away
   trigger:
   - entity_id: lock.front_door_lock
@@ -390,6 +394,22 @@
   action:
   - entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_off
+
+- alias: Lock Doors When Alarm Armed
+# Locks all doors when Alarm is Armed
+  trigger:
+  - entity_id: input_boolean.arm_alarm
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: group.locksanyunlocked
+    state: 'on'
+  action:
+  - entity_id: all
+    service: lock.lock
+  
 #----------------------------------------------------------------------------------------------------
 # Various Comfort and Maintenance Controls
 
@@ -641,6 +661,7 @@
       {% endif %}
     data_template: 
       entity_id: switch.camera_plug   
+
 - alias: Thermostat Sleep with Alarm Arm
 #Sets Thermostat preset = "Sleep" when alarm is armed at night and all are home
   trigger:
