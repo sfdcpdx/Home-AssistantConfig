@@ -304,14 +304,14 @@
 - alias: Disarm Alarm When Any Door Unlocked
   # Disarm alarm if any door is unlocked 
   trigger:
-  - entity_id: group.locksanyunlocked
-    from: 'off'
+  - entity_id: group.locksanylocked
+    from: 'locked'
     platform: state
-    to: 'on'
-  - entity_id: group.locksallunlocked
-    from: 'off'
+    to: 'unlocked'
+  - entity_id: group.locksalllocked
+    from: 'locked'
     platform: state
-    to: 'on'
+    to: 'unlocked'
   condition:
   - condition: state
     entity_id: input_boolean.arm_alarm
@@ -336,10 +336,10 @@
 - alias: Arm Alarm When Doors Locked
   # Arms alarm when doors locked and noisemaker is on
   trigger:
-  - entity_id: group.locksanyunlocked
-    from: 'on'
+  - entity_id: group.locksalllocked
+    from: 'unlocked'
     platform: state
-    to: 'off'
+    to: 'locked'
   condition:
   - condition: and
     conditions:
@@ -404,8 +404,8 @@
     to: 'on'
   condition:
   - condition: state
-    entity_id: group.locksanyunlocked
-    state: 'on'
+    entity_id: group.locksalllocked
+    state: 'unlocked'
   action:
   - entity_id: all
     service: lock.lock
