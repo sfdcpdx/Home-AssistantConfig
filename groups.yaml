@@ -27,3 +27,16 @@ peopleanyoneaway:
   # Cari watch
   - device_tracker.26_13_1c_7a_01_5a
   all: 'true'
+locksallunlocked:
+  name: Locks All UnLocked
+  entities:
+  - lock.front_door_lock
+  - lock.utility_door_lock
+  all: 'true'
+
+locksanyunlocked:
+  name: Locks Any Unlocked
+  entities:
+  - lock.front_door_lock
+  - lock.utility_door_lock
+
