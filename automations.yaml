@@ -760,9 +760,8 @@
           - '25'
       sequence:
       - entity_id: lock.utility_door_lock
-        service: lock.unlock
-      
-      - conditions:
+        service: lock.unlock  
+    - conditions:
       - condition: and
         conditions:
         - condition: state
