@@ -425,8 +425,11 @@
     entity_id: group.locksalllocked
     state: 'unlocked'
   action:
-  - entity_id: all
-    service: lock.lock
+  - service: lock.lock
+    data:
+      entity_id: all
+    
+    
   
 #----------------------------------------------------------------------------------------------------
 # Various Comfort and Maintenance Controls
@@ -759,8 +762,9 @@
           - '19'
           - '25'
       sequence:
-      - entity_id: lock.utility_door_lock
-        service: lock.unlock  
+      - service: lock.unlock 
+        data:
+          entity_id: lock.utility_door_lock
     - conditions:
       - condition: and
         conditions:
@@ -774,8 +778,10 @@
           - '18'
           - '24'
       sequence:
-      - entity_id: lock.utility_door_lock
-        service: lock.lock
+      - service: lock.lock
+        data:
+          entity_id: lock.utility_door_lock
+        
  
 #----------------------------------------------------------------------------------------------------
 # UI automation
