@@ -743,27 +743,9 @@
   trigger:
   - entity_id: lock.utility_door_lock_alarm_type
     platform: state
-  - entity_id: lock.front_door_lock_alarm_type
-    platform: state
   condition: 
   action:
   - choose:
-    - conditions:
-      - condition: and
-        conditions:
-        - condition: state
-          entity_id: lock.front_door_lock
-          state: locked
-        - condition: state
-          entity_id: sensor.front_door_lock_alarm_type
-          state: 
-          - '22'
-          - '19'
-          - '25'
-      sequence:
-      - entity_id: lock.front_door_lock
-        service: lock.unlock
-
     - conditions:
       - condition: and
         conditions:
@@ -779,22 +761,6 @@
       sequence:
       - entity_id: lock.utility_door_lock
         service: lock.unlock
-
-      - conditions:
-      - condition: and
-        conditions:
-        - condition: state
-          entity_id: lock.front_door_lock
-          state: unlocked
-        - condition: state
-          entity_id: sensor.front_door_lock_alarm_type
-          state: 
-          - '21'
-          - '18'
-          - '24'
-      sequence:
-      - entity_id: lock.front_door_lock
-        service: lock.lock
       
       - conditions:
       - condition: and
