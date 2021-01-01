@@ -301,6 +301,7 @@
   action:
   - entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
+
 - alias: Disarm Alarm When Any Door Unlocked
   # Disarm alarm if any door is unlocked 
   trigger:
@@ -320,8 +321,9 @@
   - choose:
     - conditions:
       - condition: state
-        entity_id: group.peopleanyonehome
-        state: not_home
+        entity_id: climate.thermostat
+        attribute: preset_mode
+        state: Away
       sequence:
       - data:
           preset_mode: Home
@@ -354,24 +356,40 @@
     service: input_boolean.turn_on
 
 - alias: Arm Alarm When Guest Leaves Out Front
-  # Arms alarm when front door locked by guest and residents are away
+  # Arms alarm when front door locked by guest and residents are away (or residents leave temporarily)
   trigger:
   - entity_id: lock.front_door_lock
     from: unlocked
     platform: state
     to: locked
   condition:
-  - condition: and
+  - condition: or
     conditions:
-    - condition: state
-      entity_id: input_boolean.arm_alarm
-      state: 'off'
-    - condition: state
-      entity_id: group.peopleanyonehome
-      state: not_home  
-    - condition: state
-      entity_id: sensor.front_door_lock_alarm_type
-      state: '18'  
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: input_boolean.arm_alarm
+        state: 'off'
+      - condition: state
+        entity_id: group.peopleanyonehome
+        state: not_home  
+      - condition: state
+        entity_id: sensor.front_door_lock_alarm_type
+        state: '18'  
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: input_boolean.arm_alarm
+        state: 'off'
+      - condition: state
+        entity_id: sensor.front_door_lock_alarm_type
+        state: '18'  
+      - condition: state
+        entity_id: sensor.front_door_lock_alarm_level
+        state: '1' 
+      - condition: state
+        entity_id: input_boolean.guest_in_house   
+        state: 'off'
   action:
   - entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
@@ -687,9 +705,7 @@
   # Sets guest occupancy value based on front door lock activity type
   trigger:
   - entity_id: lock.front_door_lock
-    from: locked
     platform: state
-    to: unlocked
   condition:
   - condition: and
     conditions:
@@ -698,14 +714,17 @@
       - condition: state
         entity_id: sensor.front_door_lock_alarm_level
         state: '1'
+        # Alarm level 1 shows when keypad is used and user code number 1 is used to unlock
     - condition: or
       conditions:
       - condition: state
         entity_id: sensor.front_door_lock_alarm_type
         state: '18'
+        # 18 means locked with keypad, alarm level will be 0
       - condition: state
         entity_id: sensor.front_door_lock_alarm_type
         state: '19'
+        # 19 means unlocked with keypad, alarm level will be user code number
   action:
   - choose:
     - conditions:
