@@ -15,17 +15,17 @@ sonos_all:
 peopleanyonehome:
   name: People Anyone Home
   entities:
-  # Chris watch
-  - device_tracker.02_f8_11_25_9d_65
-  # Cari watch
-  - device_tracker.26_13_1c_7a_01_5a
+  # Chris phone
+  - device_tracker.a2_5c_97_4d_1c_9f
+  # Cari phone
+  - device_tracker.2e_81_82_ce_b3_a7
 peopleanyoneaway:
   name: People Anyone Away
   entities:
-  # Chris watch
-  - device_tracker.02_f8_11_25_9d_65
-  # Cari watch
-  - device_tracker.26_13_1c_7a_01_5a
+  # Chris phone
+  - device_tracker.a2_5c_97_4d_1c_9f
+  # Cari phone
+  - device_tracker.2e_81_82_ce_b3_a7
   all: 'true'
 locksalllocked:
   name: Locks All Locked
