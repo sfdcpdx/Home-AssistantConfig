@@ -145,6 +145,8 @@ device_tracker:
     username: !secret tomato_user
     password: !secret tomato_password
     http_id: !secret tomato_http_id
+    consider_home: 180
+    interval_seconds: 8
 
 # Set Logger level
 logger:
