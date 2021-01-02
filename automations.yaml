@@ -9,6 +9,7 @@
   action:
   - service: light.turn_on
     entity_id: light.living_room_lamp
+
 - alias: Living Room Lamp Off at Bedtime
   # Lamp turns off at night, but makes sure we're not listening to music or tv first
   trigger:
@@ -30,6 +31,7 @@
     entity_id: light.living_room_lamp 
   - service: media_player.turn_off
     entity_id: media_player.living_room_tv
+
 - alias: Living Room Lamp Off Night After Media Off
   # Lamp turns off a bit after turning off sonos/tv if it's after normal off-time
   trigger:
@@ -60,6 +62,7 @@
     entity_id: light.living_room_lamp  
   - service: media_player.turn_off
     entity_id: media_player.living_room_tv 
+
 - alias: Porch Lights On at Sunset
   # Porch lights come on shortly before sunset
   trigger:
@@ -69,6 +72,7 @@
   action:
   - service: switch.turn_on
     entity_id: switch.porch_lights   
+
 - alias: Porch Lights Off at Sunrise
   # Porch lights turn off at sunrise
   trigger:
@@ -128,6 +132,7 @@
       data:
         push:
           category: "alarm" # Needs to match the top level identifier used in the ios configuration
+
 - alias: Door Open Alarm Utility
   # Door Open Alert Alarm/Critical Notification
   trigger:
@@ -210,6 +215,7 @@
   - data: {}
     entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
+
 - alias: Arm Alarm at Night
   # Arm alarm at time set in UI, only fires if Living Room Lamp is off and Chris Spotify is not Playing at home
   trigger:
@@ -231,6 +237,7 @@
   - data: {}
     entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_on
+
 - alias: Disarm Alarm in Morning
   # Disarms alarm in the morning at time set in UI and reset Media Player volumes
   trigger:
@@ -249,6 +256,7 @@
     data:
       entity_id: media_player.kitchen
       volume_level: 0.23
+
 - alias: Arm Alarm and Set TStat When Gone
   # Arm alarm and set TStat to away when we're both away from home
   trigger:
@@ -268,6 +276,7 @@
       preset_mode: Away
     entity_id: climate.thermostat
     service: climate.set_preset_mode
+
 - alias: Disarm Alarm Set TStat When Anyone Returns
   # Disarms alarm, runs TStat schedule when someone/anyone/all come home
   trigger:
@@ -287,6 +296,7 @@
       preset_mode: Home
     entity_id: climate.thermostat
     service: climate.set_preset_mode
+
 - alias: Arm Alarm with Noisemaker
   # Arm alarm when noisemaker plug is switched on (backup in case it didn't auto arm)
   trigger:
@@ -428,9 +438,7 @@
   - service: lock.lock
     data:
       entity_id: all
-    
-    
-  
+      
 #----------------------------------------------------------------------------------------------------
 # Various Comfort and Maintenance Controls
 
@@ -551,8 +559,7 @@
       - media_player.kitchen
       - media_player.bathroom
       - media_player.bedroom
-      - media_player.office
-  
+      - media_player.office 
     
 - alias: Hue Remote Dim Up Button Long Press
   trigger:
@@ -591,8 +598,7 @@
       - media_player.kitchen
       - media_player.bathroom
       - media_player.bedroom
-      - media_player.office
-   
+      - media_player.office  
   
 - alias: Hue Remote Dim Down Button Single Click
   trigger:
@@ -799,8 +805,7 @@
       sequence:
       - service: lock.lock
         data:
-          entity_id: lock.utility_door_lock
-        
+          entity_id: lock.utility_door_lock      
  
 #----------------------------------------------------------------------------------------------------
 # UI automation
