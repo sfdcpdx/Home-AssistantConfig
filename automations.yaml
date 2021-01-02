@@ -511,6 +511,17 @@
   action:
   - service: scene.turn_on
     entity_id: scene.all_indoor_lights_off
+  
+- alias: Hue Remote Off Button Long Press
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_long_press
+    subtype: turn_off
+  action:
+  - service: scene.turn_on
+    entity_id: scene.all_indoor_lights_off
 
 - alias: Hue Remote Dim Up Button Single Click
   trigger:
@@ -612,13 +623,20 @@
     type: remote_button_short_press
     subtype: dim_down
   action:
-  - data:
-      variables:
-        message: Test
-        sonos_entity: media_player.living_room
-        volume: 0.3
-    entity_id: script.sonos_say
-    service: script.turn_on
+  - service: light.turn_on
+    entity_id: light.living_room_lamp
+
+- alias: Hue Remote Dim Down Button Long Press
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_long_press
+    subtype: dim_down
+  action:
+  - service: light.turn_off
+    entity_id: light.living_room_lamp
+
 # End Hue remote automation --------------
 
 - alias: Noisemaker Turn Off
