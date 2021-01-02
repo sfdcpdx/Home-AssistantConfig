@@ -471,66 +471,6 @@
     type: remote_button_short_press
     subtype: turn_on
   action:
-  - data: {}
-    entity_id: input_boolean.arm_alarm
-    service: input_boolean.turn_on
-  - data:
-      variables:
-        message: Alarm is armed
-        sonos_entity: media_player.living_room
-        volume: 0.4
-    entity_id: script.sonos_say
-    service: script.turn_on
-
-- alias: Hue Remote On Button Double Click
-  trigger:
-  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
-    domain: zha
-    platform: device
-    type: remote_button_double_press
-    subtype: turn_on
-  action:
-  - data: {}
-    entity_id: input_boolean.arm_alarm
-    service: input_boolean.turn_off
-  - data:
-      variables:
-        message: Alarm is disarmed
-        sonos_entity: media_player.living_room
-        volume: 0.4
-    entity_id: script.sonos_say
-    service: script.turn_on
-
-- alias: Hue Remote Off Button Single Click
-  trigger:
-  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
-    domain: zha
-    platform: device
-    type: remote_button_short_press
-    subtype: turn_off
-  action:
-  - service: scene.turn_on
-    entity_id: scene.all_indoor_lights_off
-  
-- alias: Hue Remote Off Button Long Press
-  trigger:
-  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
-    domain: zha
-    platform: device
-    type: remote_button_long_press
-    subtype: turn_off
-  action:
-  - service: scene.turn_on
-    entity_id: scene.all_indoor_lights_off
-
-- alias: Hue Remote Dim Up Button Single Click
-  trigger:
-  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
-    domain: zha
-    platform: device
-    type: remote_button_short_press
-    subtype: dim_up 
-  action:
   - choose:
     - conditions:
       - condition: state
@@ -564,15 +504,44 @@
         - media_player.bathroom
         - media_player.bedroom
         - media_player.office
-    
 
-- alias: Hue Remote Dim Up Button Double click
+- alias: Hue Remote On Button Long Click
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_long_press
+    subtype: turn_on
+  action:
+  - data: {}
+    entity_id: input_boolean.arm_alarm
+    service: input_boolean.turn_on
+  - data:
+      variables:
+        message: Alarm is armed
+        sonos_entity: media_player.living_room
+        volume: 0.4
+    entity_id: script.sonos_say
+    service: script.turn_on
+
+- alias: Hue Remote On Button Double Click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
     platform: device
     type: remote_button_double_press
-    subtype: dim_up
+    subtype: turn_on
+  action:
+  - service: scene.turn_on
+    entity_id: scene.dinner_scene
+  
+- alias: Hue Remote Dim Up Button Single Click
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: dim_up 
   action:
   - service: scene.turn_on
     entity_id: scene.tv_viewing_scene
@@ -583,24 +552,33 @@
       - media_player.bathroom
       - media_player.bedroom
       - media_player.office
-
-- alias: Hue Remote Dim Up Button Triple click
+  
+    
+- alias: Hue Remote Dim Up Button Long Press
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
     platform: device
-    type: remote_button_triple_press
-    subtype: dim_up
+    type: remote_button_long_press
+    subtype: dim_up 
   action:
-  - service: scene.turn_on
-    entity_id: scene.dinner_scene
+  - data: {}
+    entity_id: input_boolean.arm_alarm
+    service: input_boolean.turn_off
+  - data:
+      variables:
+        message: Alarm is disarmed
+        sonos_entity: media_player.living_room
+        volume: 0.4
+    entity_id: script.sonos_say
+    service: script.turn_on
 
-- alias: Hue Remote Dim Up Button Quadruple click
+- alias: Hue Remote Dim Up Button Double click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
     platform: device
-    type: remote_button_quadruple_press
+    type: remote_button_double_press
     subtype: dim_up
   action:
   - service: scene.turn_on
@@ -614,6 +592,7 @@
       - media_player.bathroom
       - media_player.bedroom
       - media_player.office
+   
   
 - alias: Hue Remote Dim Down Button Single Click
   trigger:
@@ -636,6 +615,28 @@
   action:
   - service: light.turn_off
     entity_id: light.living_room_lamp
+
+- alias: Hue Remote Off Button Single Click
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: turn_off
+  action:
+  - service: scene.turn_on
+    entity_id: scene.all_indoor_lights_off
+  
+- alias: Hue Remote Off Button Long Press
+  trigger:
+  - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
+    domain: zha
+    platform: device
+    type: remote_button_long_press
+    subtype: turn_off
+  action:
+  - service: scene.turn_on
+    entity_id: scene.all_indoor_lights_off
 
 # End Hue remote automation --------------
 
