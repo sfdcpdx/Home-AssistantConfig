@@ -766,46 +766,51 @@
     - service: input_boolean.turn_on
       entity_id: input_boolean.guest_in_house    
 
-- alias: Update Lock State From Alarm Type
-# Updates Lock state because Alarm Type is more reliably pushed from Kwikset locks
+- alias: Update Locked State From Alarm Type
+# Updates Lock locked state because Alarm Type is more reliably pushed from Kwikset locks
+  initial state: 'on'
   trigger:
   - entity_id: lock.utility_door_lock_alarm_type
     platform: state
+    to: '22'
+  - entity_id: lock.utility_door_lock_alarm_type
+    platform: state
+    to: '19'
+  - entity_id: lock.utility_door_lock_alarm_type
+    platform: state
+    to: '25'
   condition: 
+  - condition: state
+    entity_id: lock.utility_door_lock
+    state: locked
   action:
-  - choose:
-    - conditions:
-      - condition: and
-        conditions:
-        - condition: state
-          entity_id: lock.utility_door_lock
-          state: locked
-        - condition: state
-          entity_id: sensor.utility_door_lock_alarm_type
-          state: 
-          - '22'
-          - '19'
-          - '25'
-      sequence:
-      - service: lock.unlock 
-        data:
-          entity_id: lock.utility_door_lock
-    - conditions:
-      - condition: and
-        conditions:
-        - condition: state
-          entity_id: lock.utility_door_lock
-          state: unlocked
-        - condition: state
-          entity_id: sensor.utility_door_lock_alarm_type
-          state: 
-          - '21'
-          - '18'
-          - '24'
-      sequence:
-      - service: lock.lock
-        data:
-          entity_id: lock.utility_door_lock      
+  - service: lock.unlock 
+    data:
+      entity_id: lock.utility_door_lock
+
+- alias: Update Unlocked State From Alarm Type
+# Updates Lock to unlocked state because Alarm Type is more reliably pushed from Kwikset locks
+  initial state: 'on'
+  trigger:
+  - entity_id: lock.utility_door_lock_alarm_type
+    platform: state
+    to: '21'
+  - entity_id: lock.utility_door_lock_alarm_type
+    platform: state
+    to: '18'
+  - entity_id: lock.utility_door_lock_alarm_type
+    platform: state
+    to: '24'
+  condition: 
+  - condition: state
+    entity_id: lock.utility_door_lock
+    state: unlocked
+  action:
+  - service: lock.lock 
+    data:
+      entity_id: lock.utility_door_lock
+
+     
  
 #----------------------------------------------------------------------------------------------------
 # UI automation
