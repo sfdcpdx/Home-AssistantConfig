@@ -120,6 +120,12 @@ sensor:
       - max_elevation
   #HA standard moon phase sensor
   - platform: moon
+  - platform: template
+    sensors:
+      utility_door_lock_status: 
+        friendly_name: 'Utility Door Lock Status'
+        value_template: '{{ states.lock.front_door_lock_locked.attributes.lock_status }}'
+        entity_id: lock.utility_door_lock_status
 
 # Spotify Integration
 spotify:
