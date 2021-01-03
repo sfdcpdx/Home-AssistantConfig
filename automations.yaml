@@ -768,7 +768,6 @@
 
 - alias: Update Locked State From Alarm Type
 # Updates Lock locked state because Alarm Type is more reliably pushed from Kwikset locks
-  initial state: 'on'
   trigger:
   - entity_id: lock.utility_door_lock_alarm_type
     platform: state
@@ -790,7 +789,6 @@
 
 - alias: Update Unlocked State From Alarm Type
 # Updates Lock to unlocked state because Alarm Type is more reliably pushed from Kwikset locks
-  initial state: 'on'
   trigger:
   - entity_id: lock.utility_door_lock_alarm_type
     platform: state
