@@ -160,6 +160,9 @@ logger:
   logs:
     homeassistant.components.zwave: info
     homeassistant.components.tomato.device_tracker: warn
+    homeassistant.components.automation.set_guest_in_house_status: debug
+    homeassistant.components.automation.update_locked_state_from_alarm_type: debug
+    homeassistant.components.automation.update_unlocked_state_from_alarm_type: debug
 
 # Bypassing entities that run often in logbook
 logbook:
