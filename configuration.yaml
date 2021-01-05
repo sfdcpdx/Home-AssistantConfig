@@ -147,11 +147,11 @@ webostv:
 # Router Integration
 device_tracker:
   - platform: nmap_tracker
+    home_interval: 3
+    interval_seconds: 20
     hosts: 
     - 10.0.0.173
-    - 10.0.0.99
-    consider_home: 180
-    interval_seconds: 8  
+    - 10.0.0.99   
 
 # Set Logger level
 logger:
