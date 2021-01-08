@@ -146,15 +146,21 @@ webostv:
 
 # Router Integration
 device_tracker:
+  # home_interval = nmap scan interval in minutes, how often it scans
+  # consider_home = seconds that device must be away before marked away
+  # interval_seconds = number of seconds between scans for new devices
+  # scan_interval = same as nmap home_interval, only in seconds
   - platform: nmap_tracker
-    home_interval: 3
-    interval_seconds: 20
+    home_interval: 1
+    consider_home: 240
+    interval_seconds: 15
     hosts: 
     - 10.0.0.173
     - 10.0.0.98  
   - platform: ping
     count: 3
-    interval_seconds: 10
+    scan_interval: 60
+    interval_seconds: 15
     consider_home: 240
     hosts:
       cari_phone: 10.0.0.173
