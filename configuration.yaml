@@ -157,9 +157,8 @@ device_tracker:
     interval_seconds: 10
     consider_home: 240
     hosts:
-    - Chris Phone: 10.0.0.173
-    - Cari Phone: 10.0.0.99
-
+    - chris_phone: 10.0.0.173
+    - cari_phone: 10.0.0.99
 
 # Set Logger level
 logger:
