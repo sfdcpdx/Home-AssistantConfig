@@ -146,13 +146,19 @@ webostv:
 
 # Router Integration
 device_tracker:
+  - platform: nmap_tracker
+    home_interval: 3
+    interval_seconds: 20
+    hosts: 
+    - 10.0.0.173
+    - 10.0.0.99  
   - platform: ping
     count: 3
     interval_seconds: 10
     consider_home: 240
     hosts:
-      chris_phone: 10.0.0.173
-      cari_phone: 10.0.0.99
+      cari_phone: 10.0.0.173
+      chris_phone: 10.0.0.99
 
 # Set Logger level
 logger:
