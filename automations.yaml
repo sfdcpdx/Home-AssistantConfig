@@ -771,7 +771,7 @@
   condition: 
   - condition: state
     entity_id: lock.utility_door_lock
-    state: locked
+    state: 'locked'
   action:
   - service: lock.unlock 
     data:
@@ -792,7 +792,7 @@
   condition: 
   - condition: state
     entity_id: lock.utility_door_lock
-    state: unlocked
+    state: 'unlocked'
   action:
   - service: lock.lock 
     data:
