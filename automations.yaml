@@ -718,36 +718,42 @@
   trigger:
   - entity_id: sensor.front_door_lock_alarm_type
     platform: state
+    for: "00:00:05"
   condition:
-  - condition: and
+  - condition: or
     conditions:
-    - condition: not 
+    - condition: state
+      entity_id: sensor.front_door_lock_alarm_type
+      state: '170'
+    - condition: and
       conditions:
-      - condition: state
-        entity_id: sensor.front_door_lock_alarm_level
-        state: '1'
-        # Alarm level 1 shows when keypad is used and user code number 1 is used to unlock
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: sensor.front_door_lock_alarm_type
-        state: '18'
-        # 18 means locked with keypad, alarm level will be 0
-      - condition: state
-        entity_id: sensor.front_door_lock_alarm_type
-        state: '19'
-        # 19 means unlocked with keypad, alarm level will be user code number
+      - condition: not 
+        conditions:
+        - condition: state
+          entity_id: sensor.front_door_lock_alarm_level
+          state: '1'
+          # Alarm level 1 shows when keypad is used and user code number 1 is used to unlock
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: sensor.front_door_lock_alarm_type
+          state: '18'
+          # 18 means locked with keypad, alarm level will be 0
+        - condition: state
+          entity_id: sensor.front_door_lock_alarm_type
+          state: '19'
+          # 19 means unlocked with keypad, alarm level will be user code number
   action:
   - choose:
     - conditions:
       - condition: state
         entity_id: sensor.front_door_lock_alarm_type
-        state: '18'
+        state: '19'
       sequence:
-      - service: input_boolean.turn_off
+      - service: input_boolean.turn_on 
         entity_id: input_boolean.guest_in_house
     default:
-    - service: input_boolean.turn_on
+    - service: input_boolean.turn_off
       entity_id: input_boolean.guest_in_house    
 
 - alias: Update Locked State From Alarm Type
