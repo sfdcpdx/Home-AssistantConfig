@@ -372,6 +372,7 @@
     from: unlocked
     platform: state
     to: locked
+    for: 00:00:05
   condition:
   - condition: or
     conditions:
