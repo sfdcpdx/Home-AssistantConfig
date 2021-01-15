@@ -255,7 +255,11 @@
   - service: media_player.volume_set
     data:
       entity_id: media_player.kitchen
-      volume_level: 0.23
+      volume_level: 0.22
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.Office
+      volume_level: 0.17
 
 - alias: Arm Alarm and Set TStat When Gone
   # Arm alarm and set TStat to away when we're both away from home
@@ -289,6 +293,9 @@
   - condition: state
     entity_id: input_boolean.arm_alarm
     state: 'on'
+  - condition: state
+    entity_id: switch.noisemaker_plug
+    state: 'off'  
   action:
   - entity_id: input_boolean.arm_alarm
     service: input_boolean.turn_off
@@ -296,6 +303,9 @@
       preset_mode: Home
     entity_id: climate.thermostat
     service: climate.set_preset_mode
+  - service: lock.unlock
+    data:
+      entity_id: lock.utility_door_lock
 
 - alias: Arm Alarm with Noisemaker
   # Arm alarm when noisemaker plug is switched on (backup in case it didn't auto arm)
@@ -434,11 +444,13 @@
   condition:
   - condition: state
     entity_id: group.locksalllocked
-    state: 'unlocked'
+    state: 'Unlocked'
   action:
   - service: lock.lock
     data:
-      entity_id: all
+      entity_id: 
+      - lock.utility_door_lock
+      - lock.front_door_lock
       
 #----------------------------------------------------------------------------------------------------
 # Various Comfort and Maintenance Controls
