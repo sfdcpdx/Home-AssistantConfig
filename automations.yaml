@@ -441,10 +441,6 @@
     from: 'off'
     platform: state
     to: 'on'
-  condition:
-  - condition: state
-    entity_id: group.locksalllocked
-    state: 'Unlocked'
   action:
   - service: lock.lock
     data:
