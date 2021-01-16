@@ -326,13 +326,13 @@
   # Disarm alarm if any door is unlocked 
   trigger:
   - entity_id: group.locksanylocked
-    from: 'locked'
+    from: locked
     platform: state
-    to: 'unlocked'
+    to: unlocked
   - entity_id: group.locksalllocked
-    from: 'locked'
+    from: locked
     platform: state
-    to: 'unlocked'
+    to: unlocked
   condition:
   - condition: state
     entity_id: input_boolean.arm_alarm
@@ -359,9 +359,9 @@
   # Arms alarm when doors locked and noisemaker is on
   trigger:
   - entity_id: group.locksalllocked
-    from: 'unlocked'
+    from: unlocked
     platform: state
-    to: 'locked'
+    to: locked
   condition:
   - condition: and
     conditions:
@@ -779,7 +779,7 @@
   condition: 
   - condition: state
     entity_id: lock.utility_door_lock
-    state: 'locked'
+    state: locked
   action:
   - service: lock.unlock 
     data:
@@ -800,7 +800,7 @@
   condition: 
   - condition: state
     entity_id: lock.utility_door_lock
-    state: 'unlocked'
+    state: unlocked
   action:
   - service: lock.lock 
     data:
