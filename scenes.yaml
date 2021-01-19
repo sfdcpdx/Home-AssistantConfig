@@ -15,8 +15,9 @@
 - id: tv_viewing_scene
   name: tv_viewing_scene
   entities:
-    light.living_room_lamp:
-      brightness: 174
+    light.tv_light_strip:
+      brightness: 128
+      kelvin: 6500
       state: 'on'
     switch.kitchen_lights:
         state: 'off'
