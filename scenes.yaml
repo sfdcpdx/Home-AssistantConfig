@@ -16,7 +16,7 @@
   name: tv_viewing_scene
   entities:
     light.tv_light_strip:
-      brightness: 128
+      brightness: 51
       kelvin: 6500
       state: 'on'
     switch.kitchen_lights:
@@ -26,6 +26,8 @@
     light.living_room_cans:
       state: 'off'   
     light.dining_room_chandelier:
+      state: 'off'
+    light.living_room_lamp:
       state: 'off'
 - id: all_indoor_lights_off
   name: all_indoor_lights_off
