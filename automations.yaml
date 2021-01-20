@@ -8,7 +8,10 @@
     platform: sun
   action:
   - service: light.turn_on
-    entity_id: light.living_room_lamp
+    data:
+      entity_id: light.tv_light_strip
+      brightness_pct: 75
+      kelvin: 2700
 
 - alias: Living Room Lamp Off at Bedtime
   # Lamp turns off at night, but makes sure we're not listening to music or tv first
@@ -28,7 +31,7 @@
         state: 'playing'
   action:
   - service: light.turn_off
-    entity_id: light.living_room_lamp 
+    entity_id: light.tv_light_strip
   - service: media_player.turn_off
     entity_id: media_player.living_room_tv
 
@@ -50,7 +53,7 @@
     after: input_datetime.lvng_rm_lamp_off_time
     before: input_datetime.noisemaker_off_time
   - condition: state
-    entity_id: light.living_room_lamp
+    entity_id: light.tv_light_strip
     state: 'on'
   - condition: not
     conditions:
@@ -59,7 +62,7 @@
       state: 'playing'
   action:
   - service: light.turn_off
-    entity_id: light.living_room_lamp  
+    entity_id: light.tv_light_strip  
   - service: media_player.turn_off
     entity_id: media_player.living_room_tv 
 
@@ -226,7 +229,7 @@
     entity_id: input_boolean.arm_alarm
     state: 'off'
   - condition: state
-    entity_id: light.living_room_lamp
+    entity_id: light.tv_light_strip
     state: 'off'
   - condition: not
     conditions:
@@ -606,7 +609,10 @@
     subtype: dim_down
   action:
   - service: light.turn_on
-    entity_id: light.living_room_lamp
+    data:
+      entity_id: light.tv_light_strip
+      brightness_pct: 75
+      kelvin: 2700
 
 - alias: Hue Remote Dim Down Button Long Press
   trigger:
@@ -617,7 +623,7 @@
     subtype: dim_down
   action:
   - service: light.turn_off
-    entity_id: light.living_room_lamp
+    entity_id: light.tv_light_strip
 
 - alias: Hue Remote Off Button Single Click
   trigger:

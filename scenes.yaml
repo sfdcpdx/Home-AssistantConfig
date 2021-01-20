@@ -20,9 +20,9 @@
       kelvin: 6500
       state: 'on'
     switch.kitchen_lights:
-        state: 'off'
+      state: 'off'
     light.island_lights:
-        state: 'off'
+      state: 'off'
     light.living_room_cans:
       state: 'off'   
     light.dining_room_chandelier:
