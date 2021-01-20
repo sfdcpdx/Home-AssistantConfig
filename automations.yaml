@@ -722,7 +722,7 @@
   - condition: and
     conditions:
     - condition: state
-      entity_id: group.peopleanyoneaway
+      entity_id: group.peopleanyonehome
       state: home
     - condition: sun
       after: sunset
