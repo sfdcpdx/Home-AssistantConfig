@@ -156,7 +156,7 @@ device_tracker:
     interval_seconds: 15
     hosts: 
     - 10.0.0.173
-    - 10.0.0.98  
+    - 10.0.0.99  
   - platform: ping
     count: 1
     scan_interval: 60
@@ -164,7 +164,7 @@ device_tracker:
     consider_home: 240
     hosts:
       cari_phone: 10.0.0.173
-      chris_phone: 10.0.0.98
+      chris_phone: 10.0.0.99
 
 # Set Logger level
 logger:
