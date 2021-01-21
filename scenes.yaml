@@ -40,7 +40,7 @@
       state: 'off'
     light.island_lights:
       state: 'off'
-    light.living_room_lamp:
+    light.tv_light_strip:
       state: 'off'
     light.dining_room_chandelier:
       state: 'off'
