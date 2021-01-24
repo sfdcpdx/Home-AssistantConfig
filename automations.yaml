@@ -119,7 +119,7 @@
   - service: light.turn_on
     data:
       entity_id: light.bedroom_lamp_chris
-      brightness_pct: 20
+      brightness_pct: 10
       kelvin: 2700
 
 - alias: Bedroom Lamp Off With No Motion or Noisemaker On
