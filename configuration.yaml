@@ -192,3 +192,7 @@ logbook:
 
 # TP Link Kasa light bulbs
 tplink:
+  discovery: false
+  light:
+    - host: 10.0.0.206
+    - host: 10.0.0.250
