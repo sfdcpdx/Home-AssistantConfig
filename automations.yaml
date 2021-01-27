@@ -353,24 +353,31 @@
     data:
       entity_id: lock.utility_door_lock
 
-- alias: Arm Alarm with Noisemaker
+- alias: Noisemaker On Arm Alarm and Turn Off Lights
   # Arm alarm when noisemaker plug is switched on and turn off bedroom lights
   trigger:
   - entity_id: switch.noisemaker_plug
     from: 'off'
     platform: state
     to: 'on'
-  condition:
-  - condition: state
-    entity_id: input_boolean.arm_alarm
-    state: 'off'
   action:
-  - entity_id: input_boolean.arm_alarm
-    service: input_boolean.turn_on
-  - service: light.turn_off
-    entity_id: 
-    - light.bedroom_lamp_chris
-    - light.bedroom_lamp_cari
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.arm_alarm
+        state: 'off'
+      sequence:
+      - entity_id: input_boolean.arm_alarm
+        service: input_boolean.turn_on
+      - service: light.turn_off
+        entity_id: 
+        - light.bedroom_lamp_chris
+        - light.bedroom_lamp_cari
+    default:
+    - service: light.turn_off
+      entity_id: 
+      - light.bedroom_lamp_chris
+      - light.bedroom_lamp_cari
 
 - alias: Disarm Alarm When Any Door Unlocked
   # Disarm alarm if any door is unlocked 
