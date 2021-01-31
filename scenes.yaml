@@ -78,3 +78,16 @@
       state: 'on'
     switch.kitchen_lights:
       state: 'on'
+
+- id: bedroom_blue
+  name: bedroom_blue_scene
+  entities:
+    light.bedroom_lamp_chris:
+      brightness_pct: 70
+      rgb_color: [73,73,255]
+      state: 'on'
+    light.bedroom_lamp_cari:
+      brightness_pct: 70
+      rgb_color: [73,73,255]
+      state: 'on'
+  
