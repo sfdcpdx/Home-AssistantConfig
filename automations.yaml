@@ -115,6 +115,8 @@
   - condition: numeric_state
     entity_id: sensor.bedroom_motion_illuminance
     below: 1.5
+  - entity_id: light.bedroom_lamp_cari
+    state: 'off'
   action:
   - service: light.turn_on
     data:
@@ -133,10 +135,12 @@
   - entity_id: switch.noisemaker_plug
     platform: state
     from: 'off'
-    to: 'on' 
+    to: 'on'   
   condition:
   - condition: state
     entity_id: input_boolean.arm_alarm
+    state: 'off'
+  - entity_id: light.bedroom_lamp_cari
     state: 'off'
   action:
   - service: light.turn_off
