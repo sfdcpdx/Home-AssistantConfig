@@ -357,7 +357,8 @@
     service: climate.set_preset_mode
   - service: lock.unlock
     data:
-      entity_id: lock.utility_door_lock
+      entity_id: 
+      - lock.utility_door_lock
 
 - alias: Noisemaker On Arm Alarm and Turn Off Lights
   # Arm alarm when noisemaker plug is switched on and turn off bedroom lights

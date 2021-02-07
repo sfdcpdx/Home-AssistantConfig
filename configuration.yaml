@@ -1,6 +1,8 @@
 # Used to set default from the start, including frontend, important to keep
 default_config:
 
+python_script:
+
 # Included files/folders
 group: !include groups.yaml
 automation: !include automations.yaml
