@@ -49,7 +49,7 @@ input_boolean:
   # Activates automation to set album art color to lights
   album_art_color_lights:
     name: Album Art Color Lights
-    initial: office
+    initial: off
     icon: mdi:music
 
 # Sets usb location of Z Wave dongle
