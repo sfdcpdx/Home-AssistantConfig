@@ -3,6 +3,8 @@ default_config:
 
 python_script:
 
+color_extractor:
+
 # Included files/folders
 group: !include groups.yaml
 automation: !include automations.yaml
@@ -44,6 +46,11 @@ input_boolean:
     name: Guest in House
     initial: off
     icon: mdi:account-key
+  # Activates automation to set album art color to lights
+  album_art_color_lights:
+    name: Album Art Color Lights
+    initial: office
+    icon: mdi:music
 
 # Sets usb location of Z Wave dongle
 zwave:

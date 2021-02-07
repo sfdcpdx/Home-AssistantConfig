@@ -148,6 +148,22 @@
   - service: light.turn_off
     entity_id: light.bedroom_lamp_chris
 
+- alias: Set Light Color to Album Art
+  trigger:
+  - platform: state
+    entity_id: media_player.living_room
+  condition:
+  - condition: state
+    entity_id: input_boolean.album_art_color_lights
+    state: 'on'
+  action:
+  - service: color_extractor.turn_on
+    data_template:
+      color_extract_url: "{{ states.media_player.living_room.attributes.entity_picture }}"
+      entity_id: light.tv_light_strip
+      brightness_pct: 50
+      transition: 3
+
 
 #----------------------------------------------------------------------------------------------------
 # Alarm Notifications
