@@ -848,9 +848,10 @@
     entity_id: lock.utility_door_lock
     state: locked
   action:
-  - service: lock.unlock 
-    data:
+  - service: python_script.set_state
+    data_template:
       entity_id: lock.utility_door_lock
+      state: unlocked
 
 - alias: Update Unlocked State From Alarm Type
 # Updates Lock to unlocked state because Alarm Type is more reliably pushed from Kwikset locks
@@ -869,9 +870,10 @@
     entity_id: lock.utility_door_lock
     state: unlocked
   action:
-  - service: lock.lock 
-    data:
+  - service: python_script.set_state
+    data_template:
       entity_id: lock.utility_door_lock
+      state: locked
 
      
  
