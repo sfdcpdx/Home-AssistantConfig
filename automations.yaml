@@ -831,7 +831,7 @@
     - service: input_boolean.turn_off
       entity_id: input_boolean.guest_in_house    
 
-- alias: Update Locked State From Alarm Type
+- alias: Update Unlocked State From Alarm Type
 # Updates Lock locked state because Alarm Type is more reliably pushed from Kwikset locks
   trigger:
   - entity_id: lock.utility_door_lock_alarm_type
@@ -843,17 +843,13 @@
   - entity_id: lock.utility_door_lock_alarm_type
     platform: state
     to: '25'
-  condition: 
-  - condition: state
-    entity_id: lock.utility_door_lock
-    state: locked
   action:
   - service: python_script.set_state
     data_template:
       entity_id: lock.utility_door_lock
       state: unlocked
 
-- alias: Update Unlocked State From Alarm Type
+- alias: Update Locked State From Alarm Type
 # Updates Lock to unlocked state because Alarm Type is more reliably pushed from Kwikset locks
   trigger:
   - entity_id: lock.utility_door_lock_alarm_type
@@ -865,10 +861,6 @@
   - entity_id: lock.utility_door_lock_alarm_type
     platform: state
     to: '24'
-  condition: 
-  - condition: state
-    entity_id: lock.utility_door_lock
-    state: unlocked
   action:
   - service: python_script.set_state
     data_template:
