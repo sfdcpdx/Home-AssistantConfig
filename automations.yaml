@@ -159,7 +159,7 @@
   action:
   - service: color_extractor.turn_on
     data_template:
-      color_extract_path: "{{ states.media_player.living_room.attributes.entity_picture }}"
+      color_extract_url: "http://10.0.0.26:8123{{ states.media_player.living_room.attributes.entity_picture }}.jpg"
       entity_id: light.tv_light_strip
       brightness_pct: 50
       transition: 3
