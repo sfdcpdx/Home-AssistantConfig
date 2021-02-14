@@ -860,10 +860,10 @@
     platform: state
     to: '25'
   action:
-  - service: python_script.set_state
-    data_template:
-      entity_id: lock.utility_door_lock
-      state: unlocked
+  - service: lock.unlock
+    data:
+      entity_id: 
+      - lock.utility_door_lock
 
 - alias: Update Locked State From Alarm Type
 # Updates Lock to unlocked state because Alarm Type is more reliably pushed from Kwikset locks
