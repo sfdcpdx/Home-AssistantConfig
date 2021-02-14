@@ -864,7 +864,7 @@
     data_template:
       entity_id: lock.utility_door_lock
       state: unlocked
-g
+
 - alias: Update Locked State From Alarm Type
 # Updates Lock to unlocked state because Alarm Type is more reliably pushed from Kwikset locks
   trigger:
