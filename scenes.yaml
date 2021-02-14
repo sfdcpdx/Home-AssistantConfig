@@ -22,7 +22,8 @@
     switch.kitchen_lights:
       state: 'off'
     light.island_lights:
-      state: 'off'
+      brightness: 70
+      state: 'on'
     light.living_room_cans:
       state: 'off'   
     light.dining_room_chandelier:
