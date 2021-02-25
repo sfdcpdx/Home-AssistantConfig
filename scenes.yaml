@@ -17,7 +17,7 @@
   entities:
     light.tv_light_strip:
       brightness: 51
-      rgb_color: [255,249,253]
+      rgb_color: [255,254,250]
       state: 'on'
     switch.kitchen_lights:
       state: 'off'
