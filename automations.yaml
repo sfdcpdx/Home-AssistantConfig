@@ -11,7 +11,7 @@
     data:
       entity_id: light.tv_light_strip
       brightness_pct: 75
-      rgb_color: [255,167,87]
+      rgb_color: [255,204,113]
 
 - alias: Living Room Lamp Off at Bedtime
   # Lamp turns off at night, but makes sure we're not listening to music or tv first
@@ -123,7 +123,7 @@
     data:
       entity_id: light.bedroom_lamp_chris
       brightness_pct: 10
-      rgb_color: [255,167,87]
+      rgb_color: [255,204,113]
 
 - alias: Bedroom Lamp Off With No Motion
   # Turn off bedroom lamp when motion is no longer detected 
@@ -692,7 +692,7 @@
     data:
       entity_id: light.tv_light_strip
       brightness_pct: 75
-      rgb_color: [255,167,87]
+      rgb_color: [255,204,113]
 
 - alias: Hue Remote Dim Down Button Long Press
   trigger:
