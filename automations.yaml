@@ -122,8 +122,8 @@
   - service: light.turn_on
     data:
       entity_id: light.bedroom_lamp_chris
-      brightness_pct: 10
-      rgb_color: [255,204,113]
+      brightness_pct: 20
+      rgb_color: [255,255,255]
 
 - alias: Bedroom Lamp Off With No Motion
   # Turn off bedroom lamp when motion is no longer detected 
