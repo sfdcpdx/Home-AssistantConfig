@@ -121,13 +121,7 @@ sensor:
       - 'time_date'
       - 'time_utc'
       - 'beat'
-  #sun2 integration from: https://github.com/pnbruckner/ha-sun2 Left many options off for now
-  - platform: sun2
-    monitored_conditions:
-      - sunrise
-      - solar_noon
-      - sunset
-      - max_elevation
+
   #HA standard moon phase sensor
   - platform: moon
   - platform: template
