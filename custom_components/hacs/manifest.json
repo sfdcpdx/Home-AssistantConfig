@@ -10,6 +10,7 @@
   "documentation": "https://hacs.xyz/docs/configuration/start",
   "domain": "hacs",
   "name": "HACS",
+  "version": "1.0.0",
   "requirements": [
     "aiofiles==0.5.0",
     "aiogithubapi==1.0.4",
