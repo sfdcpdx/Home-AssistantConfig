@@ -21,7 +21,6 @@ tts:
 camera:
   - platform: generic
     still_image_url: https://s.w-x.co/staticmaps/wu/wu/wxtype1200_cur/ustiw/animate.png
-    stream_source: https://s.w-x.co/staticmaps/wu/wu/wxtype1200_cur/ustiw/animate.png
     content_type: image/gif
     name: regional doppler radar
 
