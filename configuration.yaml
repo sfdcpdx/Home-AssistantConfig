@@ -142,28 +142,6 @@ webostv:
       mac: 20-17-42-36-58-52
       broadcast_address: 10.0.0.211
 
-# Router Integration
-device_tracker:
-  # home_interval = nmap scan interval in minutes, how often it scans
-  # consider_home = seconds that device must be away before marked away
-  # interval_seconds = number of seconds between scans for new devices
-  # scan_interval = same as nmap home_interval, only in seconds
-  - platform: nmap_tracker
-    home_interval: 1
-    consider_home: 300
-    interval_seconds: 15
-    hosts: 
-    - 10.0.0.173
-    - 10.0.0.99  
-  - platform: ping
-    count: 1
-    scan_interval: 60
-    interval_seconds: 15
-    consider_home: 240
-    hosts:
-      cari_phone: 10.0.0.173
-      chris_phone: 10.0.0.99
-
 # Set Logger level
 logger:
   default: info

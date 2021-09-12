@@ -16,16 +16,16 @@ peopleanyonehome:
   name: People Anyone Home
   entities:
   # Chris phone
-  - device_tracker.06_4c_c3_c0_38_4e
+  - device_tracker.nmap_tracker_06_4c_c3_c0_38_4e
   # Cari phone
-  - device_tracker.52_55_d5_83_e9_da
+  - device_tracker.nmap_tracker_52_55_d5_83_e9_da
 peopleanyoneaway:
   name: People Anyone Away
   entities:
   # Chris phone
-  - device_tracker.06_4c_c3_c0_38_4e
+  - device_tracker.nmap_tracker_06_4c_c3_c0_38_4e
   # Cari phone
-  - device_tracker.52_55_d5_83_e9_da
+  - device_tracker.nmap_tracker_52_55_d5_83_e9_da
   all: 'true'
 locksalllocked:
   name: Locks All Locked
