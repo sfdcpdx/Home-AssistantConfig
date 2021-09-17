@@ -6,6 +6,22 @@
   - event: sunset
     offset: -00:30:00
     platform: sun
+  condition:
+  - condition: and
+    conditions:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: light.tv_light_strip
+        state: 'on'
+    - condition: or
+      conditions:
+      - condition: not
+        conditions:
+        - condition: state
+          entity_id: media_player.living_room
+          state: 'playing'
+      - "{{ if is_state('media_player.living_room','playing') and state_attr('media_player.living_room', 'source') != 'TV' }}"
   action:
   - service: light.turn_on
     data:
