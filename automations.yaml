@@ -312,9 +312,14 @@
   - condition: state
     entity_id: input_boolean.arm_alarm
     state: 'off'
-  - condition: state
-    entity_id: light.tv_light_strip
-    state: 'off'
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: light.tv_light_strip
+      state: 'off'
+    - condition: state
+      entity_id: light.living_room_lamp
+      state: 'off'
   - condition: not
     conditions:
     - condition: state
