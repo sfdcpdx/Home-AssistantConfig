@@ -28,6 +28,11 @@
       entity_id: light.living_room_light_bars
       brightness_pct: 75
       rgb_color: [255,204,113]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_light_strip
+      brightness_pct: 75
+      rgb_color: [255,204,113]
 
 - alias: Living Room Lamp Off at Bedtime
   # Lamp turns off at night, but makes sure we're not listening to music or tv first

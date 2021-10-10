@@ -28,7 +28,7 @@
       state: 'off'   
     light.dining_room_chandelier:
       state: 'off'
-    light.living_room_lamp:
+    light.tv_light_strip:
       state: 'off'
 - id: all_indoor_lights_off
   name: all_indoor_lights_off
