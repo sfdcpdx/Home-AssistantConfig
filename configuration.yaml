@@ -178,12 +178,12 @@ light:
   - platform: group
     name: Living Room Light Bars
     entities:
-      - light.living_room_light_bar_left
-      - light.living_room_light_bar_right
+      - light.hue_light_bar_left
+      - light.hue_light_bar_right
   - platform: group
     name: Living Room All RGB
     entities:
-      - light.living_room_light_bar_left
-      - light.living_room_light_bar_right
+      - light.hue_light_bar_left
+      - light.hue_light_bar_right
       - light.tv_light_strip
 
