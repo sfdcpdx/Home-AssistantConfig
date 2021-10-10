@@ -45,7 +45,7 @@
       state: 'off'
     light.dining_room_chandelier:
       state: 'off'
-    light.living_room_lamp:
+    light.living_room_light_bars:
       state: 'off'
 - id: cooking_scene
   name: cooking_scene
