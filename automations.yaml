@@ -12,7 +12,7 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: light.tv_light_strip
+        entity_id: light.living_room_light_bars
         state: 'on'
     - condition: or
       conditions:
@@ -25,7 +25,7 @@
   action:
   - service: light.turn_on
     data:
-      entity_id: light.tv_light_strip
+      entity_id: light.living_room_light_bars
       brightness_pct: 75
       rgb_color: [255,204,113]
 
@@ -33,7 +33,7 @@
   # Lamp turns off at night, but makes sure we're not listening to music or tv first
   trigger:
   - platform: template
-    value_template: "{{ states.sensor.time.state == states.input_datetime.lvng_rm_lamp_off_time.state[0:5] }}"
+    value_template: "{{ states.sensor.time.state == states.input_datetime.living_room_lights_off_time.state[0:5] }}"
   condition: 
     condition: not
     conditions:
@@ -48,6 +48,8 @@
   action:
   - service: light.turn_off
     entity_id: light.tv_light_strip
+  - service: light.turn_off
+    entity_id: light.living_room_light_bars
   - service: media_player.turn_off
     entity_id: media_player.living_room_tv
 
@@ -66,10 +68,10 @@
     for: "00:15:00"
   condition: 
   - condition: time
-    after: input_datetime.lvng_rm_lamp_off_time
+    after: input_datetime.living_room_lights_off_time
     before: input_datetime.noisemaker_off_time
   - condition: state
-    entity_id: light.tv_light_strip
+    entity_id: light.living_room_light_bars
     state: 'on'
   - condition: not
     conditions:
@@ -79,6 +81,8 @@
   action:
   - service: light.turn_off
     entity_id: light.tv_light_strip  
+  - service: light.turn_off
+    entity_id: light.living_room_light_bars
   - service: media_player.turn_off
     entity_id: media_player.living_room_tv 
 
@@ -182,6 +186,12 @@
       entity_id: light.tv_light_strip
       brightness_pct: 50
       transition: 3
+  - service: color_extractor.turn_on
+    data_template:
+      color_extract_url: "http://10.0.0.26:8123{{ states.media_player.living_room.attributes.entity_picture }}.jpg"
+      entity_id: light.living_room_light_bars
+      brightness_pct: 50
+      transition: 3
 
 
 #----------------------------------------------------------------------------------------------------
@@ -207,7 +217,7 @@
     to: 'idle'
   condition: 
   - condition: template
-    value_template: "{{ states.sensor.time.state > states.input_datetime.lvng_rm_lamp_off_time.state[0:5] }}" 
+    value_template: "{{ states.sensor.time.state > states.input_datetime.living_room_lights_off_time.state[0:5] }}" 
   - condition: state
     entity_id: input_boolean.arm_alarm
     state: 'off'
@@ -318,7 +328,7 @@
       entity_id: light.tv_light_strip
       state: 'off'
     - condition: state
-      entity_id: light.living_room_lamp
+      entity_id: light.living_room_light_bars
       state: 'off'
   - condition: not
     conditions:
@@ -711,7 +721,7 @@
   action:
   - service: light.turn_on
     data:
-      entity_id: light.tv_light_strip
+      entity_id: light.living_room_light_bars
       brightness_pct: 75
       rgb_color: [255,204,113]
 
@@ -724,7 +734,7 @@
     subtype: dim_down
   action:
   - service: light.turn_off
-    entity_id: light.tv_light_strip
+    entity_id: light.living_room_light_bars
 
 - alias: Hue Remote Off Button Single Click
   trigger:

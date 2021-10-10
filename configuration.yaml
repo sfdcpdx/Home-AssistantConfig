@@ -92,8 +92,8 @@ input_datetime:
     name: Time Camera Reboot
     has_date: false
     has_time: true 
-  lvng_rm_lamp_off_time:
-    name: Time Living Room Lamp Off
+  living_room_lights_off_time:
+    name: Living Room Lights Off Time
     has_date: false 
     has_time: true 
   noisemaker_off_time:
@@ -172,3 +172,18 @@ tplink:
   light:
     - host: 10.0.0.206
     - host: 10.0.0.250
+
+# Light Groups
+light:
+  - platform: group
+    name: Living Room Light Bars
+    entities:
+      - light.living_room_light_bar_left
+      - light.living_room_light_bar_right
+  - platform: group
+    name: Living Room All RGB
+    entities:
+      - light.living_room_light_bar_left
+      - light.living_room_light_bar_right
+      - light.tv_light_strip
+

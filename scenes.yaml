@@ -15,7 +15,7 @@
 - id: tv_viewing_scene
   name: tv_viewing_scene
   entities:
-    light.tv_light_strip:
+    light.living_room_light_bars:
       brightness: 51
       rgb_color: [255,254,250]
       state: 'on'
