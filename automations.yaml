@@ -3,9 +3,11 @@
 - alias: Living Room Lamp On at Sunset
   # Turns on the living Room Lamp shortly before sunset
   trigger:
-  - event: sunset
-    offset: -00:30:00
-    platform: sun
+  - platform: state
+    entity_id: sun.sun
+    from: 'above_horizon'
+    to: 'below_horizon'
+    for: 00:15:00
   condition:
   - condition: and
     conditions:
@@ -94,9 +96,10 @@
 - alias: Porch Lights On at Sunset
   # Porch lights come on shortly before sunset
   trigger:
-  - event: sunset
-    offset: -00:15:00
-    platform: sun
+  - platform: state
+    entity_id: sun.sun
+    from: 'above_horizon'
+    to: 'below_horizon'
   action:
   - service: switch.turn_on
     entity_id: switch.porch_lights   
@@ -104,11 +107,14 @@
 - alias: Porch Lights Off at Sunrise
   # Porch lights turn off at sunrise
   trigger:
-  - event: sunrise
-    platform: sun
+  - platform: state
+    entity_id: sun.sun
+    from: 'below_horizon'
+    to: 'above_horizon'
   action:
   - service: switch.turn_off
-    entity_id: switch.porch_lights   
+    entity_id: switch.porch_lights 
+
 - alias: Patio Lights Turn On When Back Door Opens
   # Turns on patio lights when back door opens at night
   trigger:
@@ -120,8 +126,9 @@
   - condition: state
     entity_id: light.patio_lights
     state: 'off'
-  - after: sunset
-    condition: sun
+  - condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
   action:
   - service: light.turn_on
     entity_id: light.patio_lights  
@@ -840,8 +847,9 @@
     - condition: state
       entity_id: group.peopleanyonehome
       state: home
-    - condition: sun
-      after: sunset
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
   action:
   - data:
       preset_mode: Sleep
