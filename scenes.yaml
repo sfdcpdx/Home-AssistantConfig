@@ -12,24 +12,25 @@
       state: 'on'
     switch.noisemaker_plug:
       state: 'off'
+
 - id: tv_viewing_scene
   name: tv_viewing_scene
   entities:
     light.living_room_light_bars:
-      brightness: 51
-      rgb_color: [255,254,250]
+      brightness: 35
+      rgb_color: [255,204,133]
       state: 'on'
     switch.kitchen_lights:
       state: 'off'
     light.island_lights:
-      brightness: 70
-      state: 'on'
+      state: 'off'
     light.living_room_cans:
       state: 'off'   
     light.dining_room_chandelier:
       state: 'off'
     light.tv_light_strip:
       state: 'off'
+
 - id: all_indoor_lights_off
   name: all_indoor_lights_off
   entities:
@@ -47,6 +48,7 @@
       state: 'off'
     light.living_room_light_bars:
       state: 'off'
+
 - id: cooking_scene
   name: cooking_scene
   entities:
@@ -60,6 +62,7 @@
     light.dining_room_chandelier:
       bringtness: 46
       state: 'on'
+      
 - id: dinner_scene
   name: dinner_scene
   entities:
@@ -73,6 +76,7 @@
       state: 'on'
     light.living_room_cans:
       state: 'off'
+
 - id: cleaning_scene
   name: cleaning_scene
   entities:
@@ -93,4 +97,22 @@
       brightness_pct: 70
       rgb_color: [73,73,255]
       state: 'on'
+
+- id: bias_lighting_scene
+  name: bias_lighting_scen
+  entities:
+    light.living_room_light_bars:
+      state: 'off'
+    switch.kitchen_lights:
+      state: 'off'
+    light.island_lights:
+      state: 'off'
+    light.living_room_cans:
+      state: 'off'   
+    light.dining_room_chandelier:
+      state: 'off'
+    light.tv_light_strip:
+      state: 'on'
+      brightness: 51
+      rgb_color: [255,254,250]
   
