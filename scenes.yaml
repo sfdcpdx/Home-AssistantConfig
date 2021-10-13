@@ -17,7 +17,7 @@
   name: tv_viewing_scene
   entities:
     light.living_room_light_bars:
-      brightness: 35
+      brightness: 70
       rgb_color: [255,204,133]
       state: 'on'
     switch.kitchen_lights:
@@ -62,7 +62,7 @@
     light.dining_room_chandelier:
       bringtness: 46
       state: 'on'
-      
+
 - id: dinner_scene
   name: dinner_scene
   entities:

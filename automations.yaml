@@ -7,7 +7,6 @@
     entity_id: sun.sun
     from: 'above_horizon'
     to: 'below_horizon'
-    for: 00:15:00
   condition:
   - condition: and
     conditions:
