@@ -27,12 +27,12 @@
   - service: light.turn_on
     data:
       entity_id: light.living_room_light_bars
-      brightness_pct: 75
+      brightness_pct: 100
       rgb_color: [255,204,113]
   - service: light.turn_on
     data:
       entity_id: light.tv_light_strip
-      brightness_pct: 75
+      brightness_pct: 50
       rgb_color: [255,204,113]
 
 - alias: Living Room Lamp Off at Bedtime
@@ -733,7 +733,12 @@
   - service: light.turn_on
     data:
       entity_id: light.living_room_light_bars
-      brightness_pct: 75
+      brightness_pct: 100
+      rgb_color: [255,204,113]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_light_strip
+      brightness_pct: 50
       rgb_color: [255,204,113]
 
 - alias: Hue Remote Dim Down Button Long Press
