@@ -18,7 +18,7 @@
   entities:
     light.living_room_light_bars:
       brightness_pct: 75
-      rgb_color: [255,204,133]
+      rgb_color: [255,204,113]
       state: 'on'
     switch.kitchen_lights:
       state: 'off'
