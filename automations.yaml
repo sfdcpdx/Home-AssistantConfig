@@ -617,23 +617,8 @@
     type: remote_button_short_press
     subtype: turn_on
   action:
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: media_player.living_room
-        state: playing
-      sequence:
-      - service: scene.turn_on
-        entity_id: scene.cooking_scene
-      - service: sonos.join
-        data:
-          master: media_player.living_room
-          entity_id: 
-          - media_player.living_room
-          - media_player.kitchen 
-    default:
-    - service: scene.turn_on
-      entity_id: scene.cooking_scene
+  - service: scene.turn_on
+    entity_id: scene.cooking_scene
 
 - alias: Hue Remote On Button Long Click
   trigger:
@@ -675,13 +660,6 @@
   action:
   - service: scene.turn_on
     entity_id: scene.tv_viewing_scene
-  - service: sonos.unjoin
-    data:
-      entity_id: 
-      - media_player.kitchen
-      - media_player.bathroom
-      - media_player.bedroom
-      - media_player.office 
     
 - alias: Hue Remote Dim Up Button Long Press
   trigger:
@@ -712,15 +690,6 @@
   action:
   - service: scene.turn_on
     entity_id: scene.cleaning_scene
-  - service: sonos.join
-    data:
-      master: media_player.living_room
-      entity_id: 
-      - media_player.living_room
-      - media_player.kitchen
-      - media_player.bathroom
-      - media_player.bedroom
-      - media_player.office  
   
 - alias: Hue Remote Dim Down Button Single Click
   trigger:
