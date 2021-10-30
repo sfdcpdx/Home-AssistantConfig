@@ -356,7 +356,10 @@
   trigger:
   - platform: template
     value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_auto_disarm_time.state[0:5] }}"
-  condition: 
+  condition:
+  - condition: state
+      entity_id: group.peopleanyonehome
+      state: home  
   action:
   - data: {}
     entity_id: input_boolean.arm_alarm
@@ -393,6 +396,23 @@
       preset_mode: Away
     entity_id: climate.thermostat
     service: climate.set_preset_mode
+
+- alias: Out of Town Morning Tstat to Away
+  # Sets thermostat to away if still out of house in morning
+  trigger:
+  - platform: state
+    entity_id: climate.thermostat
+    attribute: preset_mode
+    to: Home
+  condition: 
+  - condition: state
+    entity_id: group.peopleanyonehome
+    state: not_home  
+  action:
+  - entity_id: climate.thermostat
+    service: climate.set_preset_mode
+    data:
+      preset_mode: Away
 
 - alias: Disarm Alarm Set TStat When Anyone Returns
   # Disarms alarm, runs TStat schedule when someone/anyone/all come home
