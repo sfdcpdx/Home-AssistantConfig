@@ -358,8 +358,8 @@
     value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_auto_disarm_time.state[0:5] }}"
   condition:
   - condition: state
-      entity_id: group.peopleanyonehome
-      state: home  
+    entity_id: group.peopleanyonehome
+    state: home  
   action:
   - data: {}
     entity_id: input_boolean.arm_alarm
