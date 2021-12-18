@@ -634,50 +634,15 @@
   - platform: state
     entity_id: sensor.living_room_sonos_source
   action:
-  - choose:
-    - conditions:
-
-      - condition: state
-        entity_id: sensor.living_room_sonos_source
-        state: 'Music'
-      sequence:
-      - service: number.set_value
-        data:
-        - entity_id: number.living_room_bass
-          value: 6
-        - entity_id: number.living_room_treble
-          value: 2
-
-      - condition: state
-        entity_id: sensor.living_room_sonos_source
-        state: 'Line-in'
-      sequence:
-      - service: number.set_value
-        data:
-        - entity_id: number.living_room_bass
-          value: 6
-        - entity_id: number.living_room_treble
-          value: 5
-
-      - condition: state
-        entity_id: sensor.living_room_sonos_source
-        state: 'TV'
-      sequence:
-      - service: number.set_value
-        data:
-        - entity_id: number.living_room_bass
-          value: 3
-        - entity_id: number.living_room_treble
-          value: 2
-
-    default:
-    - service: number.set_value
-      data:
-        - entity_id: number.living_room_bass
-          value: 6
-        - entity_id: number.living_room_treble
-          value: 2
-  
+    service: number.set_value
+    data: >
+      {% if sensor.living_room_sonos_source.state == "TV" %}
+        {"number.living_room_bass": 3, "number.living_room_treble": 3}
+      {% sensor.living_room_sonos_source.state == "Line-in" %}
+        {"number.living_room_bass": 6, "number.living_room_treble": 5}
+      {% else %}
+        {"number.living_room_bass": 6, "number.living_room_treble": 2}
+      {% endif %}  
 
 # Hue Remote Automation ----------------
 - alias: Hue Remote On Button Single Click
