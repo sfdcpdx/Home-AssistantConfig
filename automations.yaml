@@ -628,6 +628,57 @@
       entity_id: media_player.living_room_tv
       source: 'HDMI 3'
 
+- alias: Sonos EQ Adjust
+  # Set EQ on Living Room Sonos based on input source
+  trigger:
+  - platform: state
+    entity_id: sensor.living_room_sonos_source
+  action:
+  - choose:
+    - conditions:
+    
+      - condition: state
+        entity_id: sensor.living_room_sonos_source
+        state: 'Music'
+      sequence:
+      - service: number.set_value
+        data:
+        - entity_id: number.living_room_bass
+          value: 6
+        - entity_id: number.living_room_treble
+          value: 2
+
+      - condition: state
+        entity_id: sensor.living_room_sonos_source
+        state: 'Line-in'
+      sequence:
+      - service: number.set_value
+        data:
+        - entity_id: number.living_room_bass
+          value: 6
+        - entity_id: number.living_room_treble
+          value: 2
+
+      - condition: state
+        entity_id: sensor.living_room_sonos_source
+        state: 'TV'
+      sequence:
+      - service: number.set_value
+        data:
+        - entity_id: number.living_room_bass
+          value: 6
+        - entity_id: number.living_room_treble
+          value: 2
+
+    default:
+    - service: number.set_value
+      data:
+        - entity_id: number.living_room_bass
+          value: 6
+        - entity_id: number.living_room_treble
+          value: 2
+  
+
 # Hue Remote Automation ----------------
 - alias: Hue Remote On Button Single Click
   trigger:
