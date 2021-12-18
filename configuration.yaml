@@ -58,7 +58,7 @@ template:
   - sensor:
     - name: "Living Room Sonos Source"
       state: >
-        {% if is_state_attr('media_player.living_room', 'source', 'unknown') %}
+        {% if is_state_attr('media_player.living_room', 'source', NULL) %}
           music
         {% else %}
           {{ state_attr('media_player.living_room', 'source') }}
