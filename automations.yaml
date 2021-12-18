@@ -636,7 +636,7 @@
   action:
   - choose:
     - conditions:
-    
+
       - condition: state
         entity_id: sensor.living_room_sonos_source
         state: 'Music'
@@ -657,7 +657,7 @@
         - entity_id: number.living_room_bass
           value: 6
         - entity_id: number.living_room_treble
-          value: 2
+          value: 5
 
       - condition: state
         entity_id: sensor.living_room_sonos_source
@@ -666,7 +666,7 @@
       - service: number.set_value
         data:
         - entity_id: number.living_room_bass
-          value: 6
+          value: 3
         - entity_id: number.living_room_treble
           value: 2
 
