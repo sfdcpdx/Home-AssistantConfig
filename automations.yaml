@@ -634,15 +634,30 @@
   - platform: state
     entity_id: sensor.living_room_sonos_source
   action:
-    service: number.set_value
-    data: >
-      {% if is_state('sensor.living_room_sonos_source','TV') %}
-        {"number.living_room_bass": 3, "number.living_room_treble": 3}
-      {% elif is_state('sensor.living_room_sonos_source','Line-in') %}
-        {"number.living_room_bass": 6, "number.living_room_treble": 5}
-      {% else %}
-        {"number.living_room_bass": 6, "number.living_room_treble": 2}
-      {% endif %}   
+  - service: number.set_value
+    target: 
+      entity_id: number.living_room_bass
+    data:
+      value: >
+        {% if is_state('sensor.living_room_sonos_source','TV') %}
+          3
+        {% elif is_state('sensor.living_room_sonos_source','Line-in') %}
+          6
+        {% else %}
+          6
+        {% endif %}   
+  - service: number.set_value
+    target: 
+      entity_id: number.living_room_treble
+    data:
+      value: >
+        {% if is_state('sensor.living_room_sonos_source','TV') %}
+          3
+        {% elif is_state('sensor.living_room_sonos_source','Line-in') %}
+          5
+        {% else %}
+          2
+        {% endif %} 
 
 # Hue Remote Automation ----------------
 - alias: Hue Remote On Button Single Click
