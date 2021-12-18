@@ -53,6 +53,12 @@ input_boolean:
     initial: off
     icon: mdi:music
 
+# Template Sensors
+template:
+  - sensor:
+    - name: "Living Room Sonos Source"
+      state: {{state_attr('media_player.living_room', 'source')}}
+
 # Sets usb location of Z Wave dongle
 zwave:
   usb_path: /dev/ttyUSB0
