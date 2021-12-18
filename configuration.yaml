@@ -61,7 +61,8 @@ template:
         {% if is_state_attr('media_player.living_room', 'media_content_type', music) %}
           music
         {% else %}
-          "{{ state_attr('media_player.living_room', 'source') }}""
+          "{{ state_attr('media_player.living_room', 'source') }}"
+        {% endif %}
            
 
 # Sets usb location of Z Wave dongle
