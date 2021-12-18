@@ -63,12 +63,6 @@ template:
         {% else %}
           {{ state_attr('media_player.living_room', 'source') }}
         {% endif %}
-           
-
-# Sets usb location of Z Wave dongle
-zwave:
-  usb_path: /dev/ttyUSB0
-  device_config: !include zwave_device_config.yaml
 
 # General notification to send to all phones at once
 notify:
@@ -158,7 +152,6 @@ webostv:
 logger:
   default: info
   logs:
-    homeassistant.components.zwave: info
     homeassistant.components.tomato.device_tracker: warn
     homeassistant.components.automation.set_guest_in_house_status: debug
     homeassistant.components.automation.update_locked_state_from_alarm_type: debug
