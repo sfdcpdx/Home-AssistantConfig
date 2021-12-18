@@ -636,13 +636,13 @@
   action:
     service: number.set_value
     data: >
-      {% if sensor.living_room_sonos_source.state == "TV" %}
+      {% if is_state('sensor.living_room_sonos_source','TV') %}
         {"number.living_room_bass": 3, "number.living_room_treble": 3}
-      {% sensor.living_room_sonos_source.state == "Line-in" %}
+      {% elif is_state('sensor.living_room_sonos_source','Line-in') %}
         {"number.living_room_bass": 6, "number.living_room_treble": 5}
       {% else %}
         {"number.living_room_bass": 6, "number.living_room_treble": 2}
-      {% endif %}  
+      {% endif %}   
 
 # Hue Remote Automation ----------------
 - alias: Hue Remote On Button Single Click
