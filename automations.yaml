@@ -773,12 +773,12 @@
   - service: light.turn_off
     entity_id: light.tv_light_strip
 
-- alias: Hue Remote Off Button Single Click
+- alias: Hue Remote Off Button Double Click
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
     platform: device
-    type: remote_button_short_press
+    type: remote_button_double_press
     subtype: turn_off
   action:
   - service: scene.turn_on
