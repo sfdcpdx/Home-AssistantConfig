@@ -771,6 +771,8 @@
   action:
   - service: light.turn_off
     entity_id: light.living_room_light_bars
+  - service: light.turn_off
+    entity_id: light.tv_light_strip
 
 - alias: Hue Remote Off Button Single Click
   trigger:
@@ -781,7 +783,7 @@
     subtype: turn_off
   action:
   - service: scene.turn_on
-    entity_id: scene.all_indoor_lights_off
+    entity_id: scene.all_kitchen_lights_off
   
 - alias: Hue Remote Off Button Long Press
   trigger:

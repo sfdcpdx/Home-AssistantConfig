@@ -49,6 +49,16 @@
     light.living_room_light_bars:
       state: 'off'
 
+- id: all_kitchen_lights_off
+  name: all_kitchen_lights_off
+  entities:
+    switch.kitchen_lights:
+      state: 'off'
+    light.island_lights:
+      state: 'off'
+    light.dining_room_chandelier:
+      state: 'off'
+
 - id: cooking_scene
   name: cooking_scene
   entities:
