@@ -47,9 +47,14 @@
       - condition: state
         entity_id: media_player.living_room
         state: 'playing'
-      - condition: state
-        entity_id: media_player.spotify_chris_moreno
-        state: 'playing'
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: group.peopleanyonehome
+          state: not_home
+        - condition: state
+          entity_id: media_player.spotify_chris_moreno
+          state: 'playing'
   action:
   - service: light.turn_off
     entity_id: light.tv_light_strip
@@ -80,9 +85,14 @@
     state: 'on'
   - condition: not
     conditions:
-    - condition: state
-      entity_id: media_player.spotify_chris_moreno
-      state: 'playing'
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: group.peopleanyonehome
+        state: not_home
+      - condition: state
+        entity_id: media_player.spotify_chris_moreno
+        state: 'playing'
   action:
   - service: light.turn_off
     entity_id: light.tv_light_strip  
