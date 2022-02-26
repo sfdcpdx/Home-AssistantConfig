@@ -242,7 +242,7 @@
     entity_id: input_boolean.arm_alarm
     state: 'off'
   action:
-  - service: notify.mobile_app_all_phones
+  - service: notify.mobile_app_chris_phone
     data_template:
       message: "Swipe Left->View (lockscreen) or Down (popup)"
       data:
