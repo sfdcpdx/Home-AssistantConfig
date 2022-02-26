@@ -5,6 +5,7 @@ doors:
   - binary_sensor.back_door
   - binary_sensor.utility_room_door
   - binary_sensor.garage_side_door
+
 sonos_all:
   name: Sonos All
   entities:
@@ -12,6 +13,7 @@ sonos_all:
   - media_player.bedroom
   - media_player.living_room
   - media_player.office
+
 peopleanyonehome:
   name: People Anyone Home
   entities:
@@ -19,6 +21,7 @@ peopleanyonehome:
   - device_tracker.nmap_tracker_d6_cb_af_97_34_08
   # Cari phone
   - device_tracker.nmap_tracker_4e_65_5e_19_d7_5a
+
 peopleanyoneaway:
   name: People Anyone Away
   entities:
@@ -27,6 +30,7 @@ peopleanyoneaway:
   # Cari phone
   - device_tracker.nmap_tracker_4e_65_5e_19_d7_5a
   all: 'true'
+
 locksalllocked:
   name: Locks All Locked
   entities:
@@ -39,4 +43,6 @@ locksanylocked:
   entities:
   - lock.front_door_lock
   - lock.utility_door_lock
+
+
 
