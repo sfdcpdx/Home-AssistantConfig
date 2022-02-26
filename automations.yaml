@@ -242,13 +242,23 @@
     entity_id: input_boolean.arm_alarm
     state: 'off'
   action:
-    service: notify.notify_all_phones
-    data:
-      title: "Arm Alarm Now?"
+  - service: notify.mobile_app_all_phones
+    data_template:
       message: "Swipe Left->View (lockscreen) or Down (popup)"
       data:
-        push:
-          category: "alarm" # Needs to match the top level identifier used in the ios configuration
+        actions:
+        - action: 'ARM_ALARM'
+          title: 'Arm Alarm'
+          activationMode: 'background'
+          authenticationRequired: false
+          destructive: false
+          behavior: 'default'
+        - action: 'DISMISS'
+          title: 'Dismiss'
+          activationMode: 'background'
+          authenticationRequired: false
+          destructive: false
+          behavior: 'default'
 
 - alias: Door Open Alarm Utility
   # Door Open Alert Alarm/Critical Notification
