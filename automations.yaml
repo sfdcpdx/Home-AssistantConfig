@@ -253,12 +253,6 @@
           authenticationRequired: false
           destructive: false
           behavior: 'default'
-        - action: 'DISMISS'
-          title: 'Dismiss'
-          activationMode: 'background'
-          authenticationRequired: false
-          destructive: false
-          behavior: 'default'
 
 - alias: Door Open Alarm Utility
   # Door Open Alert Alarm/Critical Notification
