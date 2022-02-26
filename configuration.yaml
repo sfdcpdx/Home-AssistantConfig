@@ -117,16 +117,7 @@ spotify:
   client_secret: !secret spotify_client_secret
 
 # LG TV Integration
-#wake_on_lan:
-
-#webostv:
-#  host: 10.0.0.211
-#  name: Living Room TV
-#  turn_on_action:
-#    service: wake_on_lan.send_magic_packet
-#    data:
-#      mac: 20-17-42-36-58-52
-#      broadcast_address: 10.0.0.211
+wake_on_lan:
 
 # Set Logger level
 logger:

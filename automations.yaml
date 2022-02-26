@@ -613,6 +613,15 @@
 #----------------------------------------------------------------------------------------------------
 # Various Comfort and Maintenance Controls
 
+- alias: Turn On Living Room TV with Wake on LAN
+  trigger:
+  - platform: webostv.turn_on
+    entity_id: media_player.living_room_tv
+  action:
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: 20-17-42-36-58-52
+
 - alias: Turn TV On and Set Input
   # Turn TV on and set input when music starts playing in living room
   trigger:
