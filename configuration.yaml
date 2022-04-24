@@ -149,17 +149,3 @@ tplink:
     - host: 10.0.0.206
     - host: 10.0.0.250
 
-# Light Groups
-light:
-  - platform: group
-    name: Living Room Light Bars
-    entities:
-      - light.hue_light_bar_left
-      - light.hue_light_bar_right
-  - platform: group
-    name: Living Room All RGB
-    entities:
-      - light.hue_light_bar_left
-      - light.hue_light_bar_right
-      - light.tv_light_strip
-
