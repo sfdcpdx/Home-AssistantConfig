@@ -226,7 +226,7 @@
   - service: color_extractor.turn_on
     data_template:
       color_extract_url: "http://10.0.0.26:8123{{ states.media_player.living_room.attributes.entity_picture }}.jpg"
-      entity_id: light.can_lights_front_center
+      entity_id: light.can_light_front_center
       brightness_pct: 10
       transition: 3
 
