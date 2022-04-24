@@ -2,8 +2,9 @@
 - id: alarm_alert_scene
   name: alarm_alert_scene
   entities:
-    light.living_room_cans:
+    light.can_lights_all:
       brightness: 196
+      rgb_color: [255,204,113]
       state: 'on'
     light.patio_lights:
       brightness: 196
@@ -20,12 +21,16 @@
       brightness_pct: 75
       rgb_color: [255,204,113]
       state: 'on'
+    light.can_lights_front_lr:
+      brightness_pct: 20
+      rgb_color: [255,204,113]
+      state: 'on'
     switch.kitchen_lights:
       state: 'off'
     light.island_lights:
       state: 'off'
-    light.living_room_cans:
-      state: 'off'   
+    light.can_lights_center_and_back:
+      state: 'off'
     light.dining_room_chandelier:
       state: 'off'
     light.tv_light_strip:
@@ -34,7 +39,7 @@
 - id: all_indoor_lights_off
   name: all_indoor_lights_off
   entities:
-    light.living_room_cans:
+    light.can_lights_all:
       state: 'off'
     switch.kitchen_lights:
       state: 'off'
@@ -47,6 +52,8 @@
     light.dining_room_chandelier:
       state: 'off'
     light.living_room_light_bars:
+      state: 'off'
+    light.twinkly:
       state: 'off'
 
 - id: all_kitchen_lights_off
@@ -67,8 +74,6 @@
     light.island_lights:
       brightness: 70
       state: 'on'
-    light.living_room_cans:
-      state: 'off'
     light.dining_room_chandelier:
       bringtness: 46
       state: 'on'
@@ -84,15 +89,16 @@
     light.dining_room_chandelier:
       bringtness: 46
       state: 'on'
-    light.living_room_cans:
+    light.can_lights_center_and_back:
       state: 'off'
 
 - id: cleaning_scene
   name: cleaning_scene
   entities:
-    light.living_room_cans:
+    light.can_lights_all:
       brightness: 150
       state: 'on'
+      rgb_color: [255,204,113]
     switch.kitchen_lights:
       state: 'on'
 
@@ -117,7 +123,7 @@
       state: 'off'
     light.island_lights:
       state: 'off'
-    light.living_room_cans:
+    light.can_lights_all:
       state: 'off'   
     light.dining_room_chandelier:
       state: 'off'
