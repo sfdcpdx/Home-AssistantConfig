@@ -637,7 +637,7 @@
   action:
   - service: wake_on_lan.send_magic_packet
     data:
-      mac: 20-17-42-36-58-52
+      mac: 74:e6:b8:42:bd:5d
 
 - alias: Turn TV On and Set Input
   # Turn TV on and set input when music starts playing in living room
