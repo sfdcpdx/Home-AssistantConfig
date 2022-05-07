@@ -28,7 +28,7 @@
         entity_id: scene.living_room_normal_lights_on
     default:
     - service: scene.turn_on
-      entity_id: scene.tv_viewing_no_turn_offs
+      entity_id: scene.tv_viewing_scene_no_turn_offs
 
 - alias: Living Room Lamp Off at Bedtime
   # Lamp turns off at night, but makes sure we're not listening to music or tv first
