@@ -36,8 +36,8 @@
     light.tv_light_strip:
       state: 'off'
 
-- id: tv_viewing_no_turn_offs
-  name: tv_viewing_no_turn_offs
+- id: tv_viewing_scene_no_turn_offs
+  name: tv_viewing_scene_no_turn_offs
   entities:
     light.living_room_light_bars:
       brightness_pct: 75
