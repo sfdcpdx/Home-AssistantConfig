@@ -36,6 +36,44 @@
     light.tv_light_strip:
       state: 'off'
 
+- id: tv_viewing_no_turn_offs
+  name: tv_viewing_scene_no_turn_offs
+  entities:
+    light.living_room_light_bars:
+      brightness_pct: 75
+      rgb_color: [255,204,113]
+      state: 'on'
+    light.can_lights_front_lr:
+      brightness_pct: 20
+      rgb_color: [255,204,113]
+      state: 'on'
+
+- id: living_room_normal_lights_on
+  name: living_room_normal_lights_on
+  entities:
+    light.living_room_light_bars:
+      brightness_pct: 100
+      rgb_color: [255,204,113]
+      state: 'on'
+    light.can_lights_front_lr:
+      brightness_pct: 40
+      rgb_color: [255,204,113]
+      state: 'on'
+    light.tv_light_strip:
+      brightness_pct: 40
+      rgb_color: [255,204,113]
+      state: 'on'
+
+- id: living_room_normal_lights_off
+  name: living_room_normal_lights_off
+  entities:
+    light.living_room_light_bars:
+      state: 'off'
+    light.can_lights_front_lr:
+      state: 'off'
+    light.tv_light_strip:
+      state: 'off'  
+
 - id: all_indoor_lights_off
   name: all_indoor_lights_off
   entities:

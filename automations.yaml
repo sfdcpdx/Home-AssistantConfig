@@ -7,37 +7,28 @@
     offset: -00:30:00
     platform: sun
   condition:
-  - condition: and
+  - condition: not
     conditions:
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: light.living_room_light_bars
-        state: 'on'
-    - condition: or
-      conditions:
-      - condition: not
-        conditions:
-        - condition: state
-          entity_id: media_player.living_room
-          state: 'playing'
-      - "{{ is_state('media_player.living_room','playing') and state_attr('media_player.living_room', 'source') != 'TV' }}"
-  action:
-  - service: light.turn_on
-    data:
+    - condition: state
       entity_id: light.living_room_light_bars
-      brightness_pct: 100
-      rgb_color: [255,204,113]
-  - service: light.turn_on
-    data:
-      entity_id: light.tv_light_strip
-      brightness_pct: 40
-      rgb_color: [255,204,113]
-  - service: light.turn_on
-    data:
-      entity_id: light.can_lights_front_lr
-      brightness_pct: 40
-      rgb_color: [255,204,113]
+      state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: not
+          conditions:
+          - condition: state
+            entity_id: media_player.living_room
+            state: 'playing'
+        - "{{ is_state('media_player.living_room','playing') and state_attr('media_player.living_room', 'source') != 'TV' }}"
+      sequence:
+      - service: scene.turn_on
+        entity_id: scene.living_room_normal_lights_on
+    default:
+    - service: scene.turn_on
+      entity_id: scene.tv_viewing_no_turn_offs
 
 - alias: Living Room Lamp Off at Bedtime
   # Lamp turns off at night, but makes sure we're not listening to music or tv first
@@ -789,21 +780,8 @@
     type: remote_button_short_press
     subtype: dim_down
   action:
-  - service: light.turn_on
-    data:
-      entity_id: light.living_room_light_bars
-      brightness_pct: 100
-      rgb_color: [255,204,113]
-  - service: light.turn_on
-    data:
-      entity_id: light.tv_light_strip
-      brightness_pct: 40
-      rgb_color: [255,204,113]
-  - service: light.turn_on
-    data:
-      entity_id: light.can_lights_front_lr
-      brightness_pct: 40
-      rgb_color: [255,204,113]
+  - service: scene.turn_on
+    entity_id: scene.living_room_normal_lights_on
 
 - alias: Hue Remote Dim Down Button Long Press
   trigger:
@@ -813,12 +791,8 @@
     type: remote_button_long_press
     subtype: dim_down
   action:
-  - service: light.turn_off
-    entity_id: light.living_room_light_bars
-  - service: light.turn_off
-    entity_id: light.tv_light_strip
-  - service: light.turn_off
-    entity_id: light.can_lights_front_lr
+  - service: scene.turn_on
+    entity_id: scene.living_room_normal_lights_off
 
 - alias: Hue Remote Off Button Double Click
   trigger:
