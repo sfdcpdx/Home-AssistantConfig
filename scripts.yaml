@@ -22,6 +22,7 @@ sonos_say:
   - service: sonos.restore
     data_template:
       entity_id: '{{ sonos_entity|default(''media_player.living_room'') }}'
+
 sonos_say_to_all:
 #Groups all Sonos players and says message, then returns to prior status
   alias: Sonos All Players TTS script
@@ -56,6 +57,7 @@ sonos_say_to_all:
   - service: sonos.restore
     data:
       entity_id: all
+
 alarm_sound:
 #not working
   alias: Speaker Alarm Voice
@@ -66,6 +68,7 @@ alarm_sound:
       volume: 0.5
       delay: 00:00:03
       message: test
+
 phone_notification:
 #this works now, call this script to send a notification to both of our phones
   alias: Phone Notification
@@ -74,6 +77,7 @@ phone_notification:
     data_template:
       message: "{{ message }}"
       title: "{{ title }}"    
+
 phone_critical_alert:
 #send critical alert notification to both phones
   alias: Phone Critical Alert  
@@ -89,6 +93,7 @@ phone_critical_alert:
             critical: 1
             name: default
             volume: 1
+
 pull_github_config:
 # Executes shell command that does a Git Pull Origin Master
   alias: Pull Latest Config

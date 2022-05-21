@@ -175,6 +175,9 @@
   - condition: state
     entity_id: light.bedroom_lamp_chris
     state: 'on'
+  - condition: state
+    entity_id: group.peopleanyonehome
+    state: home 
   action:
   - service: light.turn_off
     entity_id: light.bedroom_lamp_chris
@@ -212,6 +215,99 @@
       entity_id: light.can_light_front_center
       brightness_pct: 10
       transition: 3
+
+- alias: Away From Home Auto Actions Schedule A
+# Engage automatic light behavior while away for security
+  trigger:
+  - platform: time
+    at:
+      - "17:07:05"
+      - "18:39:03"
+      - "20:19:00"
+      - "22:13:00"
+  condition: 
+  - condition: state
+    entity_id: group.peopleanyonehome
+    state: not_home 
+  - condition: time
+    weekday:
+      - mon
+      - wed
+      - fri
+      - sun  
+  action:
+  - choose:
+    - conditions:
+      - condition: time
+        before: "17:08:00"
+        after: "17:05:00"
+      sequence:
+      - service: light.turn_on
+        entity_id: light.kitchen_lights
+    - conditions:
+      - condition: time
+        before: "18:40:03"
+        after: "17:08:00"
+      sequence:
+      - service: light.turn_off
+        entity_id: 
+        - light.kitchen_lights
+    - conditions:
+      - condition: time
+        before: "20:20:00"
+        after: "18:40:03"
+      sequence:
+      - service: light.turn_on
+        entity_id: light.bedroom_lamp_chris
+    default:
+    - service: light.turn_off
+      entity_id: light.bedroom_lamp_chris
+
+- alias: Away From Home Auto Actions Schedule B
+# Engage automatic light behavior while away for security
+  trigger:
+  - platform: time
+    at:
+      - "17:23:05"
+      - "19:09:03"
+      - "20:32:00"
+      - "22:22:00"
+  condition: 
+  - condition: state
+    entity_id: group.peopleanyonehome
+    state: not_home 
+  - condition: time
+    weekday:
+      - tue
+      - thu
+      - sat  
+  action:
+  - choose:
+    - conditions:
+      - condition: time
+        before: "17:24:00"
+        after: "17:05:00"
+      sequence:
+      - service: light.turn_on
+        entity_id: light.kitchen_lights
+    - conditions:
+      - condition: time
+        before: "19:10:00"
+        after: "17:25:00"
+      sequence:
+      - service: light.turn_off
+        entity_id: 
+        - light.kitchen_lights
+    - conditions:
+      - condition: time
+        before: "20:33:00"
+        after: "19:12:00"
+      sequence:
+      - service: light.turn_on
+        entity_id: light.bedroom_lamp_chris
+    default:
+    - service: light.turn_off
+      entity_id: light.bedroom_lamp_chris
 
 
 #----------------------------------------------------------------------------------------------------
