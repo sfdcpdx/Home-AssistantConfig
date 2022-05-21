@@ -52,12 +52,8 @@
           entity_id: media_player.spotify_chris_moreno
           state: 'playing'
   action:
-  - service: light.turn_off
-    entity_id: light.tv_light_strip
-  - service: light.turn_off
-    entity_id: light.living_room_light_bars
-  - service: media_player.turn_off
-    entity_id: media_player.living_room_tv
+  - service: scene.turn_on
+    entity_id: scene.living_room_normal_lights_off
 
 - alias: Living Room Lamp Off Night After Media Off
   # Lamp turns off a bit after turning off sonos/tv if it's after normal off-time
@@ -90,12 +86,8 @@
         entity_id: media_player.spotify_chris_moreno
         state: 'playing'
   action:
-  - service: light.turn_off
-    entity_id: light.tv_light_strip  
-  - service: light.turn_off
-    entity_id: light.living_room_light_bars
-  - service: media_player.turn_off
-    entity_id: media_player.living_room_tv 
+  - service: scene.turn_on
+    entity_id: scene.living_room_normal_lights_off
 
 - alias: Porch Lights On at Sunset
   # Porch lights come on shortly before sunset
