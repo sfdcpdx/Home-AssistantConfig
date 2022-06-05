@@ -24,6 +24,12 @@ camera:
     content_type: image/gif
     name: regional doppler radar
 
+# Garage Doors
+cover:
+  - platform: aladdin_connect
+    username: !secret aladdin_user
+    password: !secret aladdin_pass
+
 # Custom switches
 input_boolean:
   # Master alarm switch
