@@ -20,7 +20,7 @@ jobs:
       script: 
       - mv secrets.yaml.sample secrets.yaml 
       - docker pull homeassistant/home-assistant:latest
-      - docker run --init -d --name="home-assistant" -e "TZ=America/New_York" -v /tmp:/tmp -v /tmp:/images -v $TRAVIS_BUILD_DIR:/config homeassistant/home-assistant:latest
+      - docker run -d --name="home-assistant" -e "TZ=America/New_York" -v /tmp:/tmp -v /tmp:/images -v $TRAVIS_BUILD_DIR:/config homeassistant/home-assistant:latest
       - docker ps -a
       - docker exec home-assistant python -m homeassistant --script check_config --config /config
     -  
@@ -28,7 +28,7 @@ jobs:
       script: 
       - mv secrets.yaml.sample secrets.yaml 
       - docker pull homeassistant/home-assistant:beta
-      - docker run --init -d --name="home-assistant" -e "TZ=America/New_York" -v /tmp:/tmp -v /tmp:/images -v $TRAVIS_BUILD_DIR:/config homeassistant/home-assistant:beta
+      - docker run -d --name="home-assistant" -e "TZ=America/New_York" -v /tmp:/tmp -v /tmp:/images -v $TRAVIS_BUILD_DIR:/config homeassistant/home-assistant:beta
       - docker ps -a
       - docker exec home-assistant python -m homeassistant --script check_config --config /config
     - stage: automerge config
