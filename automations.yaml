@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------------------------
 # Light Controls
 - alias: Living Room Lamp On at Sunset
-  # Turns on the living Room Lamp shortly before sunset
+  # Turns on the living Room Lights (formerly Lamp) shortly before sunset
   trigger:
   - event: sunset
     offset: -00:30:00
