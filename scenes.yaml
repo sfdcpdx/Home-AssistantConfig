@@ -18,11 +18,11 @@
   name: tv_viewing_scene
   entities:
     light.living_room_light_bars:
-      brightness_pct: 75
+      brightness: 191
       rgb_color: [255,204,113]
       state: 'on'
     light.can_lights_front_lr:
-      brightness_pct: 20
+      brightness: 51
       rgb_color: [255,204,113]
       state: 'on'
     switch.kitchen_lights:
@@ -40,11 +40,11 @@
   name: tv_viewing_scene_no_turn_offs
   entities:
     light.living_room_light_bars:
-      brightness_pct: 75
+      brightness: 191
       rgb_color: [255,204,113]
       state: 'on'
     light.can_lights_front_lr:
-      brightness_pct: 20
+      brightness: 51
       rgb_color: [255,204,113]
       state: 'on'
 
@@ -52,15 +52,15 @@
   name: living_room_normal_lights_on
   entities:
     light.living_room_light_bars:
-      brightness_pct: 100
+      brightness: 254
       rgb_color: [255,204,113]
       state: 'on'
     light.can_lights_front_lr:
-      brightness_pct: 40
+      brightness: 102
       rgb_color: [255,204,113]
       state: 'on'
     light.tv_light_strip:
-      brightness_pct: 40
+      brightness: 102
       rgb_color: [255,204,113]
       state: 'on'
 
@@ -144,11 +144,11 @@
   name: bedroom_blue_scene
   entities:
     light.bedroom_lamp_chris:
-      brightness_pct: 70
+      brightness: 178
       rgb_color: [73,73,255]
       state: 'on'
     light.bedroom_lamp_cari:
-      brightness_pct: 70
+      brightness: 178
       rgb_color: [73,73,255]
       state: 'on'
 

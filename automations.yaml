@@ -150,7 +150,7 @@
   - service: light.turn_on
     data:
       entity_id: light.bedroom_lamp_chris
-      brightness_pct: 20
+      brightness: 51
       rgb_color: [255,255,255]
 
 - alias: Bedroom Lamp Off With No Motion
@@ -195,25 +195,25 @@
     data_template:
       color_extract_url: "http://10.0.0.26:8123{{ states.media_player.living_room.attributes.entity_picture }}.jpg"
       entity_id: light.tv_light_strip
-      brightness_pct: 50
+      brightness: 128
       transition: 3
   - service: color_extractor.turn_on
     data_template:
       color_extract_url: "http://10.0.0.26:8123{{ states.media_player.living_room.attributes.entity_picture }}.jpg"
       entity_id: light.living_room_light_bars
-      brightness_pct: 50
+      brightness: 128
       transition: 3
   - service: color_extractor.turn_on
     data_template:
       color_extract_url: "http://10.0.0.26:8123{{ states.media_player.living_room.attributes.entity_picture }}.jpg"
       entity_id: light.can_lights_front_lr
-      brightness_pct: 50
+      brightness: 128
       transition: 3
   - service: color_extractor.turn_on
     data_template:
       color_extract_url: "http://10.0.0.26:8123{{ states.media_player.living_room.attributes.entity_picture }}.jpg"
       entity_id: light.can_light_front_center
-      brightness_pct: 10
+      brightness: 25
       transition: 3
 
 - alias: Away From Home Auto Actions Schedule A
@@ -242,16 +242,16 @@
         before: "17:08:00"
         after: "17:05:00"
       sequence:
-      - service: light.turn_on
-        entity_id: light.kitchen_lights
+      - service: switch.turn_on
+        entity_id: switch.kitchen_lights
     - conditions:
       - condition: time
         before: "18:40:03"
         after: "17:08:00"
       sequence:
-      - service: light.turn_off
+      - service: switch.turn_off
         entity_id: 
-        - light.kitchen_lights
+        - switch.kitchen_lights
     - conditions:
       - condition: time
         before: "20:20:00"
@@ -288,16 +288,16 @@
         before: "17:24:00"
         after: "17:05:00"
       sequence:
-      - service: light.turn_on
-        entity_id: light.kitchen_lights
+      - service: switch.turn_on
+        entity_id: switch.kitchen_lights
     - conditions:
       - condition: time
         before: "19:10:00"
         after: "17:25:00"
       sequence:
-      - service: light.turn_off
+      - service: switch.turn_off
         entity_id: 
-        - light.kitchen_lights
+        - switch.kitchen_lights
     - conditions:
       - condition: time
         before: "20:33:00"
@@ -922,7 +922,7 @@
   action:
   - entity_id: switch.noisemaker_plug
     service: switch.turn_off
-  - service: sonos.join
+  - service: media_player.join
     data:
       master: media_player.kitchen
       entity_id: 
