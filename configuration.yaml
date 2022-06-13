@@ -17,13 +17,6 @@ shell_command: !include_dir_named shell_command/
 tts:
   - platform: google_translate
 
-# Virtual camera to livestream a radar webpage
-camera:
-  - platform: generic
-    still_image_url: https://s.w-x.co/staticmaps/wu/wu/wxtype1200_cur/ustiw/animate.png
-    content_type: image/gif
-    name: regional doppler radar
-
 # Custom switches
 input_boolean:
   # Master alarm switch
@@ -105,11 +98,6 @@ sensor:
   #HA standard moon phase sensor
   - platform: moon
 
-# Spotify Integration
-spotify:
-  client_id: !secret spotify_client_id
-  client_secret: !secret spotify_client_secret
-
 # LG TV Integration
 wake_on_lan:
 
@@ -136,10 +124,5 @@ logbook:
       - sensor.time_date
       - sensor.time_utc
 
-# TP Link Kasa light bulbs
-tplink:
-  discovery: false
-  light:
-    - host: 10.0.0.206
-    - host: 10.0.0.250
+
 
