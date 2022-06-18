@@ -923,11 +923,11 @@
   - entity_id: switch.noisemaker_plug
     service: switch.turn_off
   - service: media_player.join
+    target:
+      entity_id: media_player.office
     data:
-      master: media_player.kitchen
-      entity_id: 
-      - media_player.office
-      - media_player.kitchen
+      group_members: media_player.kitchen
+
 #- alias: Noisemaker Turn On
 #  Needs work, doesn't activate soon enough. Noisemaker turns on once TV is off in bedroom
 #  trigger:
