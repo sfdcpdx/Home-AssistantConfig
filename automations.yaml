@@ -153,6 +153,29 @@
       brightness: 51
       rgb_color: [255,255,255]
 
+- alias: Kitchen Lights On With Motion
+  # Turn on island lights when motion detected at night
+  trigger:
+  - entity_id: binary_sensor.living_room_motion_occupancy
+    platform: state
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.living_room_motion_illuminance
+    below: 1.5
+  - condition: state
+    entity_id: light.all_living_room_dimmer_lights
+    state: 'off'
+  - condition: state
+    entity_id: switch.kitchen_lights
+    state: 'off'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.island_lights
+      brightness: 51
+      
 - alias: Bedroom Lamp Off With No Motion
   # Turn off bedroom lamp when motion is no longer detected 
   trigger:
@@ -181,6 +204,30 @@
   action:
   - service: light.turn_off
     entity_id: light.bedroom_lamp_chris
+
+- alias: Kitchen Lights Off With No Motion
+  # Turn off island lights when no motion detected at night
+  trigger:
+  - entity_id: binary_sensor.living_room_motion_occupancy
+    platform: state
+    from: 'on'
+    to: 'off'
+    for: 00:02:00
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: media_player.living_room
+      state: 'playing'
+  - condition: state
+    entity_id: light.all_living_room_dimmer_lights
+    state: 'off'
+  - condition: state
+    entity_id: switch.kitchen_lights
+    state: 'off'
+  action:
+  - service: light.turn_off
+    entity_id: light.island_lights
 
 - alias: Set Light Color to Album Art
   trigger:
@@ -434,7 +481,7 @@
     service: input_boolean.turn_on
 
 - alias: Arm Alarm at Night
-  # Arm alarm at time set in UI, only fires if Living Room Lamp is off and Chris Spotify is not Playing at home
+  # Arm alarm at time set in UI, only fires if Living Room lights are off and Chris Spotify is not Playing at home
   trigger:
   - platform: template
     value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_auto_arm_time.state[0:5] }}"
@@ -442,14 +489,9 @@
   - condition: state
     entity_id: input_boolean.arm_alarm
     state: 'off'
-  - condition: and
-    conditions:
-    - condition: state
-      entity_id: light.tv_light_strip
-      state: 'off'
-    - condition: state
-      entity_id: light.living_room_light_bars
-      state: 'off'
+  - condition: state
+    entity_id: light.living_room_light_bars
+    state: 'off'
   - condition: not
     conditions:
     - condition: state
@@ -981,9 +1023,6 @@
     - condition: state
       entity_id: group.peopleanyonehome
       state: home
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
   action:
   - data:
       preset_mode: Sleep
