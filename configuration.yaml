@@ -124,5 +124,17 @@ logbook:
       - sensor.time_date
       - sensor.time_utc
 
+# iFrame to show additional Docker containers in HA UI
+panel_iframe:
+  portainer:
+    title: "Portainer"
+    url: "http://10.0.0.26:9000/#!/2/docker/containers"
+    icon: mdi:docker
+    require_admin: true
+  ZWaveJS:
+    title: "Z-Wave JS"
+    url: "http://10.0.0.26:8091/control-panel"
+    icon: mdi:z-wave
+    require_admin: true
 
 
