@@ -18,7 +18,7 @@ peopleanyonehome:
   name: People Anyone Home
   entities:
   # Chris phone
-  - device_tracker.nmap_tracker_d6_cb_af_97_34_08
+  - device_tracker.nmap_tracker_98_50_2e_96_c9_58
   # Cari phone
   - device_tracker.nmap_tracker_4e_65_5e_19_d7_5a
 
@@ -26,7 +26,7 @@ peopleanyoneaway:
   name: People Anyone Away
   entities:
   # Chris phone
-  - device_tracker.nmap_tracker_d6_cb_af_97_34_08
+  - device_tracker.nmap_tracker_98_50_2e_96_c9_58
   # Cari phone
   - device_tracker.nmap_tracker_4e_65_5e_19_d7_5a
   all: 'true'
