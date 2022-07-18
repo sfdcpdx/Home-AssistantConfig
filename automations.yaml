@@ -220,7 +220,7 @@
       entity_id: media_player.living_room
       state: 'playing'
   - condition: state
-    entity_id: light.all_living_room_dimmer_lights
+    entity_id: light.can_lights_front_lr
     state: 'off'
   - condition: state
     entity_id: switch.kitchen_lights
