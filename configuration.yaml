@@ -138,6 +138,7 @@ panel_iframe:
     require_admin: true
 
 device_tracker:
+  # link device tracking to Eero router. Instructions on the source repo https://github.com/jrlucier/eero_tracker
   - platform: eero_tracker
 
     # optional eero_tracker settings:
