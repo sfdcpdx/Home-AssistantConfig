@@ -22,6 +22,7 @@ jobs:
       - docker pull homeassistant/home-assistant:latest
       - docker run -d --name="home-assistant" -e "TZ=America/New_York" -v /tmp:/tmp -v /tmp:/images -v $TRAVIS_BUILD_DIR:/config homeassistant/home-assistant:latest
       - docker ps -a
+      - ls
       - docker exec home-assistant python -m homeassistant --script check_config --config /config
     -  
       #second script builds beta version
