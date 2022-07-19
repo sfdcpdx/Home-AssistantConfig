@@ -22,9 +22,9 @@ jobs:
       - docker pull homeassistant/home-assistant:latest
       - docker run -d --name="home-assistant" -e "TZ=America/New_York" -v /tmp:/tmp -v /tmp:/images -v $TRAVIS_BUILD_DIR:/config homeassistant/home-assistant:latest
       - docker ps -a
-      - rm README.me
       - wget https://github.com/jrlucier/eero_tracker/releases/download/1.0.10/eero_tracker-1.0.10.zip
       - unzip eero_tracker-1.0.10.zip
+      - echo "n"
       - docker exec home-assistant python -m homeassistant --script check_config --config /config
     -  
       #second script builds beta version
