@@ -137,4 +137,12 @@ panel_iframe:
     icon: mdi:z-wave
     require_admin: true
 
+device_tracker:
+  - platform: eero_tracker
 
+    # optional eero_tracker settings:
+    only_macs: "98:50:2E:96:C9:58,98:50:2E:9B:23:94"
+
+    # standard device_tracker options
+    consider_home: 300     
+    interval_seconds: 15   
