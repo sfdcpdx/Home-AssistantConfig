@@ -144,5 +144,5 @@ device_tracker:
     only_macs: "98:50:2E:96:C9:58,98:50:2E:9B:23:94"
 
     # standard device_tracker options
-    consider_home: 300     
+    consider_home: 180     
     interval_seconds: 15   
