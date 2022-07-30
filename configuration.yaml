@@ -34,12 +34,7 @@ input_boolean:
     name: Guest in House
     initial: off
     icon: mdi:account-key
-  # Activates automation to set album art color to lights
-  album_art_color_lights:
-    name: Album Art Color Lights
-    initial: off
-    icon: mdi:music
-
+    
 # Template Sensors
 template:
   - sensor:

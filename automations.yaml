@@ -961,6 +961,9 @@
     - wed
     - thu
     - fri
+  - condition: state
+    entity_id: input_boolean.holiday
+    state: off
   action:
   - entity_id: switch.noisemaker_plug
     service: switch.turn_off
