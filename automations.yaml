@@ -161,6 +161,11 @@
     from: 'off'
     to: 'on'
   condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: media_player.living_room
+      state: 'playing'
   - condition: numeric_state
     entity_id: sensor.living_room_motion_illuminance
     below: 1.5
@@ -212,7 +217,7 @@
     platform: state
     from: 'on'
     to: 'off'
-    for: 00:02:00
+    for: 00:05:00
   condition:
   - condition: not
     conditions:
