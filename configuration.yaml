@@ -151,4 +151,4 @@ device_tracker:
 
     # standard device_tracker options
     consider_home: 180     
-    interval_seconds: 15   
+    interval_seconds: 25   
