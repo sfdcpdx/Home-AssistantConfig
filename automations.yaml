@@ -788,7 +788,7 @@
   action:
   - service: media_player.turn_on
     entity_id: media_player.living_room_tv
-  - delay: "00:00:30"
+  - delay: "00:00:40"
   - service: media_player.select_source
     data:
       entity_id: media_player.living_room_tv
