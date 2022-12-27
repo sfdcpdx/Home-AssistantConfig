@@ -100,9 +100,6 @@ sensor:
           {% set hour = time[:2]|int %}
           {{ '{:02d}:{} {}'.format(hour if hour == 12 else hour % 12, time[3:5], 'PM' if hour>11 else 'AM') }}
 
-  #HA standard moon phase sensor
-  - platform: moon
-
 # LG TV Integration
 wake_on_lan:
 
