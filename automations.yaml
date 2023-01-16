@@ -594,18 +594,18 @@
     attribute: preset_mode
     state: Home
   action:
-  - if
+  - if:
     - alias: "if noisemaker plug is on"
       condition: state
       entity_id: switch.noisemaker_plug
       state: 'on' 
-  - then
+  - then:
     - alias: "then set the thermostat back to sleep"
       service: climate.set_preset_mode
       entity_id: climate.thermostat
       data:
         preset_mode: Sleep
-  - else
+  - else:
     - alias: "else go ahead and heat the house"
       service: climate.set_preset_mode
       entity_id: climate.thermostat
