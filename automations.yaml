@@ -569,6 +569,48 @@
     service: climate.set_preset_mode
     data:
       preset_mode: Away
+    
+- alias: Weekend and Holiday Thermostat Sleep Longer
+  # Winter only for now, on Winter or Holiday don't turn on heat until noisemaker off
+  trigger:
+  - platform: state
+    entity_id: climate.thermostat
+    attribute: hvac_action
+    to: heating
+  - platform: state
+    entity_id: switch.noisemaker_plug
+    from: 'on'
+    to: 'off'
+  condition: 
+  - condition: state
+    entity_id: input_boolean.holiday
+    state: 'on'
+  - condition: time
+    weekday:
+    - sat
+    - sun
+  - condition: state
+    entity_id: climate.thermostat
+    attribute: preset_mode
+    state: Home
+  action:
+  - if
+    - alias: "if noisemaker plug is on"
+      condition: state
+      entity_id: switch.noisemaker_plug
+      state: 'on' 
+  - then
+    - alias: "then set the thermostat back to sleep"
+      service: climate.set_preset_mode
+      entity_id: climate.thermostat
+      data:
+        preset_mode: Sleep
+  - else
+    - alias: "else go ahead and heat the house"
+      service: climate.set_preset_mode
+      entity_id: climate.thermostat
+      data:
+        preset_mode: Home
 
 - alias: Disarm Alarm Set TStat When Anyone Returns
   # Disarms alarm, runs TStat schedule when someone/anyone/all come home
