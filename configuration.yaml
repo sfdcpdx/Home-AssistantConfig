@@ -46,11 +46,6 @@ template:
           {{ state_attr('media_player.living_room', 'source') }}
         {% endif %}
 
-# Enables Kiosk Mode (https://github.com/NemesisRE/kiosk-mode) 
-resources:
-  - url: /local/kiosk-mode.js?v=2.0.0
-    type: module
-
 # General notification to send to all phones at once
 notify:
   - platform: group
