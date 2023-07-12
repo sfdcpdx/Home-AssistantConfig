@@ -89,7 +89,8 @@ sensor:
       - 'time_date'
       - 'time_utc'
       - 'beat'
-      
+
+  # Xfinity Usage: https://github.com/robert-alfaro/xfinity-usage/tree/master    
   - platform: xfinity
     username: !secret xfinity_email
     password: !secret xfinity_password
