@@ -1,6 +1,7 @@
 #----------------------------------------------------------------------------------------------------
 # Light Controls
 - alias: Living Room Lamp On at Sunset
+  id: lights1
   # Turns on the living Room Lights (formerly Lamp) shortly before sunset
   trigger:
   - event: sunset

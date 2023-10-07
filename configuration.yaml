@@ -1,7 +1,6 @@
 # Used to set default from the start, including frontend, important to keep
 default_config:
 python_script:
-color_extractor:
 homeassistant:
   allowlist_external_urls:
     - "http://10.0.0.26:8123/api"
