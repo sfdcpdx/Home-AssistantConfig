@@ -32,6 +32,7 @@
       entity_id: scene.tv_viewing_scene_no_turn_offs
 
 - alias: Living Room Lamp Off at Bedtime
+  id: lights2
   # Lamp turns off at night, but makes sure we're not listening to music or tv first
   trigger:
   - platform: template
@@ -57,6 +58,7 @@
     entity_id: scene.living_room_normal_lights_off
 
 - alias: Living Room Lamp Off Night After Media Off
+  id: lights3
   # Lamp turns off a bit after turning off sonos/tv if it's after normal off-time
   trigger:
   - platform: state
@@ -91,6 +93,7 @@
     entity_id: scene.living_room_normal_lights_off
 
 - alias: Porch Lights On at Sunset
+  id: lights4
   # Porch lights come on shortly before sunset
   trigger:
   - platform: state
@@ -102,6 +105,7 @@
     entity_id: switch.porch_lights   
 
 - alias: Porch Lights Off at Sunrise
+  id: lights5
   # Porch lights turn off at sunrise
   trigger:
   - platform: state
@@ -113,6 +117,7 @@
     entity_id: switch.porch_lights 
 
 - alias: Patio Lights Turn On When Back Door Opens
+  id: lights6
   # Turns on patio lights when back door opens at night
   trigger:
   - entity_id: binary_sensor.back_door
@@ -131,6 +136,7 @@
     entity_id: light.patio_lights  
 
 - alias: Bedroom Lamp On With Motion
+  id: lights7
   # Turn on bedroom lamp when motion detected at night
   trigger:
   - entity_id: binary_sensor.bedroom_motion_occupancy
@@ -155,6 +161,7 @@
       rgb_color: [255,255,255]
 
 - alias: Kitchen Lights On With Motion
+  id: lights8
   # Turn on island lights when motion detected at night
   trigger:
   - entity_id: binary_sensor.living_room_motion_occupancy
@@ -183,6 +190,7 @@
       brightness: 51
       
 - alias: Bedroom Lamp Off With No Motion
+  id: lights9
   # Turn off bedroom lamp when motion is no longer detected 
   trigger:
   - entity_id: binary_sensor.bedroom_motion_occupancy
@@ -212,6 +220,7 @@
     entity_id: light.bedroom_lamp_chris
 
 - alias: Kitchen Lights Off With No Motion
+  id: lights10
   # Turn off island lights when no motion detected at night
   trigger:
   - entity_id: binary_sensor.living_room_motion_occupancy
@@ -236,6 +245,7 @@
     entity_id: light.island_lights
 
 - alias: Set Light Color to Album Art
+  id: AlbumArtLights
   trigger:
   - platform: state
     entity_id: media_player.living_room
@@ -270,6 +280,7 @@
       transition: 3
 
 - alias: Away From Home Auto Actions Schedule A
+  id: Lights12
 # Engage automatic light behavior while away for security
   trigger:
   - platform: time
@@ -317,6 +328,7 @@
       entity_id: light.bedroom_lamp_chris
 
 - alias: Away From Home Auto Actions Schedule B
+  id: Lights13
 # Engage automatic light behavior while away for security
   trigger:
   - platform: time
@@ -366,6 +378,7 @@
 #----------------------------------------------------------------------------------------------------
 # Alarm Notifications
 - alias: Actionable Notification Alarm Arm 
+  id: Alarm1
   # After media off and alarm didn't auto-arm, because staying up late, send actionable notification
   trigger:
   - platform: state
@@ -404,6 +417,7 @@
           behavior: 'default'
 
 - alias: Door Open Alarm Utility
+  id: Alarm2
   # Door Open Alert Alarm/Critical Notification
   trigger:
   - platform: state
@@ -475,6 +489,7 @@
 #----------------------------------------------------------------------------------------------------
 # Alarm Arm/Disarm Controls
 - alias: Arm Alarm from Notification
+  id: Alarm3
   # Actionable Notification Alarm Arm sends event that triggers this automation
   trigger:
     platform: event
@@ -487,6 +502,7 @@
     service: input_boolean.turn_on
 
 - alias: Arm Alarm at Night
+  id: Alarm4
   # Arm alarm at time set in UI, only fires if Living Room lights are off and Chris Spotify is not Playing at home
   trigger:
   - platform: template
@@ -509,6 +525,7 @@
     service: input_boolean.turn_on
 
 - alias: Disarm Alarm in Morning
+  id: Alarm5
   # Disarms alarm in the morning at time set in UI and reset Media Player volumes
   trigger:
   - platform: template
@@ -535,6 +552,7 @@
       volume_level: 0.17
 
 - alias: Arm Alarm and Set TStat When Gone
+  id: Alarm6
   # Arm alarm and set TStat to away when we're both away from home
   trigger:
   - entity_id: group.peopleanyonehome
@@ -555,6 +573,7 @@
     service: climate.set_preset_mode
 
 - alias: Out of Town Morning Tstat to Away
+  id: Alarm7
   # Sets thermostat to away if still out of house in morning
   trigger:
   - platform: state
@@ -614,6 +633,7 @@
 #        preset_mode: Home
 
 - alias: Disarm Alarm Set TStat When Anyone Returns
+  id: Alarm8
   # Disarms alarm, runs TStat schedule when someone/anyone/all come home
   trigger:
   - entity_id: group.peopleanyonehome
@@ -641,6 +661,7 @@
       - lock.utility_door_lock
 
 - alias: Noisemaker On Arm Alarm and Turn Off Lights
+  id: Alarm9
   # Arm alarm when noisemaker plug is switched on and turn off bedroom lights
   trigger:
   - entity_id: switch.noisemaker_plug
@@ -667,6 +688,7 @@
       - light.bedroom_lamp_cari
 
 - alias: Disarm Alarm When Any Door Unlocked
+  id: Alarm10
   # Disarm alarm if any door is unlocked 
   trigger:
   - entity_id: group.locksanylocked
@@ -700,6 +722,7 @@
       service: input_boolean.turn_off
 
 - alias: Arm Alarm When Doors Locked
+  id: Alarm11
   # Arms alarm when doors locked and noisemaker is on
   trigger:
   - entity_id: group.locksalllocked
@@ -720,6 +743,7 @@
     service: input_boolean.turn_on
 
 - alias: Arm Alarm When Guest Leaves Out Front
+  id: Alarm12
   # Arms alarm when front door locked by guest and residents are away (or residents leave temporarily)
   trigger:
   - entity_id: lock.front_door_lock
@@ -764,6 +788,7 @@
     service: climate.set_preset_mode
 
 - alias: Disarm Alarm When Second Person Returns Late
+  id: Alarm13
   # Disarms alarm when one of us comes home after already armed
   trigger:
   - entity_id: group.peopleanyoneaway
@@ -779,6 +804,7 @@
     service: input_boolean.turn_off
 
 - alias: Lock Doors When Alarm Armed
+  id: Alarm14
 # Locks all doors when Alarm is Armed
   trigger:
   - entity_id: input_boolean.arm_alarm
@@ -800,6 +826,7 @@
 # Various Comfort and Maintenance Controls
 
 - alias: Turn On Living Room TV with Wake on LAN
+  id: Media1
   trigger:
   - platform: webostv.turn_on
     entity_id: media_player.living_room_tv
@@ -809,6 +836,7 @@
       mac: 74:e6:b8:42:bd:5d
 
 - alias: Turn TV On and Set Input
+  id: Media2
   # Turn TV on and set input when music starts playing in living room
   trigger:
   - platform: state
@@ -838,6 +866,7 @@
       source: 'Fire TV Stick'
 
 - alias: Sonos EQ Adjust
+  id: Media3
   # Set EQ on Living Room Sonos based on input source
   trigger:
   - platform: state
@@ -870,6 +899,7 @@
 
 # Hue Remote Automation ----------------
 - alias: Hue Remote On Button Single Click
+  id: Switches1
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
@@ -881,6 +911,7 @@
     entity_id: scene.cooking_scene
 
 - alias: Hue Remote On Button Long Click
+  id: Switches2
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
@@ -900,6 +931,7 @@
     service: script.turn_on
 
 - alias: Hue Remote On Button Double Click
+  id: Switches3
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
@@ -911,6 +943,7 @@
     entity_id: scene.dinner_scene
   
 - alias: Hue Remote Dim Up Button Single Click
+  id: Switches4
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
@@ -922,6 +955,7 @@
     entity_id: scene.tv_viewing_scene
     
 - alias: Hue Remote Dim Up Button Long Press
+  id: Switches5
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
@@ -941,6 +975,7 @@
     service: script.turn_on
 
 - alias: Hue Remote Dim Up Button Double click
+  id: Switches6
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
@@ -952,6 +987,7 @@
     entity_id: scene.cleaning_scene
   
 - alias: Hue Remote Dim Down Button Single Click
+  id: Switches7
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
@@ -963,6 +999,7 @@
     entity_id: scene.living_room_normal_lights_on
 
 - alias: Hue Remote Dim Down Button Long Press
+  id: Switches8
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
@@ -974,6 +1011,7 @@
     entity_id: scene.living_room_normal_lights_off
 
 - alias: Hue Remote Off Button Double Click
+  id: Switches9
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
@@ -985,6 +1023,7 @@
     entity_id: scene.all_kitchen_lights_off
   
 - alias: Hue Remote Off Button Long Press
+  id: Switches10
   trigger:
   - device_id: fe8da2da4bc1f5dd21f8f4aca5373cbc
     domain: zha
@@ -998,6 +1037,7 @@
 # End Hue remote automation --------------
 
 - alias: Noisemaker Turn Off
+  id: Switches11
   # Noisemaker turns off at time set in UI (Also setup Sonos for morning speaker setup)
   trigger:
   - platform: template
@@ -1042,6 +1082,7 @@
 #  - entity_id: switch.noisemaker_plug
 #    service: switch.turn_on
 - alias: Camera Toggle With Alarm
+  id: Switches12
 #Toggles indoor cameras on-off in sync with Alarm Arm Switch
   trigger:
   - platform: state
@@ -1063,6 +1104,7 @@
       entity_id: switch.camera_plug   
 
 - alias: Thermostat Sleep with Alarm Arm
+  id: Switches13
 #Sets Thermostat preset = "Sleep" when alarm is armed at night and all are home
   trigger:
   - entity_id: input_boolean.arm_alarm
@@ -1082,6 +1124,7 @@
     service: climate.set_preset_mode
 
 - alias: Set Guest in House Status
+  id: Switches14
   # Sets guest occupancy value based on front door lock activity type
   trigger:
   - entity_id: sensor.front_door_lock_alarm_type
@@ -1120,6 +1163,7 @@
       entity_id: input_boolean.guest_in_house    
 
 - alias: Update Unlocked State From Alarm Type
+  id: Switches15
 # Updates Lock locked state because Alarm Type is more reliably pushed from Kwikset locks
   trigger:
   - entity_id: sensor.utility_door_lock_alarm_type
@@ -1138,6 +1182,7 @@
       state: unlocked
 
 - alias: Update Locked State From Alarm Type
+  id: Switches16
 # Updates Lock to unlocked state because Alarm Type is more reliably pushed from Kwikset locks
   trigger:
   - entity_id: sensor.utility_door_lock_alarm_type
@@ -1160,6 +1205,7 @@
 #----------------------------------------------------------------------------------------------------
 # UI automation
 - alias: Conditional Card Time-Based Toggle
+  id: Switches17
   # Every minute, toggles input boolean to filtering cards in Lovelace while media playing (visualization)
   trigger:
   - platform: time_pattern
