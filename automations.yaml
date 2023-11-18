@@ -880,9 +880,9 @@
         {% if is_state('sensor.living_room_sonos_source','TV') %}
           3
         {% elif is_state('sensor.living_room_sonos_source','Line-in') %}
-          6
+          4
         {% else %}
-          6
+          4
         {% endif %}   
   - service: number.set_value
     target: 
