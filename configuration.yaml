@@ -87,7 +87,6 @@ sensor:
       - 'date_time_iso'
       - 'time_date'
       - 'time_utc'
-      - 'beat'
 
   # Xfinity Usage: https://github.com/robert-alfaro/xfinity-usage/tree/master    
   - platform: xfinity
