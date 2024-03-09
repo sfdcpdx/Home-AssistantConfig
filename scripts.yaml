@@ -1,6 +1,7 @@
 sonos_say:
 #Sonos speaks message to designated media player
   alias: Sonos TTS script
+  id: SonosSay1
   sequence:
   - service: sonos.snapshot
     data_template:
@@ -26,6 +27,7 @@ sonos_say:
 sonos_say_to_all:
 #Groups all Sonos players and says message, then returns to prior status
   alias: Sonos All Players TTS script
+  id: SonosSayAll
   sequence:
   - service: sonos.snapshot
     data:  
@@ -61,6 +63,7 @@ sonos_say_to_all:
 alarm_sound:
 #not working
   alias: Speaker Alarm Voice
+  id: AlarmVoice
   sequence:
   - service: script.sonos_say
     data:
@@ -72,6 +75,7 @@ alarm_sound:
 phone_notification:
 #this works now, call this script to send a notification to both of our phones
   alias: Phone Notification
+  id: PhoneNotification
   sequence:
   - service: notify.notify_all_phones
     data_template:
@@ -81,6 +85,7 @@ phone_notification:
 phone_critical_alert:
 #send critical alert notification to both phones
   alias: Phone Critical Alert  
+  id: PhoneCriticalAlert
   sequence:
   - service: notify.notify_all_phones
     data_template:
@@ -97,6 +102,7 @@ phone_critical_alert:
 pull_github_config:
 # Executes shell command that does a Git Pull Origin Master
   alias: Pull Latest Config
+  id: PullGitConfig
   sequence:
     - service: shell_command.pull_config_from_github
     - service: homeassistant.restart
